@@ -1,32 +1,34 @@
 <template>
 <div class="userSignup">
   <h2>ユーザー登録</h2>
-  <form @submit.prevent="singup">
+  <form>
     <div>
-      <v-icon name="mail" style="height:24px;"></v-icon>
-      <input type="text" placeholder="メールアドレス" v-model="username" required />
+      <!-- <v-icon name="mail" style="height:24px;"></v-icon> -->
+      <input type="text" placeholder="メールアドレス" v-model="email" required />
     </div>
-    <div>
+    <!-- <div>
       <v-icon name="user" style="height:24px;"></v-icon>
-      <input type="text" placeholder="ユーザー名" v-model="nickname" required />
-    </div>
+      <input type="text" placeholder="ユーザー名" v-model="username" required />
+    </div> -->
     <div>
-      <v-icon name="unlock" style="height:24px;"></v-icon>
+      <!-- <v-icon name="unlock" style="height:24px;"></v-icon> -->
       <input type="password" placeholder="パスワード" v-model="password" required />
     </div>
-    <div>
+    <!-- <div>
       <v-icon name="lock" style="height:24px;"></v-icon>
       <input type="password" placeholder="パスワード(確認)" v-model="passwordConfirm" required />
-    </div>
-    <span>
+    </div> -->
+    <!-- <span>
       <a style="color:#c1c1c1">*大文字と記号を1つ以上含めてください</a>
-    </span>
-    <button style="boder:solid 1px #c1c1c1; border-radius: .3em; width:100px; height:40px;">登録</button>
+    </span> -->
+    <button style="boder:solid 1px #c1c1c1; border-radius: .3em; width:100px; height:40px;" @click="singup">登録</button>
   </form>
 </div>
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'userSignup',
   props: {
@@ -35,35 +37,30 @@ export default {
   },
   data() {
     return {
-      username: '',
+      email: '',
       password: '',
-      nickname: '',
+      username: '',
       passwordConfirm: ''
     }
   },
   methods: {
     singup() {
-      console.log(this.$cognito);
-      if (this.username && (this.password === this.passwordConfirm)) {
-        this.$cognito.signUp(this.username, this.password, this.nickname)
-          .then(result => {
-            this.$notify({
-              title: '確認コードを入力してください',
-              message: this.username + 'に確認コードを送信しました',
-              type: 'success'
-            })
-            // 登録に成功したら、確認コードの入力画面を表示
-            this.$router.replace('/userMain/userConfirm')
-            console.log(result);
-          })
-          .catch(err => {
-            console.log(err)
-            this.$notify.error({
-              title: ' パスワードが一致しません',
-              message: 'パスワードが一致しているか確認してください'
-            })
-          })
-      }
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(res => {
+        // this.$notify({
+        //   title: '確認コードを入力してください',
+        //   message: this.email + 'に確認コードを送信しました',
+        //   type: 'success'
+        // })
+        // 登録に成功したら、確認コードの入力画面を表示
+        console.log('Create account: ', res.user.email)
+        this.$router.push('userLogin')
+      }).catch(error => {
+        console.log(error.message)
+        // this.$notify.error({
+        //   title: ' パスワードが一致しません',
+        //   message: 'パスワードが一致しているか確認してください'
+        // })
+      })
     }
   }
 }

@@ -4,15 +4,15 @@ import Main from '@/components/Main'
 
 Vue.use(Router)
 
-import userMain from '@/components/usercomponents/userMain'
 import userSignup from '@/components/usercomponents/userSignup'
+import userLogin from '@/components/usercomponents/userLogin'
 import userConfirm from '@/components/usercomponents/userConfirm'
 
 import privacypolicy from '@/components/privacypolicy'
 import termsofservise from '@/components/termsofservise'
 import itemMain from '@/components/itemcomponents/itemMain'
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   routes: [{
       path: '/',
@@ -20,17 +20,17 @@ export default new Router({
       component: Main
     },
     {
-      path: '/userMain',
-      name: 'userMain',
-      component: userMain
-    },
-    {
-      path: '/userMain/userSignup',
+      path: '/userSignup',
       name: 'userSignup',
       component: userSignup
     },
     {
-      path: '/userMain/userConfirm',
+      path: '/userLogin',
+      name: 'userLogin',
+      component: userLogin
+    },
+    {
+      path: '/userConfirm',
       name: 'userConfirm',
       component: userConfirm
     },
@@ -51,3 +51,17 @@ export default new Router({
     }
   ]
 })
+
+import firebase from 'firebase'
+// router.beforeEach()を追加
+router.beforeEach((to, from, next) => {
+  let currentUser = firebase.auth().currentUser
+  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  if (requiresAuth && !currentUser) {
+    console.log("unlogined");
+    next('userLogin')
+  } else if (!requiresAuth && currentUser) next()
+  else next()
+})
+
+export default router

@@ -1,10 +1,10 @@
 <template>
 <div class="userLogin">
   <h2>ログイン</h2>
-  <form @submit.prevent="login">
+  <form>
     <div>
       <!-- <v-icon name="mail" style="height:24px; max-width: 100%;"></v-icon> -->
-      <input type="text" placeholder="メールアドレス" v-model="username" required />
+      <input type="text" placeholder="メールアドレス" v-model="email" required />
     </div>
     <div>
       <!-- <v-icon name="lock" style="height:24px; max-width: 100%;"></v-icon> -->
@@ -13,20 +13,22 @@
     <div>
       <router-link to="userMain/userConfirm" style="text-decoration:none;" class="confirm">確認コード入力</router-link>
     </div>
-    <button>ログイン</button>
+    <button @click="login">ログイン</button>
   </form>
   <button type="warning" plain>
-    <router-link to="userMain/userSignup" style="text-decoration:none;">ユーザー登録</router-link>
+    <router-link to="userSignup" style="text-decoration:none;">ユーザー登録</router-link>
   </button>
 </div>
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'userLogin',
   data() {
     return {
-      username: '',
+      email: '',
       password: '',
       visible: false,
       id: ''
@@ -34,31 +36,42 @@ export default {
   },
   methods: {
     login() {
-      // this.$cognito.login(this.username, this.password)
-      //   .then(result => {
-      //     console.log('success')
-      //     // console.log(result);
-      //     this.id = result.idToken.jwtToken
-      //     localStorage.setItem("idToken", this.id)
-      //     window.location.reload();
-      //     // this.$router.push('/postMain')
-      //   })
-      //   .catch(err => {
-      //     this.error = err
-      //     console.log('err');
-      //     this.$notify.error({
-      //       title: ' ログインできません',
-      //       message: 'メールアドレスかまたはパスワードが違います'
-      //     })
-      //     // this.$router.replace('/userMain/userConfirm')
-      //   })
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          user => {
+            alert('Success!')
+            console.log(localStorage);
+            this.$router.push('userContent')
+            // console.log(result);
+            // this.id = result.idToken.jwtToken
+            // localStorage.setItem("idToken", this.id)
+            // window.location.reload();
+          },
+          err => {
+            alert('error!')
+            console.log(err.message);
+            if (this.email != '' && this.password != '') {
+              this.$notify.error({
+                title: ' ログインできません',
+                message: 'メールアドレスかまたはパスワードが違います'
+              })
+            }
+          }
+        )
     }
+  },
+  mounted() {
+    // if(this.logined==true){
+    //   this.$router.push('postMain')
+    // }
+    console.log("firebase.auth()");
+    console.log(firebase.auth().currentUser);
   }
 }
 </script>
 
 <style>
-.userLogin{
+.userLogin {
   background-size: contain;
   background-position: top;
 }
@@ -146,7 +159,7 @@ export default {
 
 @media screen and (max-width:768px) {
   .userLogin>form>div {
-    width: 240px!important;
+    width: 240px !important;
   }
 
   .userLogin>form>button {

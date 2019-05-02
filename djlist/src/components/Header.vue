@@ -3,7 +3,7 @@
   <h1 @click="home" class="title">
     DJ List
   </h1>
-  <div @click="userMain" class="user">
+  <div @click="toUser" class="user">
     user
   </div>
 </div>
@@ -17,8 +17,8 @@ export default {
 
       this.$router.push('/')
     },
-    userMain(){
-      this.$router.push('/userMain')
+    toUser(){
+      this.$router.push('/userLogin')
     }
   }
 }
