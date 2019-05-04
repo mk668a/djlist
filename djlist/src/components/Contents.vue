@@ -1,10 +1,10 @@
 <template>
 <div class="contents">
   <masonry :cols="{default: 4, 1000: 3, 700: 2, 400: 2}" :gutter="{default: '30px', 700: '20px'}">
-    <div v-for="(item, index) in responsedata" :key="index" class="item" @click="toItem(item)">
+    <div v-for="(item, index) in items" :key="index" class="item" @click="toItem(item)">
       <div class="data-img">
         <div class="filter"></div>
-        <img v-lazy="item.imgPath" style="max-width: 100%" v-scroll-to="'#top'" />
+        <!-- <img v-lazy="item.img" style="max-width: 100%" v-scroll-to="'#top'" /> -->
       </div>
       <!-- <div class="data-product">
         <a v-text="item.product" @click="toLink(item.url)">
@@ -12,7 +12,7 @@
       </div <div class="data-name"> -->
       <a v-text="item.name" v-scroll-to="'#top'">
       </a>
-      <div v-if="!confirmLiked(item.id)" @click="like(item)">
+      <div v-if="!confirmLiked(item.uid)" @click="like(item)">
         <i class="el-icon-star-off"></i>
       </div>
       <div v-else="s">
@@ -35,7 +35,7 @@ export default {
   name: 'Contents',
   props: {
     'toItem': Function,
-    'responsedata': Array,
+    "items": Array
     // 'toProduct': Function,
     // 'toSearch': Function
   },
@@ -157,7 +157,7 @@ export default {
   display: flex;
 }
 
-.contents>button{
+.contents>button {
   margin: 30px auto;
   display: flex;
 }

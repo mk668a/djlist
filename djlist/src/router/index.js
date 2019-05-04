@@ -11,6 +11,7 @@ import userContent from '@/components/usercomponents/userContent'
 import privacypolicy from '@/components/privacypolicy'
 import termsofservise from '@/components/termsofservise'
 import itemMain from '@/components/itemcomponents/itemMain'
+import postItem from '@/components/postItem'
 
 export default new Router({
   mode: 'history',
@@ -38,6 +39,11 @@ export default new Router({
       path: '/itemMain',
       name: 'itemMain',
       component: itemMain
+    },
+    {
+      path: '/postItem',
+      name: 'postItem',
+      component: postItem
     },
     {
       path: '/privacypolicy',

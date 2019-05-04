@@ -2,7 +2,7 @@
 <div id="app">
   <main id="top">
     <Header />
-    <router-view :toItem="toItem" :responsedata="responsedata" :itemdata="itemdata" />
+    <router-view :toItem="toItem" :responsedata="responsedata" :items="items" />
     <Footer />
   </main>
 </div>
@@ -11,6 +11,7 @@
 <script>
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import firebase from 'firebase'
 
 export default {
   name: 'App',
@@ -22,7 +23,8 @@ export default {
     return {
       idToken: '',
       logined: true,
-      itemdata: {},
+      items: [],
+      database: {},
       responsedata: [{
           imgPath: "@/assets/diagram.jpg",
           product: "product",
@@ -54,7 +56,24 @@ export default {
     toItem(obj) {
       this.characterdata = obj
       this.$router.push('/itemMain')
+    },
+    getItems() {
+      firebase.database().ref('/items').on('value', snapshot => {
+        if (snapshot) {
+          const responsedata = snapshot.val()
+          let items = []
+          // データオブジェクトを配列に変更する
+          Object.keys(responsedata).forEach((val, key) => {
+            items.push(responsedata[val])
+          })
+          this.items = items
+          console.log(this.items);
+        }
+      })
     }
+  },
+  mounted() {
+    this.getItems()
   }
 }
 </script>

@@ -3,6 +3,9 @@
   <h1 @click="home" class="title">
     DJ List
   </h1>
+  <div @click="toPost" class="user">
+    post
+  </div>
   <div @click="toUser" class="user">
     user
   </div>
@@ -22,8 +25,11 @@ export default {
       if (firebase.auth().currentUser == null) {
         this.$router.push('userLogin')
       } else {
-        this.$router.push('/userContent')
+        this.$router.push('userContent')
       }
+    },
+    toPost() {
+      this.$router.push('postItem')
     }
   }
 }

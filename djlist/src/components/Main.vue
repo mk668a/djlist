@@ -1,7 +1,7 @@
 <template>
 <div class="main">
   <Search />
-  <Contents :toItem="toItem" :responsedata="responsedata" :itemdata="itemdata"/>
+  <Contents :toItem="toItem" :responsedata="responsedata" :items="items"/>
 </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
   props:{
     "toItem": Function,
     "responsedata": Array,
-    "itemdata": Object
+    "items": Array
   },
 }
 </script>

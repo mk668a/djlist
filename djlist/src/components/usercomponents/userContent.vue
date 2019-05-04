@@ -27,6 +27,7 @@ export default {
       }).catch(function(error) {
         // An error happened.
       });
+      this.$router.push('userLogin')
     }
   },
   mounted() {
@@ -47,7 +48,7 @@ export default {
   padding-top: 30px;
 }
 
-.userContent>button {
+.userContent button {
   margin-bottom: 100px;
 }
 
@@ -59,7 +60,7 @@ export default {
   width: 200px;
 }
 
-.userContent>button a:visited {
+.userContent button>a:visited {
   color: inherit;
 }
 </style>
