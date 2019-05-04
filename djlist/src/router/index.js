@@ -6,13 +6,13 @@ Vue.use(Router)
 
 import userSignup from '@/components/usercomponents/userSignup'
 import userLogin from '@/components/usercomponents/userLogin'
-import userConfirm from '@/components/usercomponents/userConfirm'
+import userContent from '@/components/usercomponents/userContent'
 
 import privacypolicy from '@/components/privacypolicy'
 import termsofservise from '@/components/termsofservise'
 import itemMain from '@/components/itemcomponents/itemMain'
 
-let router = new Router({
+export default new Router({
   mode: 'history',
   routes: [{
       path: '/',
@@ -30,9 +30,9 @@ let router = new Router({
       component: userLogin
     },
     {
-      path: '/userConfirm',
-      name: 'userConfirm',
-      component: userConfirm
+      path: '/userContent',
+      name: 'userContent',
+      component: userContent
     },
     {
       path: '/itemMain',
@@ -51,17 +51,3 @@ let router = new Router({
     }
   ]
 })
-
-import firebase from 'firebase'
-// router.beforeEach()を追加
-router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth().currentUser
-  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-  if (requiresAuth && !currentUser) {
-    console.log("unlogined");
-    next('userLogin')
-  } else if (!requiresAuth && currentUser) next()
-  else next()
-})
-
-export default router

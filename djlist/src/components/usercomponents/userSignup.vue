@@ -21,8 +21,8 @@
     <!-- <span>
       <a style="color:#c1c1c1">*大文字と記号を1つ以上含めてください</a>
     </span> -->
-    <button style="boder:solid 1px #c1c1c1; border-radius: .3em; width:100px; height:40px;" @click="singup">登録</button>
   </form>
+  <button style="boder:solid 1px #c1c1c1; border-radius: .3em; width:100px; height:40px;" @click="singup"><a>登録</a></button>
 </div>
 </template>
 
@@ -111,7 +111,7 @@ export default {
   background-color: rgba(255, 0, 0, 0);
 }
 
-.userSignup>form>button {
+.userSignup button {
   width: 240px;
   height: 40px;
   margin: 60px auto;
@@ -122,7 +122,7 @@ export default {
   color: white;
 }
 
-.userSignup>button {
+.userSignup button {
   width: 240px;
   height: 40px;
   margin: 50px auto;
@@ -135,7 +135,7 @@ export default {
   background: white;
 }
 
-.userSignup>button a:visited {
+.userSignup button>a:visited {
   color: inherit;
 }
 
@@ -144,11 +144,11 @@ export default {
     width: 240px !important;
   }
 
-  .userSignup>form>button {
+  .userSignup button {
     width: 180px;
   }
 
-  .userSignup>button {
+  .userSignup button {
     width: 180px;
   }
 }

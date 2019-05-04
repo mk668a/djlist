@@ -1,9 +1,9 @@
 <template>
 <div class="userContent">
   <h2>ユーザー情報</h2>
-    <div>
-      メール: {{email}}
-    </div>
+  <div>
+    メール: {{email}}
+  </div>
   <button @click="logout">ログアウト</button>
 </div>
 </template>
@@ -21,14 +21,18 @@ export default {
   },
   methods: {
     logout() {
-      firebase.auth().signOut().then(() => {
-        localStorage.removeItem('jwt')
-        this.$router.push('/signin')
-      })
+      firebase.auth().signOut().then(function() {
+        console.log("logout");
+        // Sign-out successful.
+      }).catch(function(error) {
+        // An error happened.
+      });
     }
   },
-  mounted(){
-    this.email = firebase.auth().currentUser
+  mounted() {
+    this.email = firebase.auth().currentUser.email
+    console.log("currentUser");
+    console.log(firebase.auth().currentUser);
   }
 }
 </script>

@@ -13,8 +13,8 @@
     <div>
       <router-link to="userMain/userConfirm" style="text-decoration:none;" class="confirm">確認コード入力</router-link>
     </div>
-    <button @click="login">ログイン</button>
   </form>
+  <button @click="login">ログイン</button>
   <button type="warning" plain>
     <router-link to="userSignup" style="text-decoration:none;">ユーザー登録</router-link>
   </button>
@@ -39,8 +39,8 @@ export default {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(
           user => {
-            alert('Success!')
-            console.log(localStorage);
+            console.log('Success!')
+            // console.log(localStorage)
             this.$router.push('userContent')
             // console.log(result);
             // this.id = result.idToken.jwtToken
@@ -61,9 +61,6 @@ export default {
     }
   },
   mounted() {
-    // if(this.logined==true){
-    //   this.$router.push('postMain')
-    // }
     console.log("firebase.auth()");
     console.log(firebase.auth().currentUser);
   }
@@ -129,7 +126,7 @@ export default {
   background-color: rgba(255, 0, 0, 0);
 }
 
-.userLogin>form>button {
+.userLogin>form button {
   width: 240px;
   height: 40px;
   margin: auto;
@@ -141,7 +138,7 @@ export default {
   color: white;
 }
 
-.userLogin>button {
+.userLogin button {
   width: 240px;
   height: 40px;
   margin: 50px auto;
@@ -153,7 +150,7 @@ export default {
   background: white;
 }
 
-.userLogin>button a:visited {
+.userLogin button a:visited {
   color: #757575;
 }
 
@@ -162,11 +159,11 @@ export default {
     width: 240px !important;
   }
 
-  .userLogin>form>button {
+  .userLogin>form button {
     width: 180px;
   }
 
-  .userLogin>button {
+  .userLogin button {
     width: 180px;
   }
 }

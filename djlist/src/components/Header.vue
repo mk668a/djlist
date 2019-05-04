@@ -10,15 +10,20 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'Header',
-  methods:{
-    home(){
-
+  methods: {
+    home() {
       this.$router.push('/')
     },
-    toUser(){
-      this.$router.push('/userLogin')
+    toUser() {
+      if (firebase.auth().currentUser == null) {
+        this.$router.push('userLogin')
+      } else {
+        this.$router.push('/userContent')
+      }
     }
   }
 }

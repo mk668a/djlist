@@ -22,29 +22,25 @@ Vue.use(VueLazyload, {
   attempt: 1 // ロード失敗した時のリトライの上限指定
 });
 
-import firebase from 'firebase'
-// Vue.config.productionTip = false
-var config = {
+import firebase from "firebase";
+// Your web app's Firebase configuration
+var firebaseConfig = {
   apiKey: "AIzaSyDstgddie6uySLHh2tdrD5bRPdt5OB14h8",
   authDomain: "djlist-5d87e.firebaseapp.com",
   databaseURL: "https://djlist-5d87e.firebaseio.com",
   projectId: "djlist-5d87e",
   storageBucket: "djlist-5d87e.appspot.com",
-  messagingSenderId: "174625711382"
+  messagingSenderId: "174625711382",
+  appId: "1:174625711382:web:b58819e7215b0af9"
 };
-firebase.initializeApp(config);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-let app
-firebase.auth().onAuthStateChanged(user => {
-  /* eslint-disable no-new */
-  if (!app) {
-    new Vue({
-      el: '#app',
-      router,
-      components: {
-        App
-      },
-      template: '<App/>'
-    })
-  }
+new Vue({
+  el: '#app',
+  components: {
+    App
+  },
+  router,
+  template: '<App/>'
 })
