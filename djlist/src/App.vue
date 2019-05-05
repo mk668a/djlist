@@ -2,7 +2,7 @@
 <div id="app">
   <main id="top">
     <Header />
-    <router-view :toItem="toItem" :responsedata="responsedata" :items="items" />
+    <router-view :toItem="toItem" :items="items" :item="item" :unixTime2ymd="unixTime2ymd" />
     <Footer />
   </main>
 </div>
@@ -24,38 +24,14 @@ export default {
       idToken: '',
       logined: true,
       items: [],
+      item: {},
       database: {},
-      responsedata: [{
-          imgPath: "@/assets/diagram.jpg",
-          product: "product",
-          name: "name1",
-          url: "",
-          id: "1",
-          popular: "123"
-        },
-        {
-          imgPath: "@/assets/diagram.jpg",
-          product: "product",
-          name: "name2",
-          url: "",
-          id: "1",
-          popular: "123"
-        },
-        {
-          imgPath: "@/assets/diagram.jpg",
-          product: "product",
-          name: "name3",
-          url: "",
-          id: "1",
-          popular: "123"
-        }
-      ]
     }
   },
   methods: {
     toItem(obj) {
-      this.characterdata = obj
-      this.$router.push('/itemMain')
+      this.item = obj
+      this.$router.push('itemMain')
     },
     getItems() {
       firebase.database().ref('/items').on('value', snapshot => {
@@ -70,7 +46,17 @@ export default {
           console.log(this.items);
         }
       })
-    }
+    },
+    unixTime2ymd(intTime) {
+      var d = new Date(intTime);
+      var year = d.getFullYear();
+      var month = d.getMonth() + 1;
+      var day = d.getDate();
+      var hour = ('0' + d.getHours()).slice(-2);
+      var min = ('0' + d.getMinutes()).slice(-2);
+      var sec = ('0' + d.getSeconds()).slice(-2);
+      return (year + '年' + month + '月' + day + '日 ' + hour + ':' + min + ':' + sec);
+    },
   },
   mounted() {
     this.getItems()

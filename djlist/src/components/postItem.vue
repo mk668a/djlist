@@ -1,54 +1,38 @@
 <template>
 <div class="postItem">
   <form method="postItem">
+    <img :src='img' />
     <div>
-      <a style="color:white;">必須</a>WikipediaのURL(擬人化前):
-      <el-input v-model="inputwiki" placeholder="WikipediaのURL" :rules="[{required: true, type: text}]" pattern="https?://.+">
-        <el-button type="primary" icon="el-icon-view" slot="append" @click="postWiki"></el-button>
-      </el-input>
-    </div>
-    <div class="preview">
-      <div class="original">
-        <img :src='wiki.image' />
-        <div class="data">
-          <h1 v-text="wiki.wiki">
-          </h1>
-          <h4 v-if="t" v-text="wiki.sub">
-          </h4>
-        </div>
-      </div>
-    </div>
-    <img :src='imageUrl' />
-    <div>
-      <a style="color:white;">必須</a>画像のURL:
-      <el-input v-model="imageUrl" :rules="[{required: true, type: text}]"></el-input>
-    </div>
-    <el-switch style="display: block" v-model="selectP" active-color="#c1c1c1" inactive-color="#c1c1c1" active-text="公式キャラクター" inactive-text="オリジナルキャラクター">
-    </el-switch>
-    <div v-if="selectP" class="suggest ">
-      <a style="color:white;">必須</a><span>作品名:</span>
-      <div class="box">
-        <input v-model="inputproduct" id="suggestform" autocomplete="off" @keyup.enter="enter " @keyup.delete="back " @input="change " @focus="disappear " @blur="appear " :rules="[{required: true, type: text}]"></input>
-        <div v-for="(item, index) in suggestlist " class="suggestItem " v-if="!onFocus " :key="index" @click="toform(item) ">
-          {{item}}
-        </div>
-      </div>
-    </div>
-    <div v-if="!selectP">
-      <a style="color:white; ">必須</a>作者:
-      <el-input type="text " v-model="inputproduct" required></el-input>
-    </div>
-    <div v-if="!selectP">
-      <a style="color:white; ">必須</a>作者のリンク:
-      <el-input type="text " v-model="inputurl" required></el-input>
+      <a style="color:white;"></a>画像のURL:
+      <el-switch style="display: block" v-model="selectP" active-color="#c1c1c1" inactive-color="#c1c1c1" active-text="URL" inactive-text="アップロード">
+      </el-switch>
+      <el-input v-if="selectP" v-model="img" :rules="[{required: true, type: text}]"></el-input>
+      <el-upload v-else class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+        <img v-if="img" :src="img" class="avatar">
+        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+      </el-upload>
     </div>
     <div>
       <a style="color:white; ">必須</a>名　前:
-      <el-input type="text " v-model="inputname " required></el-input>
+      <el-input type="text " v-model="name " required></el-input>
     </div>
     <div>
-      <a style="color:white; ">必須</a>ふりがな:
-      <el-input type="text " v-model="inputfurigana "></el-input>
+      <a style="color:white; "></a>活動場所:
+      <el-input type="text " v-model="place " required></el-input>
+    </div>
+    <div>
+      <a style="color:white; "></a>リンク:
+      <el-input type="text " v-model="url" required></el-input>
+      <p>
+        *カンマ区切りで入力してください
+      </p>
+    </div>
+    <div>
+      <a style="color:white; "></a>ジャンル:
+      <el-input type="text " v-model="genre" required></el-input>
+      <p>
+        *カンマ区切りで入力してください
+      </p>
     </div>
     <div>
       <el-button type="primary " style="font-size:20px; " @click="postC">投稿</el-button>
@@ -67,15 +51,11 @@ export default {
   },
   data() {
     return {
-      idToken: '',
-      imageUrl: '',
-      inputwiki: '',
-      inputproduct: '',
-      inputoficial: '',
-      inputname: '',
-      inputfurigana: '',
-      inputurl: '',
-      wiki: '',
+      img: '',
+      name: '',
+      place: '',
+      url: '',
+      genre: '',
       pre: '',
       t: false,
       //suggest用

@@ -1,10 +1,10 @@
 <template>
 <div class="contents">
   <masonry :cols="{default: 4, 1000: 3, 700: 2, 400: 2}" :gutter="{default: '30px', 700: '20px'}">
-    <div v-for="(item, index) in items" :key="index" class="item" @click="toItem(item)">
+    <div v-for="(item, index) in items" :key="index" class="item">
       <div class="data-img">
         <div class="filter"></div>
-        <!-- <img v-lazy="item.img" style="max-width: 100%" v-scroll-to="'#top'" /> -->
+        <img v-lazy="item.img" style="max-width: 100%" v-scroll-to="'#top'" @click="toItem(item)" />
       </div>
       <!-- <div class="data-product">
         <a v-text="item.product" @click="toLink(item.url)">
@@ -35,7 +35,7 @@ export default {
   name: 'Contents',
   props: {
     'toItem': Function,
-    "items": Array
+    "items": Array,
     // 'toProduct': Function,
     // 'toSearch': Function
   },

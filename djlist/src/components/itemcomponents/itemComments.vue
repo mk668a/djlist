@@ -118,7 +118,7 @@ import axios from 'axios'
 export default {
   name: 'itemComments',
   props: {
-    'characterobject': Object,
+    'item': Object,
     'unixTime2ymd': Function
   },
   data() {
@@ -135,8 +135,8 @@ export default {
       })
       axios
         .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/comment', {
-          wiki: this.characterobject.wiki,
-          id: this.characterobject.id,
+          wiki: this.item.wiki,
+          id: this.item.id,
           comment: commentform,
         })
         .then(response => {
@@ -148,7 +148,7 @@ export default {
     }
   },
   created() {
-    this.commentlist = this.characterobject.comments
+    this.commentlist = this.item.comments
     for (var i = 0; i < this.commentlist.length; i++) {
       this.commentlist[i].created_at = this.unixTime2ymd(this.commentlist[i].created_at)
       if (this.commentlist[i].name == 'none') {

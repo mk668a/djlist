@@ -1,8 +1,8 @@
 <template>
 <div class="itemMain">
-  <itemContent :itemobject="itemobject" :unixTime2ymd="unixTime2ymd" :display="display" :width="width" :toSearch="toSearch" :idToken="idToken" />
-  <itemLink :itemobject="itemobject"></itemLink>
-  <itemComments :itemobject="itemobject" :unixTime2ymd="unixTime2ymd"></itemComments>
+  <itemContent :item="item" :unixTime2ymd="unixTime2ymd" :width="width" :toSearch="toSearch" />
+  <itemLink :item="item"></itemLink>
+  <itemComments :item="item" :unixTime2ymd="unixTime2ymd"></itemComments>
 </div>
 </template>
 
@@ -15,13 +15,12 @@ import itemComments from './itemComments'
 export default {
   name: 'itemMain',
   props: {
-    'itemdata': Object,
+    'item': Object,
     'unixTime2ymd': Function,
     'width': Number,
-    'display': Function,
     'toSearch': Function,
     'logined': Boolean,
-    'idToken': String,
+    // 'idToken': String,
     'suggestlist' : Array
   },
   components: {
@@ -32,7 +31,6 @@ export default {
   data() {
     return {
       load: false,
-      itemobject: {},
     }
   },
   methods: {
@@ -46,24 +44,25 @@ export default {
     }
   },
   created() {
+    console.log(this.item);
     this.load = false
-    if (!this.itemdata.name) {
-      this.itemobject = JSON.parse(localStorage.getItem("item"))
+    if (!this.item.name) {
+      this.item = JSON.parse(localStorage.getItem("item"))
     } else {
-      this.itemobject = this.itemdata
+      this.item = this.item
     }
-    localStorage.setItem("item", JSON.stringify(this.itemobject))
+    localStorage.setItem("item", JSON.stringify(this.item))
 
-    if (this.itemobject.name == undefined) {
+    if (this.item.name == undefined) {
       this.$router.push('/')
     }
-    // this.imagelist.push(this.itemobject.imgPath)
-    // if (this.imgcheck(this.itemobject.wikiImg) == false) {
-    //   this.imagelist.push(this.itemobject.wikiImg)
+    // this.imagelist.push(this.item.imgPath)
+    // if (this.imgcheck(this.item.wikiImg) == false) {
+    //   this.imagelist.push(this.item.wikiImg)
     // } else {
     //   this.imagelist.push("../../assets/noimg.png")
     // }
-    this.idToken = localStorage.getItem("idToken")
+    // this.idToken = localStorage.getItem("idToken")
   }
 }
 </script>

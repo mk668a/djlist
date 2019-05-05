@@ -1,7 +1,7 @@
 <template>
 <div class="main">
   <Search />
-  <Contents :toItem="toItem" :responsedata="responsedata" :items="items"/>
+  <Contents :toItem="toItem" :responsedata="responsedata" :items="items" />
 </div>
 </template>
 
@@ -15,15 +15,14 @@ export default {
     Search,
     Contents
   },
-  props:{
+  props: {
     "toItem": Function,
     "responsedata": Array,
-    "items": Array
+    "items": Array,
   },
 }
 </script>
 
 <style>
-.main {
-}
+.main {}
 </style>

@@ -6,9 +6,9 @@
   <!-- if -->
   <ul v-if="editlink" style="text-align:left;">
     <li>
-      </a>{{characterobject.product}}: </a><a @click="toLink(characterobject.url)" style="cursor:pointer; color:gray">{{characterobject.url}}</a>
+      </a>{{item.product}}: </a><a @click="toLink(item.url)" style="cursor:pointer; color:gray">{{item.url}}</a>
     </li>
-    <li v-for="(item, index) in characterobject.links" :key="index">
+    <li v-for="(item, index) in item.links" :key="index">
       </a>{{item.name}}: </a><a @click="toLink(item.link)" style="cursor:pointer; color:gray">{{item.link}}</a>
     </li>
   </ul>
@@ -83,7 +83,7 @@ import axios from 'axios'
 export default {
   name: 'itemLink',
   props: {
-    'characterobject': Object,
+    'item': Object,
   },
   data() {
     return {
@@ -125,9 +125,9 @@ export default {
     postL() {
       axios
         .put('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev', {
-          wiki: this.characterobject.wiki,
-          id: this.characterobject.id,
-          features: this.characterobject.features,
+          wiki: this.item.wiki,
+          id: this.item.id,
+          features: this.item.features,
           links: this.LinkForm.links
         })
         .then(response => {
@@ -149,7 +149,7 @@ export default {
     }
   },
   created() {
-    this.LinkForm.links = this.characterobject.links
+    this.LinkForm.links = this.item.links
   }
 }
 </script>

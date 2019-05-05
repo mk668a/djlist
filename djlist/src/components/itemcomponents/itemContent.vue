@@ -2,40 +2,36 @@
 <div class="itemContent">
   <!-- Load `wildfire.css` -->
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/wildfire@0.3.8/dist/firebase/static/wildfire.css">
-  <h1>{{characterobject.name}}({{characterobject.furigana}})</h1>
+  <h1>{{item.name}}</h1>
   <!-- if -->
-  <div v-if="display(width)" id="Block">
+  <!-- <div v-if="display(width)" id="Block">
     <div class="Oimage">
-      <img v-if="imgcheck(characterobject.wikiImg)" :src='characterobject.wikiImg' onerror="this.style.display='none'" />
+      <img v-if="imgcheck(item.wikiImg)" :src='item.wikiImg' onerror="this.style.display='none'" />
       <img v-else src="../../assets/noimg.png" />
     </div>
     <div class="Cimage">
-      <img :src='characterobject.imgPath' />
+      <img :src='item.imgPath' />
     </div>
-  </div>
+  </div> -->
   <!-- else -->
-  <div v-else>
+  <!-- <div v-else>
     <el-carousel indicator-position="outside">
       <el-carousel-item>
-        <img :src='characterobject.imgPath' />
+        <img :src='item.imgPath' />
       </el-carousel-item>
       <el-carousel-item>
-        <img v-if="imgcheck(characterobject.wikiImg)" :src='characterobject.wikiImg' />
+        <img v-if="imgcheck(item.wikiImg)" :src='item.wikiImg' />
         <img v-else src="../../assets/noimg.png" />
       </el-carousel-item>
     </el-carousel>
-  </div>
+  </div> -->
   <!--  -->
   <div class="Cinfo">
     <table>
       <tr>
-        <td>作品:</td>
-        <td @click="toLink(characterobject.url)" style="cursor:pointer">{{characterobject.product}}</td>
-      </tr>
-      <tr>
         <td>人気度:</td>
-        <td>{{characterobject.popular}}</td>
-        <div v-if="!confirmLiked(characterobject.id)" @click="like(characterobject)" style="width:20px; margin:3px 0 0 auto; cursor:pointer;">
+        <td>{{item.popular}}</td>
+        <div v-if="!confirmLiked(item.id)" @click="like(item)" style="width:20px; margin:3px 0 0 auto; cursor:pointer;">
           <i class="el-icon-star-off"></i>
         </div>
         <div v-else="s" style="width:20px; margin:3px 0 0 auto; cursor:pointer;">
@@ -47,11 +43,11 @@
       </tr>
       <tr>
         <td>作成日:</td>
-        <td>{{unixTime2ymd(characterobject.created_at)}}</td>
+        <td>{{unixTime2ymd(item.created_at)}}</td>
       </tr>
       <tr>
         <td>擬人化元:</td>
-        <td @click="toSearch(characterobject.wiki)" style="cursor:pointer;">{{characterobject.wiki}}</td>
+        <td @click="toSearch(item.wiki)" style="cursor:pointer;">{{item.wiki}}</td>
       </tr>
     </table>
     <div style="width:140px; margin:30px 30px 0 auto">
@@ -60,6 +56,82 @@
   </div>
 </div>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+  name: 'itemContent',
+  props: {
+    'item': Object,
+    'unixTime2ymd': Function,
+    'width': Number,
+    'toSearch': Function,
+    // 'idToken': String
+  },
+  methods: {
+    imgcheck(img) {
+      console.log(img);
+      if (img == "none") {
+        return false
+      } else {
+        return true
+      }
+    },
+    editRequest: function() {
+      // axios
+      //   .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/bad', {
+      //     wiki: this.item.wiki,
+      //     id: this.item.id
+      //   }, {
+      //     headers: {
+      //       // Authorization: "Bearer " + this.idToken
+      //     }
+      //   })
+      //   .then(response => {
+      //     console.log(response);
+      //     this.$notify({
+      //       title: '修正リクエストありがとうございます',
+      //       message: 'サポートチームの修正をお待ちください',
+      //       type: 'success'
+      //     })
+      //   })
+      //   .catch(error => {
+      //     (console.log(error))
+      //   })
+    },
+    confirmLiked(id) {
+      if (id in localStorage) {
+        return true
+        console.log('trueswsu');
+      } else {
+        return false
+      }
+    },
+    like(item) {
+      // if (item.id in localStorage) {
+      //   return true
+      // } else {
+      //   console.log(item.popular);
+      //   item.popular = item.popular + 1
+      //   axios
+      //     .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/good', {
+      //       target: 'character',
+      //       wiki: item.wiki,
+      //       id: item.id
+      //     })
+      //   localStorage.setItem(item.id, true);
+      //   console.log(item.popular);
+      //   this.s = true
+      // }
+    }
+  },
+  created(){
+    console.log(this.item);
+  }
+}
+</script>
+
 
 <style>
 .itemContent {
@@ -258,76 +330,3 @@
   }
 }
 </style>
-
-<script>
-import axios from 'axios'
-
-export default {
-  name: 'itemContent',
-  props: {
-    'characterobject': Object,
-    'unixTime2ymd': Function,
-    'width': Number,
-    'display': Function,
-    'toSearch': Function,
-    'idToken': String
-  },
-  methods: {
-    imgcheck(img) {
-      console.log(img);
-      if (img == "none") {
-        return false
-      } else {
-        return true
-      }
-    },
-    editRequest: function() {
-      axios
-        .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/bad', {
-          wiki: this.characterobject.wiki,
-          id: this.characterobject.id
-        }, {
-          headers: {
-            Authorization: "Bearer " + this.idToken
-          }
-        })
-        .then(response => {
-          console.log(response);
-          this.$notify({
-            title: '修正リクエストありがとうございます',
-            message: 'サポートチームの修正をお待ちください',
-            type: 'success'
-          })
-        })
-        .catch(error => {
-          (console.log(error))
-        })
-    },
-    confirmLiked(id) {
-      if (id in localStorage) {
-        return true
-        console.log('trueswsu');
-      } else {
-        return false
-      }
-    },
-    like(item) {
-      if (item.id in localStorage) {
-        return true
-      } else {
-        console.log(item.popular);
-        item.popular = item.popular + 1
-        axios
-          .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/good', {
-            target:'character',
-            wiki: item.wiki,
-            id: item.id
-          })
-        localStorage.setItem(item.id, true);
-        console.log(item.popular);
-        this.s = true
-      }
-    }
-  }
-}
-</script>
