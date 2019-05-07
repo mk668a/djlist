@@ -6,15 +6,20 @@
       <a style="color:white;"></a>画像のURL:
       <el-switch style="display: block" v-model="selectP" active-color="#c1c1c1" inactive-color="#c1c1c1" active-text="URL" inactive-text="アップロード">
       </el-switch>
-      <el-input v-if="selectP" v-model="img" :rules="[{required: true, type: text}]"></el-input>
-      <el-upload v-else class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+      <el-input v-if="selectP" class="uploadImgUrl" v-model="img" :rules="[{required: true, type: text}]"></el-input>
+      <!-- <el-upload v-else class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
         <img v-if="img" :src="img" class="avatar">
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-      </el-upload>
+      </el-upload> -->
+      <label v-else class="uploadImgFile">
+        ファイルを選択
+        <input type="file" @change="selectedFile" style="display:none"></input>
+      </label>
     </div>
     <div>
       <a style="color:white; ">必須</a>名　前:
       <el-input type="text " v-model="name " required></el-input>
+      *カンマ区切りで入力してください
     </div>
     <div>
       <a style="color:white; "></a>活動場所:
@@ -22,17 +27,11 @@
     </div>
     <div>
       <a style="color:white; "></a>リンク:
-      <el-input type="text " v-model="url" required></el-input>
-      <p>
-        *カンマ区切りで入力してください
-      </p>
+      <el-input v-for="(url, index) in urls" :key="index" type="url" v-model="urls[index]" required></el-input>
     </div>
     <div>
       <a style="color:white; "></a>ジャンル:
       <el-input type="text " v-model="genre" required></el-input>
-      <p>
-        *カンマ区切りで入力してください
-      </p>
     </div>
     <div>
       <el-button type="primary " style="font-size:20px; " @click="postC">投稿</el-button>
@@ -54,7 +53,7 @@ export default {
       img: '',
       name: '',
       place: '',
-      url: '',
+      urls: [""],
       genre: '',
       pre: '',
       t: false,
@@ -123,7 +122,7 @@ export default {
           name: this.inputname,
           wiki: this.inputwiki,
           product: this.inputproduct,
-          url: this.imageUrl,
+          url: this.img,
           furigana: this.inputfurigana,
           p_url: this.inputurl
           // oficial: this.inputoficial
@@ -239,11 +238,40 @@ export default {
           // console.log(this.suggestlist);
         })
         .catch(error => console.log(error))
+    },
+    selectedFile(e) {
+      e.preventDefault();
+      var img = e.target.files;
+      this.img = window.URL.createObjectURL(img[0]);
+      console.log(this.img);
+    },
+    blobToFile(theBlob, fileName) {
+      //A Blob() is almost a File() - it's just missing the two properties below which we will add
+      theBlob.lastModifiedDate = new Date();
+      theBlob.name = fileName;
+      return theBlob;
     }
   },
   mounted() {
     this.idToken = localStorage.getItem("idToken")
-  }
+  },
+  watch: {
+    urls: {
+      handler: function(val) {
+        var len = this.urls.length
+        var c = 0
+        for(var i=0; i<len; i++){
+          if(this.urls[i]!=""){
+            c++
+          }
+        }
+        this.urls.length = c+1
+        this.urls[c]=""
+        console.log(val);
+      },
+      deep: true
+    }
+  },
 }
 </script>
 
