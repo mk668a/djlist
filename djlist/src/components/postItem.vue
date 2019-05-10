@@ -23,7 +23,7 @@
     </div>
     <div>
       <a style="color:white; "></a>活動場所:
-      <el-input type="text " v-model="place " required></el-input>
+      <el-input v-for="(place, index) in places" :key="index" type="url" v-model="places[index]" required></el-input>
     </div>
     <div>
       <a style="color:white; "></a>リンク:
@@ -31,7 +31,7 @@
     </div>
     <div>
       <a style="color:white; "></a>ジャンル:
-      <el-input type="text " v-model="genre" required></el-input>
+      <el-input v-for="(genre, index) in genres" :key="index" type="url" v-model="genres[index]" required></el-input>
     </div>
     <div>
       <el-button type="primary " style="font-size:20px; " @click="postC">投稿</el-button>
@@ -52,9 +52,9 @@ export default {
     return {
       img: '',
       name: '',
-      place: '',
+      places: [""],
       urls: [""],
-      genre: '',
+      genres: [""],
       pre: '',
       t: false,
       //suggest用
@@ -256,17 +256,47 @@ export default {
     this.idToken = localStorage.getItem("idToken")
   },
   watch: {
+    places: {
+      handler: function(val) {
+        var c = 0
+        for(var i=0; i<this.places.length; i++){
+          if(this.places[i]!=""){
+            c++
+          }
+        }
+        this.places.length = c+1
+        this.places[c]=""
+        console.log("places");
+        console.log(val);
+      },
+      deep: true
+    },
     urls: {
       handler: function(val) {
-        var len = this.urls.length
         var c = 0
-        for(var i=0; i<len; i++){
+        for(var i=0; i<this.urls.length; i++){
           if(this.urls[i]!=""){
             c++
           }
         }
         this.urls.length = c+1
         this.urls[c]=""
+        console.log("urls");
+        console.log(val);
+      },
+      deep: true
+    },
+    genres: {
+      handler: function(val) {
+        var c = 0
+        for(var i=0; i<this.genres.length; i++){
+          if(this.genres[i]!=""){
+            c++
+          }
+        }
+        this.genres.length = c+1
+        this.genres[c]=""
+        console.log("genres");
         console.log(val);
       },
       deep: true
