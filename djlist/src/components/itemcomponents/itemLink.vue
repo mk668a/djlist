@@ -1,37 +1,27 @@
 <template>
 <div class="itemLink" v-if="edit">
   <h3 style="text-align:left;">関連リンク
-      <i class="el-icon-edit" style="cursor:pointer; position:absolute; padding-top:7px;" @click="editlinks"></i>
-    </h3>
+    <i class="el-icon-edit" style="cursor:pointer; position:absolute; padding-top:7px;" @click="editlinks"></i>
+  </h3>
   <!-- if -->
   <ul v-if="editlink" style="text-align:left;">
-    <li>
-      </a>{{item.product}}: </a><a @click="toLink(item.url)" style="cursor:pointer; color:gray">{{item.url}}</a>
-    </li>
-    <li v-for="(item, index) in item.links" :key="index">
-      </a>{{item.name}}: </a><a @click="toLink(item.link)" style="cursor:pointer; color:gray">{{item.link}}</a>
+    <li v-for="(item, index) in item.url" :key="index">
+    </a>{{index}}: </a><a @click="toLink(item)" style="cursor:pointer; color:gray">{{item}}</a>
     </li>
   </ul>
   <!-- else -->
   <div v-else>
-    <el-form :model="LinkForm" ref="LinkForm" class="demo-dynamic">
-      <el-form-item v-for="(domain, index) in LinkForm.links" :key="index">
-        <el-input v-model="domain.name" placeholder="名前"></el-input>
-        <el-input v-model="domain.link" placeholder="リンク"></el-input>
-        <el-button @click.prevent="removeLink(domain)">削除</el-button>
-      </el-form-item>
-      <el-form-item>
-        <el-button @click="addLink">追加</el-button>
-        <el-button @click="postL">確定</el-button>
-      </el-form-item>
-    </el-form>
+    <el-input v-for="(genre, index) in genres" :key="index" type="url" v-model="genres[index]" required></el-input>
+    <el-button @click.prevent="removeLink(domain)">削除</el-button>
+    <el-button @click="addLink">追加</el-button>
+    <el-button @click="postL">確定</el-button>
   </div>
 </div>
 </template>
 
 <style>
 .itemLink {
-  margin: auto 30px!important;
+  margin: auto 30px !important;
 }
 
 .itemLink>ul>li>a {
@@ -61,6 +51,7 @@
 }
 
 @media screen and (max-width:768px) {
+
   .itemLink .el-form-item__content>.el-input:nth-of-type(1),
   .itemLink .el-form-item__content>.el-input:nth-of-type(1)>.el-input__inner {
     width: 90px !important;

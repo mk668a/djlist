@@ -45,10 +45,6 @@
         <td>作成日:</td>
         <td>{{unixTime2ymd(item.created_at)}}</td>
       </tr>
-      <tr>
-        <td>擬人化元:</td>
-        <td @click="toSearch(item.wiki)" style="cursor:pointer;">{{item.wiki}}</td>
-      </tr>
     </table>
     <div style="width:140px; margin:30px 30px 0 auto">
       <el-button @click="editRequest" href="#" v-scroll-to="'#element'" type="danger">修正リクエスト</el-button>
