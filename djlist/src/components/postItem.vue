@@ -19,7 +19,6 @@
     <div>
       <a style="color:white; ">必須</a>名　前:
       <el-input type="text " v-model="name " required></el-input>
-      *カンマ区切りで入力してください
     </div>
     <div>
       <a style="color:white; "></a>活動場所:
@@ -41,7 +40,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import firebase from 'firebase'
 
 export default {
   name: 'postItem',
@@ -117,38 +116,38 @@ export default {
       //     this.dynamicValidateForm.domains.slice(i, 1)
       //   }
       // }
-      axios
-        .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev', {
-          name: this.inputname,
-          wiki: this.inputwiki,
-          product: this.inputproduct,
-          url: this.img,
-          furigana: this.inputfurigana,
-          p_url: this.inputurl
-          // oficial: this.inputoficial
-        }, {
-          headers: {
-            Authorization: "Bearer " + this.idToken
-          }
+      if (this.name == "") {
+        this.$notify.error({
+          title: '投稿できませんでした',
+          message: '全ての必須項目に入力してください'
         })
-        .then(response => {
-          console.log(response);
+      } else {
+        var postData = {
+          img: this.img,
+          name: this.name,
+          places: this.places,
+          url: this.urls,
+          genre: this.genres,
+          created_at: Date.now(),
+          popular: '0',
+          uid: firebase.auth().currentUser,
+        };
+        var newPostKey = firebase.database().ref('items/').push().key;
+
+        var updates = {};
+        updates['/items/' + newPostKey] = postData;
+
+        var res = null;
+        res = firebase.database().ref().update(updates);
+        if (res != null) {
           this.$notify({
-            title: 'キャラクターを投稿しました',
-            message: this.inputname + 'が投稿されました',
+            title: '投稿しました',
+            message: this.name + 'が投稿されました',
             type: 'success'
           })
-          console.log('response.data');
-          console.log(response.data);
-          this.toCharacter(response.data.new_character)
-        })
-        .catch(error => {
-          (console.log(error))
-          this.$notify.error({
-            title: '投稿できませんでした',
-            message: '全ての必須項目に入力してください'
-          })
-        })
+        }
+        res = null;
+      }
     },
     postWiki() {
       axios
@@ -259,13 +258,13 @@ export default {
     places: {
       handler: function(val) {
         var c = 0
-        for(var i=0; i<this.places.length; i++){
-          if(this.places[i]!=""){
+        for (var i = 0; i < this.places.length; i++) {
+          if (this.places[i] != "") {
             c++
           }
         }
-        this.places.length = c+1
-        this.places[c]=""
+        this.places.length = c + 1
+        this.places[c] = ""
         console.log("places");
         console.log(val);
       },
@@ -274,13 +273,13 @@ export default {
     urls: {
       handler: function(val) {
         var c = 0
-        for(var i=0; i<this.urls.length; i++){
-          if(this.urls[i]!=""){
+        for (var i = 0; i < this.urls.length; i++) {
+          if (this.urls[i] != "") {
             c++
           }
         }
-        this.urls.length = c+1
-        this.urls[c]=""
+        this.urls.length = c + 1
+        this.urls[c] = ""
         console.log("urls");
         console.log(val);
       },
@@ -289,13 +288,13 @@ export default {
     genres: {
       handler: function(val) {
         var c = 0
-        for(var i=0; i<this.genres.length; i++){
-          if(this.genres[i]!=""){
+        for (var i = 0; i < this.genres.length; i++) {
+          if (this.genres[i] != "") {
             c++
           }
         }
-        this.genres.length = c+1
-        this.genres[c]=""
+        this.genres.length = c + 1
+        this.genres[c] = ""
         console.log("genres");
         console.log(val);
       },
