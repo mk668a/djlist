@@ -25,7 +25,7 @@ export default {
       if (firebase.auth().currentUser == null) {
         this.$router.push('userLogin')
       } else {
-        this.$router.push('userContent')
+        this.$router.push('userInfo')
       }
     },
     toPost() {

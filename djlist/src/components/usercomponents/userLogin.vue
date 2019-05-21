@@ -10,9 +10,6 @@
       <!-- <v-icon name="lock" style="height:24px; max-width: 100%;"></v-icon> -->
       <input type="password" placeholder="パスワード" v-model="password" required />
     </div>
-    <div>
-      <router-link to="userMain/userConfirm" style="text-decoration:none;" class="confirm">確認コード入力</router-link>
-    </div>
   </form>
   <button @click="login">ログイン</button>
   <button type="warning" plain>
@@ -41,7 +38,7 @@ export default {
           user => {
             console.log('Success!')
             // console.log(localStorage)
-            this.$router.push('userContent')
+            this.$router.push('userInfo')
             // console.log(result);
             // this.id = result.idToken.jwtToken
             // localStorage.setItem("idToken", this.id)

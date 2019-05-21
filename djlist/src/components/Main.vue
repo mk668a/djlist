@@ -1,5 +1,6 @@
 <template>
 <div class="main">
+  <router-link to="/">DJ Listとは</router-link>
   <Search />
   <Contents :toItem="toItem" :responsedata="responsedata" :items="items" />
 </div>

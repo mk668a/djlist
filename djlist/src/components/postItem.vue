@@ -130,7 +130,7 @@ export default {
           genre: this.genres,
           created_at: Date.now(),
           popular: '0',
-          uid: firebase.auth().currentUser,
+          uid: firebase.auth().currentUser.uid,
         };
         var newPostKey = firebase.database().ref('items/').push().key;
 

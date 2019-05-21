@@ -65,8 +65,13 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "Kingthings_Foundation";
+  src: url(https://dl.dropboxusercontent.com/s/junww0gr4uxkc9h/Kingthings_Foundation.otf);
+}
+
 #app {
-  /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   /* -webkit-font-smoothing: antialiased; */
   /* -moz-osx-font-smoothing: grayscale; */
 }
@@ -76,6 +81,7 @@ body {
 }
 
 h1 {
+  font-family: 'Kingthings_Foundation';
   font-size: 20px;
   cursor: pointer;
 }

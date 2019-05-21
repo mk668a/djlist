@@ -1,22 +1,31 @@
 <template>
-<div class="userContent">
+<div class="userInfo">
   <h2>ユーザー情報</h2>
   <div>
     メール: {{email}}
   </div>
+  <userContents :postItems="postItems" />
   <button @click="logout">ログアウト</button>
 </div>
 </template>
 
 <script>
 import firebase from 'firebase'
+import userContents from '@/components/usercomponents/userContents'
 
 export default {
-  name: 'userContent',
+  name: 'userInfo',
+  components: {
+    userContents
+  },
+  props: {
+    "items": Array,
+  },
   data() {
     return {
       username: '',
       email: '',
+      postItems: []
     }
   },
   methods: {
@@ -34,33 +43,38 @@ export default {
     this.email = firebase.auth().currentUser.email
     console.log("currentUser");
     console.log(firebase.auth().currentUser);
+    for (var i in this.items) {
+      if (this.items[i].uid == firebase.auth().currentUser.uid) {
+        this.postItems.push(this.items[i])
+      }
+    }
   }
 }
 </script>
 
 <style>
-.userContent>form {
+.userInfo>form {
   margin: 100px auto auto;
 }
 
-.userContent>h2 {
+.userInfo>h2 {
   color: #f2cf01;
   padding-top: 30px;
 }
 
-.userContent button {
+.userInfo button {
   margin-bottom: 100px;
 }
 
-.userContent>form>* {
+.userInfo>form>* {
   margin: 30px;
 }
 
-.userContent>form>div>.el-input {
+.userInfo>form>div>.el-input {
   width: 200px;
 }
 
-.userContent button>a:visited {
+.userInfo button>a:visited {
   color: inherit;
 }
 </style>

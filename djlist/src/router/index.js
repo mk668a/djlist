@@ -6,7 +6,8 @@ Vue.use(Router)
 
 import userSignup from '@/components/usercomponents/userSignup'
 import userLogin from '@/components/usercomponents/userLogin'
-import userContent from '@/components/usercomponents/userContent'
+import userInfo from '@/components/usercomponents/userInfo'
+import userContents from '@/components/usercomponents/userContents'
 
 import privacypolicy from '@/components/privacypolicy'
 import termsofservise from '@/components/termsofservise'
@@ -31,9 +32,14 @@ export default new Router({
       component: userLogin
     },
     {
-      path: '/userContent',
-      name: 'userContent',
-      component: userContent
+      path: '/userInfo',
+      name: 'userInfo',
+      component: userInfo
+    },
+    {
+      path: '/userContents',
+      name: 'userContents',
+      component: userContents
     },
     {
       path: '/itemMain',
