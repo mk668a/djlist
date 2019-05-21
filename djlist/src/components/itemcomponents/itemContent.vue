@@ -1,7 +1,7 @@
 <template>
 <div class="itemContent">
   <!-- Load `wildfire.css` -->
-  <link rel="stylesheet" type="text/css" href="https://unpkg.com/wildfire@0.3.8/dist/firebase/static/wildfire.css">
+  <img :src="item.img" style="width:100%"/>
   <h1>{{item.name}}</h1>
   <!-- if -->
   <!-- <div v-if="display(width)" id="Block">

@@ -3,7 +3,7 @@
   <form method="postItem">
     <img :src='img' />
     <div>
-      <a style="color:white;"></a>画像のURL:
+      <a style="color:white; ">必須</a>画像のURL:
       <el-switch style="display: block" v-model="selectP" active-color="#c1c1c1" inactive-color="#c1c1c1" active-text="URL" inactive-text="アップロード">
       </el-switch>
       <el-input v-if="selectP" class="uploadImgUrl" v-model="img" :rules="[{required: true, type: text}]"></el-input>
@@ -116,7 +116,7 @@ export default {
       //     this.dynamicValidateForm.domains.slice(i, 1)
       //   }
       // }
-      if (this.name == "") {
+      if (this.name == "" || this.img == "") {
         this.$notify.error({
           title: '投稿できませんでした',
           message: '全ての必須項目に入力してください'
