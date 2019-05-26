@@ -40,7 +40,7 @@ export default {
       entered: false,
       backed: false,
       spaced: false,
-      tags: ["dubstep", "house", ]
+      tags: ["dubstep", "house", "zedd"]
     }
   },
   methods: {
@@ -70,14 +70,16 @@ export default {
     },
     toform(item) {
       // console.log(item);
-      this.input = item
-      this.onFocus = true
-      this.$router.push({
-        path: '/searchMain',
-        query: {
-          dev: this.input
-        }
-      })
+      if (item != '') {
+        this.input = item
+        this.onFocus = true
+        this.$router.push({
+          path: '/searchMain',
+          query: {
+            dev: this.input
+          }
+        })
+      }
     },
     enter() {
       console.log('enter');

@@ -2,7 +2,7 @@
 <div class="main">
   <router-link to="/">DJ Listとは</router-link>
   <Search />
-  <Contents :toItem="toItem" :responsedata="responsedata" :items="items" />
+  <Contents :toItem="toItem" :items="items" />
 </div>
 </template>
 
@@ -18,7 +18,6 @@ export default {
   },
   props: {
     "toItem": Function,
-    "responsedata": Array,
     "items": Array,
   },
 }

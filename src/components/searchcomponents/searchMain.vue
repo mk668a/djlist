@@ -14,7 +14,8 @@ import searchResult from "@/components/searchcomponents/searchResult"
 export default {
   name: 'searchMain',
   props: {
-    'toform': Function
+    'toform': Function,
+    "items": Array,
   },
   components: {
     searchResult
@@ -22,19 +23,31 @@ export default {
   data() {
     return {
       query: null,
-      searcItem: {}
+      searchName: {},
+      searchJenre: {},
+      searchPlace: {}
     }
   },
   methods: {},
   created() {
     this.query = this.$route.query.dev
     let self = this
-    firebase.database().ref('/items').orderByChild("name").equalTo(self.query).
+    let items_ref = firebase.database().ref('/items')
+
+    // getSearchName
+    items_ref.orderByChild("name").equalTo(self.query).
     on("child_added", function(snapshot) {
-      self.searcItem = snapshot.val()
-      console.log("searcItem");
-      console.log(self.searcItem);
+      self.searchName = snapshot.val()
+      console.log("searchName");
+      console.log(self.searchName);
     })
+
+    // getSearchJenre
+    for (var i = 0; i < this.items.length; i++) {
+      for (var j = 0; j < Object.keys(this.items[i].genre).length; j++) {
+        console.log(this.items[i].genre[0]);
+      }
+    }
   }
 }
 </script>
