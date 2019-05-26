@@ -31,7 +31,12 @@ export default {
   methods: {
     toItem(obj) {
       this.item = obj
-      this.$router.push('itemMain')
+      this.$router.push({
+        path: '/itemMain',
+        query: {
+          name: this.item.name
+        }
+      })
     },
     getItems() {
       firebase.database().ref('/items').on('value', snapshot => {

@@ -1,34 +1,106 @@
 <template>
 <div class="itemComments">
   <h3 style="text-align:left;">
-      コメント
-    </h3>
+    コメント
+  </h3>
+  <el-form ref="form" v-model="form">
+    <el-form-item　class="commentform">
+      <el-input v-model="commentform"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button @click="addComment()" round>コメントする</el-button>
+    </el-form-item>
+  </el-form>
   <div class="commentContainer">
-    <div v-for="(item, index) in commentlist" :key="index">
-      <a v-text="index+1+'.'"></a>
+    <div v-for="(i, index) in commentlist" :key="index">
+      <!-- <a v-text="index+1+'.'"></a> -->
       <a>
-        {{item.name}}
-        </a>
+        {{i.uid}}
+      </a>
       <div>
-        {{item.created_at}}
+        {{unixTime2ymd(i.created_at)}}
       </div>
       <div>
-        {{item.value}}
+        {{i.comment}}
       </div>
       <!-- <v-icon name="corner-up-left" style="width:20px;"></v-icon> -->
     </div>
   </div>
-  <el-form ref="form" v-model="form">
-    <el-form-item　class="commentform">
-      <el-input placeholder="名前"></el-input>
-      <el-input v-model="commentform"></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button @click="addComment(commentform)" round>コメントする</el-button>
-    </el-form-item>
-  </el-form>
 </div>
 </template>
+
+<script>
+import firebase from 'firebase'
+
+export default {
+  name: 'itemComments',
+  props: {
+    'item': Object,
+    'unixTime2ymd': Function
+  },
+  data() {
+    return {
+      form: '',
+      commentform: '',
+      commentlist: [{
+        comment: '',
+        created_at: '',
+        uid: ''
+      }],
+      userId: null,
+      itemId: null,
+      numOfComment: null
+    }
+  },
+  methods: {
+    addComment() {
+      let self = this
+      firebase.database().ref('/items').orderByChild("name").equalTo(this.item.name).
+      on("child_added", function(snapshot) {
+        self.itemId = snapshot.key
+        console.log(self.itemId);
+      })
+
+      if (this.commentform != '') {
+
+        this.userId = '匿名'
+
+        var postData = {
+          comment: this.commentform,
+          created_at: Date.now(),
+          uid: this.userId,
+        }
+
+        var newPostKey = firebase.database().ref().child('posts').push().key;
+
+        var updates = {};
+        updates['/items/' + this.itemId + '/comments/' + newPostKey] = postData;
+
+        var res = null;
+        res = firebase.database().ref().update(updates);
+        if (res != null) {
+          this.$notify({
+            title: '投稿しました',
+            message: this.item.name + 'にコメントを投稿しました',
+            type: 'success'
+          })
+          this.commentform = ''
+          firebase.database().ref('/items').orderByChild("name").equalTo(this.item.name).
+          on("child_added", function(snapshot) {
+            self.commentlist = snapshot.val().comments
+          })
+        }
+        res = null;
+      }
+    },
+  },
+  created() {
+    this.commentlist = this.item.comments
+    console.log("this.commentlist");
+    console.log(this.commentlist);
+  }
+}
+</script>
 
 <style>
 .itemComments {
@@ -68,21 +140,16 @@
   margin-right: 5px;
 }
 
-.commentform{
+.commentform {
   display: flex;
 }
 
-.commentform>div{
+.commentform>div {
   width: 100%;
 }
 
-.commentform>div>.el-input:nth-of-type(1),
-.commentform>div>.el-input:nth-of-type(1)>.el-input__inner{
-  width: 200px;
-}
-
-.commentform>div>.el-input:nth-of-type(2),
-.commentform>div>.el-input:nth-of-type(2)>.el-input__inner{
+.commentform>div>.el-input,
+.commentform>div>.el-input>.el-input__inner {
   width: 600px;
 }
 
@@ -100,62 +167,9 @@
     width: 100%;
   }
 
-  .commentform>div>.el-input:nth-of-type(1),
-  .commentform>div>.el-input:nth-of-type(1)>.el-input__inner{
-    width: 100px;
-  }
-
-  .commentform>div>.el-input:nth-of-type(2),
-  .commentform>div>.el-input:nth-of-type(2)>.el-input__inner{
+  .commentform>div>.el-input,
+  .commentform>div>.el-input>.el-input__inner {
     width: 300px;
   }
 }
 </style>
-
-<script>
-import axios from 'axios'
-
-export default {
-  name: 'itemComments',
-  props: {
-    'item': Object,
-    'unixTime2ymd': Function
-  },
-  data() {
-    return {
-      form: '',
-      commentform: '',
-      commentlist: [{}]
-    }
-  },
-  methods: {
-    addComment(commentform) {
-      this.commentlist.push({
-        value: commentform
-      })
-      axios
-        .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/comment', {
-          wiki: this.item.wiki,
-          id: this.item.id,
-          comment: commentform,
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          (console.log(error))
-        })
-    }
-  },
-  created() {
-    this.commentlist = this.item.comments
-    for (var i = 0; i < this.commentlist.length; i++) {
-      this.commentlist[i].created_at = this.unixTime2ymd(this.commentlist[i].created_at)
-      if (this.commentlist[i].name == 'none') {
-        this.commentlist[i].name = '匿名さん'
-      }
-    }
-    console.log(this.commentlist);
-  }
-}
-</script>
