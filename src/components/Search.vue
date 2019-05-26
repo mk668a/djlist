@@ -2,15 +2,15 @@
 <div class="search">
   <div class="form">
     <input type="text" class="searchInput" placeholder="search" v-model="input" @keyup.enter="enter" @keyup.delete="back" @keyup.space="space" @input="change" 　@focus="disappear" @blur="appear" />
-    <el-button type="primary" class="searchButton" icon="el-icon-search">
+    <el-button type="primary" class="searchButton" icon="el-icon-search" @click="toform(input)">
       <!-- <img src="../assets/search.png" /> -->
     </el-button>
   </div>
-  <div class="suggest">
+  <!-- <div class="suggest">
     <div v-for="(item, index) in suggestlist" class="suggestItem" v-if="!onFocus" @click="toform(item)">
       {{item}}
     </div>
-  </div>
+  </div> -->
   <div class="tag">
     <div v-for="(item, index) in tags" :key="index" class="item" @click="toform(item)">
       {{item}}
@@ -60,7 +60,7 @@ export default {
         this.onFocus = true
       }
     },
-    IsArrayExists: function(array, value) {
+    IsArrayExists(array, value) {
       // for (var i = 0, len = array.length; i < len; i++) {
       //   if (value == array[i]) {
       //     return true;
@@ -68,8 +68,8 @@ export default {
       // }
       return false;
     },
-    toform: function(item) {
-      console.log(item);
+    toform(item) {
+      // console.log(item);
       this.input = item
       this.onFocus = true
       this.$router.push({
@@ -92,42 +92,42 @@ export default {
       this.spaced = true
     },
     change(e) {
-    //   // console.log(e.target.value);
-    //   console.log("start axios");
-    //   axios
-    //     .get('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/s', {
-    //       params: {
-    //         q: e.target.value
-    //       }
-    //     })
-    //     .then(response => {
-    //       console.log(response);
-    //       // if (response.data.suggest.length == 0) { //配列が空のとき（変換してる時か、決定した時、または「ひらがな」で入力してるけどない時）
-    //       if (this.entered == true || this.backed == true || this.spaced == true) { //Enterを押していた場合
-    //         this.entered = false
-    //         this.backed = false
-    //         this.newsuggest = []
-    //         console.log(this.newsuggest);
-    //         for (var i = 0; i < this.datalist.length; i++) {
-    //           if (this.datalist[i].indexOf(this.input) != -1) {
-    //             this.newsuggest.push(this.datalist[i])
-    //           }
-    //         }
-    //         this.suggestlist = this.newsuggest
-    //         console.log(this.newsuggest);
-    //         // }
-    //         // return
-    //       } else {
-    //         this.datalist = []
-    //         for (var i = 0; i < response.data.suggest.length; i++) {
-    //           this.datalist.push(response.data.suggest[i].wiki)
-    //         }
-    //         this.suggestlist = this.datalist
-    //       }
-    //       // console.log(response);
-    //       // console.log(this.suggestlist);
-    //     })
-    //     .catch(error => console.log(error))
+      //   // console.log(e.target.value);
+      //   console.log("start axios");
+      //   axios
+      //     .get('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/s', {
+      //       params: {
+      //         q: e.target.value
+      //       }
+      //     })
+      //     .then(response => {
+      //       console.log(response);
+      //       // if (response.data.suggest.length == 0) { //配列が空のとき（変換してる時か、決定した時、または「ひらがな」で入力してるけどない時）
+      //       if (this.entered == true || this.backed == true || this.spaced == true) { //Enterを押していた場合
+      //         this.entered = false
+      //         this.backed = false
+      //         this.newsuggest = []
+      //         console.log(this.newsuggest);
+      //         for (var i = 0; i < this.datalist.length; i++) {
+      //           if (this.datalist[i].indexOf(this.input) != -1) {
+      //             this.newsuggest.push(this.datalist[i])
+      //           }
+      //         }
+      //         this.suggestlist = this.newsuggest
+      //         console.log(this.newsuggest);
+      //         // }
+      //         // return
+      //       } else {
+      //         this.datalist = []
+      //         for (var i = 0; i < response.data.suggest.length; i++) {
+      //           this.datalist.push(response.data.suggest[i].wiki)
+      //         }
+      //         this.suggestlist = this.datalist
+      //       }
+      //       // console.log(response);
+      //       // console.log(this.suggestlist);
+      //     })
+      //     .catch(error => console.log(error))
     }
   },
   created() {
@@ -224,6 +224,7 @@ export default {
   .el-input-group__append {
     overflow: hidden;
   }
+
   .searchtext {
     animation: animation01 8s infinite linear 1s both;
     width: 370px;
@@ -236,6 +237,7 @@ export default {
     from {
       transform: translateX(240px);
     }
+
     to {
       transform: translateX(-340px);
     }
