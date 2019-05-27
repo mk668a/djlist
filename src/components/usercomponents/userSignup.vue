@@ -14,13 +14,6 @@
       <!-- <v-icon name="unlock" style="height:24px;"></v-icon> -->
       <input type="password" placeholder="パスワード" v-model="password" required />
     </div>
-    <!-- <div>
-      <v-icon name="lock" style="height:24px;"></v-icon>
-      <input type="password" placeholder="パスワード(確認)" v-model="passwordConfirm" required />
-    </div> -->
-    <!-- <span>
-      <a style="color:#c1c1c1">*大文字と記号を1つ以上含めてください</a>
-    </span> -->
   </form>
   <button style="boder:solid 1px #c1c1c1; border-radius: .3em; width:100px; height:40px;" @click="singup"><a>登録</a></button>
 </div>

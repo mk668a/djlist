@@ -4,6 +4,13 @@
   <div>
     メール: {{email}}
   </div>
+  <div v-if="!getUsername">
+    <input type="text" placeholder="ユーザー名" v-model="username" />
+    <button @click="CreateUsrename">登録</button>
+  </div>
+  <div v-else>
+    ユーザー名: {{username}}
+  </div>
   <userContents :postItems="postItems" />
   <button @click="logout">ログアウト</button>
 </div>
@@ -25,7 +32,8 @@ export default {
     return {
       username: '',
       email: '',
-      postItems: []
+      postItems: [],
+      getUsername: false
     }
   },
   methods: {
@@ -37,10 +45,28 @@ export default {
         // An error happened.
       });
       this.$router.push('userLogin')
+    },
+    CreateUsrename() {
+      if (this.username != '') {
+        let self = this
+        firebase.auth().currentUser.updateProfile({
+          displayName: self.username
+        }).then(function() {
+          console.log("Update successful");
+          self.getUsername = true
+          self.$router.push('userInfo')
+        }).catch(function(error) {
+          console.log(error);
+        });
+      }
     }
   },
-  mounted() {
+  created() {
     this.email = firebase.auth().currentUser.email
+    this.username = firebase.auth().currentUser.displayName
+    if(this.username!=null){
+      self.getUsername = true
+    }
     console.log("currentUser");
     console.log(firebase.auth().currentUser);
     for (var i in this.items) {
