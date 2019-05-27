@@ -3,22 +3,34 @@
   <h1 class="query">
     {{query}}
   </h1>
-  <searchResult />
+  <div class="name">
+    <h2>name</h2>
+    <Contents :toItem="toItem" :items="searchName" />
+  </div>
+  <div class="genre">
+    <h2>genre</h2>
+    <Contents :toItem="toItem" :items="searchGenre" />
+  </div>
+  <div class="place">
+    <h2>place</h2>
+    <Contents :toItem="toItem" :items="searchPlace" />
+  </div>
 </div>
 </template>
 
 <script>
 import firebase from 'firebase'
-import searchResult from "@/components/searchcomponents/searchResult"
+import Contents from '@/components/Contents'
 
 export default {
   name: 'searchMain',
   props: {
     'toform': Function,
+    "toItem": Function,
     "items": Array,
   },
   components: {
-    searchResult
+    Contents
   },
   data() {
     return {
@@ -35,12 +47,21 @@ export default {
     let items_ref = firebase.database().ref('/items')
 
     // getSearchName
-    items_ref.orderByChild("name").equalTo(self.query).
-    on("child_added", function(snapshot) {
-      self.searchName = snapshot.val()
-      console.log("searchName");
-      console.log(self.searchName);
-    })
+    // api
+    // items_ref.orderByChild("name").equalTo(self.query).
+    // on("child_added", function(snapshot) {
+    //   self.searchName = snapshot.val()
+    //   console.log("searchName");
+    //   console.log(self.searchName);
+    // })
+    console.log("searchName");
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i].name == this.query) {
+        // console.log(this.items[i]);
+        this.searchName.push(this.items[i])
+      }
+    }
+    console.log(this.searchName);
 
     // getSearchGenre
     console.log("searchGenre");
@@ -76,6 +97,14 @@ export default {
 .searchMain {
     .query {
         text-align: center;
+    }
+    .genre,
+    .name {
+        .contents {
+            button {
+                display: none;
+            }
+        }
     }
 }
 </style>
