@@ -40,7 +40,7 @@ export default {
       entered: false,
       backed: false,
       spaced: false,
-      tags: ["dubstep", "house", "zedd"]
+      tags: ["dubstep", "house", "zedd", "japan"]
     }
   },
   methods: {

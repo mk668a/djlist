@@ -23,9 +23,9 @@ export default {
   data() {
     return {
       query: null,
-      searchName: {},
-      searchJenre: {},
-      searchPlace: {}
+      searchName: [],
+      searchGenre: [],
+      searchPlace: []
     }
   },
   methods: {},
@@ -42,12 +42,32 @@ export default {
       console.log(self.searchName);
     })
 
-    // getSearchJenre
+    // getSearchGenre
+    console.log("searchGenre");
     for (var i = 0; i < this.items.length; i++) {
       for (var j = 0; j < Object.keys(this.items[i].genre).length; j++) {
-        console.log(this.items[i].genre[0]);
+        if (this.items[i].genre[j] != null || this.items[i].genre[j] != '') {
+          if (this.items[i].genre[j] == this.query) {
+            // console.log(this.items[i]);
+            this.searchGenre.push(this.items[i])
+          }
+        }
       }
     }
+    console.log(this.searchGenre);
+
+    // getSearchGenre
+    console.log("searchPlace");
+    for (var i = 0; i < this.items.length; i++) {
+      for (var j = 0; j < Object.keys(this.items[i].places).length; j++) {
+        if (this.items[i].places[j] != null || this.items[i].places[j] != '') {
+          if (this.items[i].places[j] == this.query) {
+            this.searchPlace.push(this.items[i])
+          }
+        }
+      }
+    }
+    console.log(this.searchPlace);
   }
 }
 </script>
