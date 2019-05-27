@@ -63,7 +63,7 @@ export default {
       return (year + '年' + month + '月' + day + '日 ' + hour + ':' + min + ':' + sec);
     },
   },
-  mounted() {
+  created() {
     this.getItems()
   }
 }

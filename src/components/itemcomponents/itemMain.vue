@@ -1,12 +1,13 @@
 <template>
 <div class="itemMain">
-  <itemContent :item="item" :unixTime2ymd="unixTime2ymd" :width="width" :toSearch="toSearch" />
-  <itemLink :item="item"></itemLink>
-  <itemComments :item="item" :unixTime2ymd="unixTime2ymd"></itemComments>
+  <itemContent :item="itemobj" :unixTime2ymd="unixTime2ymd" :width="width" :toSearch="toSearch" />
+  <itemLink :item="itemobj"></itemLink>
+  <itemComments :item="itemobj" :unixTime2ymd="unixTime2ymd"></itemComments>
 </div>
 </template>
 
 <script>
+import firebase from 'firebase'
 import itemContent from './itemContent'
 import itemLink from './itemLink'
 import itemComments from './itemComments'
@@ -20,7 +21,7 @@ export default {
     'toSearch': Function,
     'logined': Boolean,
     // 'idToken': String,
-    'suggestlist' : Array
+    'suggestlist': Array
   },
   components: {
     itemContent,
@@ -29,7 +30,9 @@ export default {
   },
   data() {
     return {
-      load: false,
+      // load: false,
+      query: null,
+      itemobj: {}
     }
   },
   methods: {
@@ -40,21 +43,24 @@ export default {
       } else {
         return true
       }
+    },
+    getItem() {
+      this.query = this.$route.query.name
+      if (Object.keys(this.item).length == 0) {
+        let self = this
+        firebase.database().ref('/items').orderByChild("name").equalTo(self.query).
+        on("child_added", function(snapshot) {
+          self.itemobj = snapshot.val()
+          console.log(self.itemobj);
+        })
+      }
     }
   },
   created() {
     console.log(this.item);
-    this.load = false
-    if (!this.item.name) {
-      this.item = JSON.parse(localStorage.getItem("item"))
-    } else {
-      this.item = this.item
-    }
-    localStorage.setItem("item", JSON.stringify(this.item))
-
-    if (this.item.name == undefined) {
-      this.$router.push('/')
-    }
+    this.itemobj = this.item
+    this.getItem()
+    // this.load = false
     // this.imagelist.push(this.item.imgPath)
     // if (this.imgcheck(this.item.wikiImg) == false) {
     //   this.imagelist.push(this.item.wikiImg)

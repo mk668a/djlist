@@ -11,6 +11,7 @@ import userContents from '@/components/usercomponents/userContents'
 
 import privacypolicy from '@/components/privacypolicy'
 import termsofservise from '@/components/termsofservise'
+import about from '@/components/about'
 import itemMain from '@/components/itemcomponents/itemMain'
 import searchMain from '@/components/searchcomponents/searchMain'
 import postItem from '@/components/postItem'
@@ -57,5 +58,9 @@ export default new Router({
     path: '/termsofservise',
     name: 'termsofservise',
     component: termsofservise
+  }, {
+    path: '/about',
+    name: 'about',
+    component: about
   }]
 })

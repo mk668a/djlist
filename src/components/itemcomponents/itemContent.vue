@@ -1,31 +1,8 @@
 <template>
 <div class="itemContent">
-  <!-- Load `wildfire.css` -->
-  <img :src="item.img" style="width:100%"/>
-  <h1>{{item.name}}</h1>
-  <!-- if -->
-  <!-- <div v-if="display(width)" id="Block">
-    <div class="Oimage">
-      <img v-if="imgcheck(item.wikiImg)" :src='item.wikiImg' onerror="this.style.display='none'" />
-      <img v-else src="../../assets/noimg.png" />
-    </div>
-    <div class="Cimage">
-      <img :src='item.imgPath' />
-    </div>
-  </div> -->
-  <!-- else -->
-  <!-- <div v-else>
-    <el-carousel indicator-position="outside">
-      <el-carousel-item>
-        <img :src='item.imgPath' />
-      </el-carousel-item>
-      <el-carousel-item>
-        <img v-if="imgcheck(item.wikiImg)" :src='item.wikiImg' />
-        <img v-else src="../../assets/noimg.png" />
-      </el-carousel-item>
-    </el-carousel>
-  </div> -->
-  <!--  -->
+  <img :src="item.img" style="width:100%" />
+  <h1 v-if="edit">{{item.name}}</h1>
+  <el-input v-else type="text" v-model="item.name"></el-input>
   <div class="Cinfo">
     <table>
       <tr>
@@ -46,9 +23,6 @@
         <td>{{unixTime2ymd(item.created_at)}}</td>
       </tr>
     </table>
-    <div style="width:140px; margin:30px 30px 0 auto">
-      <el-button @click="editRequest" href="#" v-scroll-to="'#element'" type="danger">修正リクエスト</el-button>
-    </div>
   </div>
 </div>
 </template>
@@ -65,6 +39,11 @@ export default {
     'toSearch': Function,
     // 'idToken': String
   },
+  data() {
+    return {
+      edit: true,
+    }
+  },
   methods: {
     imgcheck(img) {
       console.log(img);
@@ -73,28 +52,6 @@ export default {
       } else {
         return true
       }
-    },
-    editRequest: function() {
-      // axios
-      //   .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/bad', {
-      //     wiki: this.item.wiki,
-      //     id: this.item.id
-      //   }, {
-      //     headers: {
-      //       // Authorization: "Bearer " + this.idToken
-      //     }
-      //   })
-      //   .then(response => {
-      //     console.log(response);
-      //     this.$notify({
-      //       title: '修正リクエストありがとうございます',
-      //       message: 'サポートチームの修正をお待ちください',
-      //       type: 'success'
-      //     })
-      //   })
-      //   .catch(error => {
-      //     (console.log(error))
-      //   })
     },
     confirmLiked(id) {
       if (id in localStorage) {
@@ -122,8 +79,7 @@ export default {
       // }
     }
   },
-  created(){
-    console.log(this.item);
+  created() {
   }
 }
 </script>

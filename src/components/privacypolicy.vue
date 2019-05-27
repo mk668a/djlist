@@ -85,8 +85,7 @@
 
     <h3>第９条（お問い合わせ窓口）</h3>
     <p>本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。</p>
-    <p>住所：xxxxxxxxxxxxxx<br> 社名：XXX
-      <br> Eメールアドレス：xxxxx@xxxxx.com
+      <br> Eメールアドレス：msftoaa@gmail.com
     </p>
 
     <p class="tR">以上</p>

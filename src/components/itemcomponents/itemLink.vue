@@ -6,7 +6,8 @@
   <!-- if -->
   <ul v-if="editlink" style="text-align:left;">
     <li v-for="(item, index) in item.url" :key="index">
-    </a>{{index}}: </a><a @click="toLink(item)" style="cursor:pointer; color:gray">{{item}}</a>
+    <!-- </a>{{index}}: </a> -->
+    <a @click="toLink(item)" style="cursor:pointer; color:gray">{{item}}</a>
     </li>
   </ul>
   <!-- else -->

@@ -7,16 +7,16 @@
     </li>
     <li>
       <!-- <a　@click="about" v-scroll-to="'#top'">DJ List</a> -->
-      <a　v-scroll-to="'#top'">DJ Listとは</a>
+      <a　@click="routerPush('about')" v-scroll-to="'#top'">DJ Listとは</a>
     </li>
     <li>
       <div class="title">DJ List</div>
     </li>
     <li>
-      <a @click="termsofservise" v-scroll-to="'#top'">利用規約</a>
+      <a @click="routerPush('termsofservise')" v-scroll-to="'#top'">利用規約</a>
     </li>
     <li>
-      <a @click="privacypolicy" v-scroll-to="'#top'">プライバシーポリシー</a>
+      <a @click="routerPush('privacypolicy')" v-scroll-to="'#top'">プライバシーポリシー</a>
     </li>
   </ul>
 </div>
@@ -25,12 +25,9 @@
 <script>
 export default {
   name: 'Footer',
-  methods:{
-    termsofservise(){
-      this.$router.push('termsofservise')
-    },
-    privacypolicy(){
-      this.$router.push('privacypolicy')
+  methods: {
+    routerPush(route) {
+      this.$router.push(route)
     }
   }
 }
@@ -42,11 +39,11 @@ export default {
   padding: 10px 0;
 }
 
-.footerLilst{
+.footerLilst {
   padding: 0;
 }
 
-.footerLilst li{
+.footerLilst li {
   text-align: center;
   display: block;
 }
