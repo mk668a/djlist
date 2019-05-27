@@ -45,7 +45,7 @@ import firebase from 'firebase'
 export default {
   name: 'postItem',
   props: {
-    'toCharacter': Function,
+    "toItem": Function,
   },
   data() {
     return {
@@ -116,6 +116,12 @@ export default {
       //     this.dynamicValidateForm.domains.slice(i, 1)
       //   }
       // }
+      var uid = "anonymous"
+      if (firebase.auth().currentUser != null) {
+        uid = firebase.auth().currentUser;
+      }
+      // console.log(uid);
+
       if (this.name == "" || this.img == "") {
         this.$notify.error({
           title: '投稿できませんでした',
@@ -125,12 +131,12 @@ export default {
         var postData = {
           img: this.img,
           name: this.name,
-          places: this.places,
-          url: this.urls,
-          genre: this.genres,
+          places: this.places.slice(0, -1),
+          url: this.urls.slice(0, -1),
+          genre: this.genres.slice(0, -1),
           created_at: Date.now(),
           popular: '0',
-          uid: firebase.auth().currentUser.uid,
+          uid: uid,
         };
         var newPostKey = firebase.database().ref('items/').push().key;
 
@@ -145,6 +151,7 @@ export default {
             message: this.name + 'が投稿されました',
             type: 'success'
           })
+          this.toItem(postData)
         }
         res = null;
       }
@@ -265,8 +272,8 @@ export default {
         }
         this.places.length = c + 1
         this.places[c] = ""
-        console.log("places");
-        console.log(val);
+        // console.log("places");
+        // console.log(val);
       },
       deep: true
     },
@@ -280,8 +287,8 @@ export default {
         }
         this.urls.length = c + 1
         this.urls[c] = ""
-        console.log("urls");
-        console.log(val);
+        // console.log("urls");
+        // console.log(val);
       },
       deep: true
     },
@@ -295,8 +302,8 @@ export default {
         }
         this.genres.length = c + 1
         this.genres[c] = ""
-        console.log("genres");
-        console.log(val);
+        // console.log("genres");
+        // console.log(val);
       },
       deep: true
     }
