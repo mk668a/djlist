@@ -1,6 +1,6 @@
 <template>
 <div class="itemMain">
-  <itemContent :item="itemobj" :unixTime2ymd="unixTime2ymd" :width="width" :toSearch="toSearch" />
+  <itemContent :item="itemobj" :unixTime2ymd="unixTime2ymd" :width="width" :toform="toform" />
   <itemLink :item="itemobj"></itemLink>
   <itemComments :item="itemobj" :unixTime2ymd="unixTime2ymd"></itemComments>
 </div>
@@ -18,7 +18,7 @@ export default {
     'item': Object,
     'unixTime2ymd': Function,
     'width': Number,
-    'toSearch': Function,
+    'toform': Function,
     'logined': Boolean,
     // 'idToken': String,
     'suggestlist': Array

@@ -26,6 +26,7 @@ export default {
   name: 'Search',
   props: {
     'responsedata': Array,
+    'toform': Function
   },
   data() {
     return {
@@ -67,19 +68,6 @@ export default {
       //   }
       // }
       return false;
-    },
-    toform(item) {
-      // console.log(item);
-      if (item != '') {
-        this.input = item
-        this.onFocus = true
-        this.$router.push({
-          path: '/searchMain',
-          query: {
-            dev: this.input
-          }
-        })
-      }
     },
     enter() {
       console.log('enter');

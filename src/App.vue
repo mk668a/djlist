@@ -2,7 +2,7 @@
 <div id="app">
   <main id="top">
     <Header />
-    <router-view :toItem="toItem" :items="items" :item="item" :unixTime2ymd="unixTime2ymd" />
+    <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :unixTime2ymd="unixTime2ymd" />
     <Footer />
   </main>
 </div>
@@ -37,6 +37,19 @@ export default {
           name: this.item.name
         }
       })
+    },
+    toform(item) {
+      // console.log(item);
+      if (item != '') {
+        this.input = item
+        this.onFocus = true
+        this.$router.push({
+          path: '/searchMain',
+          query: {
+            dev: this.input
+          }
+        })
+      }
     },
     getItems() {
       firebase.database().ref('/items').on('value', snapshot => {

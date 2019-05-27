@@ -22,6 +22,14 @@
         <td>作成日:</td>
         <td>{{unixTime2ymd(item.created_at)}}</td>
       </tr>
+      <tr>
+        <td>活動場所:</td>
+        <td v-for="(i, index) in item.places" @click="toform(i)">{{i}} </td>
+      </tr>
+      <tr>
+        <td>ジャンル:</td>
+        <td v-for="(i, index) in item.genre" @click="toform(i)">{{i}} </td>
+      </tr>
     </table>
   </div>
 </div>
@@ -36,7 +44,7 @@ export default {
     'item': Object,
     'unixTime2ymd': Function,
     'width': Number,
-    'toSearch': Function,
+    'toform': Function,
     // 'idToken': String
   },
   data() {
@@ -79,8 +87,7 @@ export default {
       // }
     }
   },
-  created() {
-  }
+  created() {}
 }
 </script>
 

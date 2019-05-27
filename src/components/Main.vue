@@ -1,7 +1,7 @@
 <template>
 <div class="main">
   <router-link to="/">DJ Listとは</router-link>
-  <Search />
+  <Search :toform='toform'/>
   <Contents :toItem="toItem" :items="items" />
 </div>
 </template>
@@ -18,6 +18,7 @@ export default {
   },
   props: {
     "toItem": Function,
+    "toform": Function,
     "items": Array,
   },
 }
