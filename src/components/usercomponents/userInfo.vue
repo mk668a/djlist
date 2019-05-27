@@ -11,8 +11,8 @@
   <div v-else>
     ユーザー名: {{username}}
   </div>
-  <userContents :postItems="postItems" />
   <button @click="logout">ログアウト</button>
+  <userContents :postItems="postItems" />
 </div>
 </template>
 
@@ -59,16 +59,23 @@ export default {
           console.log(error);
         });
       }
+    },
+    getUser() {
+      var currentUser = firebase.auth().currentUser
+      this.email = currentUser.email
+      this.username = currentUser.displayName
+      console.log("email");
+      console.log(this.email);
+      if (currentUser != null) {
+        this.getUsername = true
+        console.log("getUsername: " + this.username);
+      }
     }
   },
   created() {
-    this.email = firebase.auth().currentUser.email
-    this.username = firebase.auth().currentUser.displayName
-    if(this.username!=null){
-      self.getUsername = true
-    }
     console.log("currentUser");
     console.log(firebase.auth().currentUser);
+    this.getUser()
     for (var i in this.items) {
       if (this.items[i].uid == firebase.auth().currentUser.uid) {
         this.postItems.push(this.items[i])

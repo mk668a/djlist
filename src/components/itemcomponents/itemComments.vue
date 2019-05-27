@@ -15,7 +15,7 @@
     <div v-for="(i, index) in commentlist" :key="index">
       <!-- <a v-text="index+1+'.'"></a> -->
       <a>
-        {{i.uid}}
+        {{i.username}}
       </a>
       <div>
         {{unixTime2ymd(i.created_at)}}
@@ -48,6 +48,7 @@ export default {
         uid: ''
       }],
       userId: null,
+      username: null,
       itemId: null,
       numOfComment: null
     }
@@ -63,12 +64,17 @@ export default {
 
       if (this.commentform != '') {
 
-        this.userId = '匿名'
+        this.username = firebase.auth().currentUser.displayName
+        if (this.username == '') {
+          this.userId = 'none'
+          this.username = '匿名'
+        }
 
         var postData = {
           comment: this.commentform,
           created_at: Date.now(),
           uid: this.userId,
+          username: this.username
         }
 
         var newPostKey = firebase.database().ref().child('posts').push().key;
