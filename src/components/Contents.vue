@@ -12,16 +12,13 @@
       </div <div class="data-name"> -->
       <a v-text="item.name" v-scroll-to="'#top'">
       </a>
-      <div v-if="!confirmLiked(item.uid)" @click="like(item)">
+      <div v-if="!confirmLiked(item.uid, item.popular)" @click="like(item)">
         <i class="el-icon-star-off"></i>
       </div>
-      <div v-else="s">
+      <div v-else @click="like(item)">
         <i class="el-icon-star-on"></i>
       </div>
-      <div v-else>
-        <i class="el-icon-star-on"></i>
-      </div>
-      <a>{{item.popular}}</a>
+      <a>{{getPopular(item)}}</a>
     </div>
   </masonry>
   <el-button icon="el-icon-arrow-up" href="#" v-scroll-to="'#top'" circle></el-button>
@@ -36,6 +33,8 @@ export default {
   props: {
     'toItem': Function,
     "items": Array,
+    'confirmLiked': Function,
+    'like': Function,
     // 'toProduct': Function,
     // 'toSearch': Function
   },
@@ -50,34 +49,17 @@ export default {
     }
   },
   methods: {
-    confirmLiked(id) {
-      if (id in localStorage) {
-        return true
-      } else {
-        return false
-      }
-    },
-    like(item) {
-      if (item.id in localStorage) {
-        return true
-      } else {
-        console.log(item.popular);
-        item.popular = item.popular + 1
-        axios
-          .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/good', {
-            target: 'character',
-            wiki: item.wiki,
-            id: item.id
-          })
-        localStorage.setItem(item.id, true);
-        console.log(item.popular);
-        this.s = true
-      }
-    },
     toLink(link) {
       console.log(link);
       if (link != 'null') {
         window.open(link);
+      }
+    },
+    getPopular(item) {
+      if (item.popular == undefined) {
+        return 0
+      } else {
+        return Object.keys(item.popular).length
       }
     }
   },

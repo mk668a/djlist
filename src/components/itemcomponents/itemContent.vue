@@ -7,7 +7,7 @@
     <table>
       <tr>
         <td>人気度:</td>
-        <td>{{item.popular}}</td>
+        <td>{{getPopular(item)}}</td>
         <div v-if="!confirmLiked(item.id)" @click="like(item)" style="width:20px; margin:3px 0 0 auto; cursor:pointer;">
           <i class="el-icon-star-off"></i>
         </div>
@@ -53,38 +53,12 @@ export default {
     }
   },
   methods: {
-    imgcheck(img) {
-      console.log(img);
-      if (img == "none") {
-        return false
+    getPopular(item) {
+      if (item.popular == undefined) {
+        return 0
       } else {
-        return true
+        return item.popular.length
       }
-    },
-    confirmLiked(id) {
-      if (id in localStorage) {
-        return true
-        console.log('trueswsu');
-      } else {
-        return false
-      }
-    },
-    like(item) {
-      // if (item.id in localStorage) {
-      //   return true
-      // } else {
-      //   console.log(item.popular);
-      //   item.popular = item.popular + 1
-      //   axios
-      //     .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/good', {
-      //       target: 'character',
-      //       wiki: item.wiki,
-      //       id: item.id
-      //     })
-      //   localStorage.setItem(item.id, true);
-      //   console.log(item.popular);
-      //   this.s = true
-      // }
     }
   },
   created() {}

@@ -1,8 +1,8 @@
 <template>
 <div class="main">
-  <router-link to="/">DJ Listとは</router-link>
-  <Search :toform='toform'/>
-  <Contents :toItem="toItem" :items="items" />
+  <router-link to="/about">DJ Listとは</router-link>
+  <Search :toform='toform' />
+  <Contents :toItem="toItem" :items="items" :confirmLiked="confirmLiked" :like="like" />
 </div>
 </template>
 
@@ -20,6 +20,8 @@ export default {
     "toItem": Function,
     "toform": Function,
     "items": Array,
+    "confirmLiked": Function,
+    "like": Function,
   },
 }
 </script>

@@ -2,7 +2,7 @@
 <div id="app">
   <main id="top">
     <Header />
-    <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" />
+    <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" />
     <Footer />
   </main>
 </div>
@@ -74,6 +74,65 @@ export default {
       var min = ('0' + d.getMinutes()).slice(-2);
       var sec = ('0' + d.getSeconds()).slice(-2);
       return (year + '年' + month + '月' + day + '日 ' + hour + ':' + min + ':' + sec);
+    },
+    confirmLiked(userId, popular) {
+      var flag = false
+      var obj = []
+      Object.keys(popular).forEach((val, key) => {
+        obj.push(popular[val])
+      })
+      // console.log(obj);
+      for (var i = 0; i < obj.length; i++) {
+        // console.log(obj[i].uid);
+        if (obj[i].uid == userId && userId != undefined) {
+          flag = true
+          break
+        }
+      }
+      // console.log(flag);
+      return flag
+    },
+    like(item) {
+      if (firebase.auth().currentUser == null) {
+        this.$notify.error({
+          title: 'ログインしてください',
+          message: 'お気に入りするにはログインが必要です',
+        })
+        return
+      }
+
+      var userId = firebase.auth().currentUser.uid
+
+      let self = this
+      var itemId = null
+      firebase.database().ref('/items').orderByChild("name").equalTo(item.name).
+      on("child_added", function(snapshot) {
+        itemId = snapshot.key
+      })
+      // console.log(itemId);
+
+      if (this.confirmLiked(userId, item.popular)) {
+        console.log("削除");
+        firebase.database().ref('/items').orderByChild("popular").equalTo(userId).
+        on("child_added", function(snapshot) {
+          console.log("ijebadfbkjanksjfnkld");
+          console.log(snapshot.val());
+          // document.querySelector('#'+snapshot.key).remove()
+        })
+        return
+      }
+
+      var postData = {
+        uid: userId,
+      }
+
+      var newPostKey = firebase.database().ref().child('posts').push().key;
+
+      var updates = {};
+      updates['/items/' + itemId + '/popular/' + newPostKey] = postData;
+      // console.log(updates);
+
+      firebase.database().ref().update(updates);
     },
   },
   created() {

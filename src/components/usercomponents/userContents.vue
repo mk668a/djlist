@@ -34,7 +34,8 @@ import axios from 'axios'
 export default {
   name: 'userContents',
   props: {
-    "postItems": Array
+    "postItems": Array,
+    "toItem": Function
   },
   methods: {
     confirmLiked(id) {

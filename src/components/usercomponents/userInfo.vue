@@ -12,7 +12,7 @@
     ユーザー名: {{username}}
   </div>
   <button @click="logout">ログアウト</button>
-  <userContents :postItems="postItems" />
+  <userContents :postItems="postItems" :toItem="toItem"/>
 </div>
 </template>
 
@@ -27,6 +27,7 @@ export default {
   },
   props: {
     "items": Array,
+    "toItem": Function
   },
   data() {
     return {

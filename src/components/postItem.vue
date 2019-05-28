@@ -135,7 +135,6 @@ export default {
           url: this.urls.slice(0, -1),
           genre: this.genres.slice(0, -1),
           created_at: Date.now(),
-          popular: '0',
           uid: uid,
         };
         var newPostKey = firebase.database().ref('items/').push().key;
@@ -155,24 +154,6 @@ export default {
         }
         res = null;
       }
-    },
-    postWiki() {
-      axios
-        .post('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/wiki', {
-          url: this.inputwiki
-        }, {
-          headers: {
-            Authorization: "Bearer " + this.idToken
-          }
-        })
-        .then(response => {
-          this.wiki = response.data
-          this.inputwiki = this.wiki.wiki
-          this.t = true
-          console.log(response);
-          // console.log(this.wiki);
-        })
-        .catch(error => console.log(error))
     },
     //suggest用
     disappear() {

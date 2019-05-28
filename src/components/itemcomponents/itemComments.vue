@@ -77,6 +77,8 @@ export default {
         var updates = {};
         updates['/items/' + this.itemId + '/comments/' + newPostKey] = postData;
 
+        console.log(updates);
+
         var res = null;
         res = firebase.database().ref().update(updates);
         if (res != null) {
