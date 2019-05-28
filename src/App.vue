@@ -2,7 +2,7 @@
 <div id="app">
   <main id="top">
     <Header />
-    <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :unixTime2ymd="unixTime2ymd" />
+    <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" />
     <Footer />
   </main>
 </div>
@@ -30,11 +30,11 @@ export default {
   },
   methods: {
     toItem(obj) {
-      this.item = obj
+      // this.item = obj
       this.$router.push({
         path: '/itemMain',
         query: {
-          name: this.item.name
+          name: obj.name
         }
       })
     },

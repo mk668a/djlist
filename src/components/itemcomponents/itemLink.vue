@@ -6,8 +6,8 @@
   <!-- if -->
   <ul v-if="editlink" style="text-align:left;">
     <li v-for="(item, index) in item.url" :key="index">
-    <!-- </a>{{index}}: </a> -->
-    <a @click="toLink(item)" style="cursor:pointer; color:gray">{{item}}</a>
+      <!-- </a>{{index}}: </a> -->
+      <a @click="toLink(item)" style="cursor:pointer; color:gray">{{item}}</a>
     </li>
   </ul>
   <!-- else -->
@@ -19,55 +19,6 @@
   </div>
 </div>
 </template>
-
-<style>
-.itemLink {
-  margin: auto 30px !important;
-}
-
-.itemLink>ul>li>a {
-  word-break: break-all;
-}
-
-.itemLink .el-form-item__content>.el-input {
-  width: 150px;
-}
-
-.itemLink .el-form-item__content>.el-input>.el-input__inner:nth-of-type(1) {
-  width: 100px;
-}
-
-.itemLink .el-form-item__content>.el-input>.el-input__inner:nth-of-type(1) {
-  width: 100px;
-}
-
-.itemLink .el-form-item__content>.el-input:nth-of-type(1),
-.itemLink .el-form-item__content>.el-input:nth-of-type(1)>.el-input__inner {
-  width: 100px !important;
-}
-
-.itemLink .el-form-item__content>.el-input:nth-of-type(2),
-.itemLink .el-form-item__content>.el-input:nth-of-type(2)>.el-input__inner {
-  width: 300px !important;
-}
-
-@media screen and (max-width:768px) {
-
-  .itemLink .el-form-item__content>.el-input:nth-of-type(1),
-  .itemLink .el-form-item__content>.el-input:nth-of-type(1)>.el-input__inner {
-    width: 90px !important;
-  }
-
-  .itemLink .el-form-item__content>.el-input:nth-of-type(2),
-  .itemLink .el-form-item__content>.el-input:nth-of-type(2)>.el-input__inner {
-    width: 210px !important;
-  }
-
-  .itemLink .el-form-item__content>.el-button.el-button--default {
-    margin-top: 10px;
-  }
-}
-</style>
 
 <script>
 import axios from 'axios'
@@ -145,3 +96,52 @@ export default {
   }
 }
 </script>
+
+<style>
+.itemLink {
+  margin: auto 30px !important;
+}
+
+.itemLink>ul>li>a {
+  word-break: break-all;
+}
+
+.itemLink .el-form-item__content>.el-input {
+  width: 150px;
+}
+
+.itemLink .el-form-item__content>.el-input>.el-input__inner:nth-of-type(1) {
+  width: 100px;
+}
+
+.itemLink .el-form-item__content>.el-input>.el-input__inner:nth-of-type(1) {
+  width: 100px;
+}
+
+.itemLink .el-form-item__content>.el-input:nth-of-type(1),
+.itemLink .el-form-item__content>.el-input:nth-of-type(1)>.el-input__inner {
+  width: 100px !important;
+}
+
+.itemLink .el-form-item__content>.el-input:nth-of-type(2),
+.itemLink .el-form-item__content>.el-input:nth-of-type(2)>.el-input__inner {
+  width: 300px !important;
+}
+
+@media screen and (max-width:768px) {
+
+  .itemLink .el-form-item__content>.el-input:nth-of-type(1),
+  .itemLink .el-form-item__content>.el-input:nth-of-type(1)>.el-input__inner {
+    width: 90px !important;
+  }
+
+  .itemLink .el-form-item__content>.el-input:nth-of-type(2),
+  .itemLink .el-form-item__content>.el-input:nth-of-type(2)>.el-input__inner {
+    width: 210px !important;
+  }
+
+  .itemLink .el-form-item__content>.el-button.el-button--default {
+    margin-top: 10px;
+  }
+}
+</style>

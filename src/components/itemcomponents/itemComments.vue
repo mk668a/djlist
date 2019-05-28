@@ -12,8 +12,7 @@
     </el-form-item>
   </el-form>
   <div class="commentContainer">
-    <div v-for="(i, index) in commentlist" :key="index">
-      <!-- <a v-text="index+1+'.'"></a> -->
+    <div v-for="(i, index) in this.item.comments" :key="index">
       <a>
         {{i.username}}
       </a>
@@ -23,7 +22,6 @@
       <div>
         {{i.comment}}
       </div>
-      <!-- <v-icon name="corner-up-left" style="width:20px;"></v-icon> -->
     </div>
   </div>
 </div>
@@ -42,11 +40,7 @@ export default {
     return {
       form: '',
       commentform: '',
-      commentlist: [{
-        comment: '',
-        created_at: '',
-        uid: ''
-      }],
+      commentlist: [],
       userId: null,
       username: null,
       itemId: null,
@@ -64,10 +58,11 @@ export default {
 
       if (this.commentform != '') {
 
-        this.username = firebase.auth().currentUser.displayName
-        if (this.username == '') {
+        if (firebase.auth().currentUser == null) {
           this.userId = 'none'
           this.username = '匿名'
+        } else {
+          this.username = firebase.auth().currentUser.displayName
         }
 
         var postData = {
@@ -93,18 +88,14 @@ export default {
           this.commentform = ''
           firebase.database().ref('/items').orderByChild("name").equalTo(this.item.name).
           on("child_added", function(snapshot) {
-            self.commentlist = snapshot.val().comments
+            self.item.comments = snapshot.val().comments
           })
         }
         res = null;
       }
     },
   },
-  created() {
-    this.commentlist = this.item.comments
-    console.log("this.commentlist");
-    console.log(this.commentlist);
-  }
+  created() {}
 }
 </script>
 

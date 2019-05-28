@@ -30,8 +30,10 @@ export default {
   },
   data() {
     return {
+      obj: [],
       username: '',
       email: '',
+      uid: '',
       postItems: [],
       getUsername: false
     }
@@ -61,26 +63,59 @@ export default {
       }
     },
     getUser() {
-      var currentUser = firebase.auth().currentUser
-      this.email = currentUser.email
-      this.username = currentUser.displayName
-      console.log("email");
-      console.log(this.email);
-      if (currentUser != null) {
-        this.getUsername = true
-        console.log("getUsername: " + this.username);
+      let self = this
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          console.log("currentUser");
+          console.log(firebase.auth().currentUser);
+
+          var currentUser = firebase.auth().currentUser
+
+          self.email = currentUser.email
+          self.username = currentUser.displayName
+          self.uid = currentUser.uid
+
+          if (currentUser != null) {
+            self.getUsername = true
+            console.log("getUsername: " + self.username);
+          }
+        }
+      })
+    },
+    getUserItems(uid, items) {
+      for (var i in items) {
+        if (items[i].uid == firebase.auth().currentUser.uid) {
+          this.postItems.push(items[i])
+        }
       }
+    },
+    getItems() {
+      console.log(this.items.length);
+      let self = this
+      firebase.database().ref('/items').on('value', snapshot => {
+        if (snapshot) {
+          const responsedata = snapshot.val()
+          let items = []
+          // データオブジェクトを配列に変更する
+          Object.keys(responsedata).forEach((val, key) => {
+            items.push(responsedata[val])
+          })
+          self.obj = items
+          self.getUserItems(self.uid, items)
+        }
+      })
     }
   },
   created() {
-    console.log("currentUser");
-    console.log(firebase.auth().currentUser);
+    this.obj = this.items
     this.getUser()
-    for (var i in this.items) {
-      if (this.items[i].uid == firebase.auth().currentUser.uid) {
-        this.postItems.push(this.items[i])
-      }
+    if (this.items.length == 0) {
+      this.getItems()
+    } else {
+      this.getUserItems(firebase.auth().currentUser.uid, this.items)
     }
+    console.log(this.obj);
+    console.log(this.postItems);
   }
 }
 </script>

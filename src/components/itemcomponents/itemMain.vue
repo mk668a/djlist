@@ -1,8 +1,8 @@
 <template>
 <div class="itemMain">
-  <itemContent :item="itemobj" :unixTime2ymd="unixTime2ymd" :width="width" :toform="toform" />
-  <itemLink :item="itemobj"></itemLink>
-  <itemComments :item="itemobj" :unixTime2ymd="unixTime2ymd"></itemComments>
+  <itemContent :item="item" :unixTime2ymd="unixTime2ymd" :width="width" :toform="toform" />
+  <itemLink :item="item"></itemLink>
+  <itemComments :item="item" :unixTime2ymd="unixTime2ymd"></itemComments>
 </div>
 </template>
 
@@ -15,7 +15,7 @@ import itemComments from './itemComments'
 export default {
   name: 'itemMain',
   props: {
-    'item': Object,
+    // 'item': Object,
     'unixTime2ymd': Function,
     'width': Number,
     'toform': Function,
@@ -32,7 +32,7 @@ export default {
     return {
       // load: false,
       query: null,
-      itemobj: {}
+      item: {}
     }
   },
   methods: {
@@ -46,19 +46,19 @@ export default {
     },
     getItem() {
       this.query = this.$route.query.name
-      if (Object.keys(this.item).length == 0) {
-        let self = this
-        firebase.database().ref('/items').orderByChild("name").equalTo(self.query).
-        on("child_added", function(snapshot) {
-          self.itemobj = snapshot.val()
-          console.log(self.itemobj);
-        })
-      }
+      // if (Object.keys(this.item).length == 0) {
+      let self = this
+      firebase.database().ref('/items').orderByChild("name").equalTo(self.query).
+      on("child_added", function(snapshot) {
+        self.item = snapshot.val()
+        console.log(self.item);
+      })
+      // }
     }
   },
   created() {
-    console.log(this.item);
-    this.itemobj = this.item
+    // console.log(this.item);
+    // this.item = this.item
     this.getItem()
     // this.load = false
     // this.imagelist.push(this.item.imgPath)
