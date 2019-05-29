@@ -1,6 +1,6 @@
 <template>
 <div class="itemMain">
-  <itemContent :item="item" :unixTime2ymd="unixTime2ymd" :width="width" :toform="toform" :confirmLiked="confirmLiked" :like="like"/>
+  <itemContent :item="item" :unixTime2ymd="unixTime2ymd" :width="width" :toform="toform" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" />
   <itemLink :item="item"></itemLink>
   <itemComments :item="item" :unixTime2ymd="unixTime2ymd"></itemComments>
 </div>
@@ -15,15 +15,14 @@ import itemComments from './itemComments'
 export default {
   name: 'itemMain',
   props: {
-    // 'item': Object,
     'unixTime2ymd': Function,
     'width': Number,
     'toform': Function,
     'logined': Boolean,
-    // 'idToken': String,
     'suggestlist': Array,
     'confirmLiked': Function,
     'like': Function,
+    'toRenew': Function
   },
   components: {
     itemContent,
@@ -59,17 +58,7 @@ export default {
     }
   },
   created() {
-    // console.log(this.item);
-    // this.item = this.item
     this.getItem()
-    // this.load = false
-    // this.imagelist.push(this.item.imgPath)
-    // if (this.imgcheck(this.item.wikiImg) == false) {
-    //   this.imagelist.push(this.item.wikiImg)
-    // } else {
-    //   this.imagelist.push("../../assets/noimg.png")
-    // }
-    // this.idToken = localStorage.getItem("idToken")
   }
 }
 </script>

@@ -1,7 +1,10 @@
 <template>
 <div class="itemContent">
   <img :src="item.img" style="width:100%" />
-  <h1 v-if="edit">{{item.name}}</h1>
+  <h1 v-if="edit">
+    {{item.name}}
+    <i class="el-icon-edit" style="cursor:pointer; position:absolute; padding-top:7px;" @click="toRenew(item)"></i>
+  </h1>
   <el-input v-else type="text" v-model="item.name"></el-input>
   <div class="Cinfo">
     <table>
@@ -43,7 +46,8 @@ export default {
     'width': Number,
     'toform': Function,
     'confirmLiked': Function,
-    'like': Function
+    'like': Function,
+    'toRenew': Function
     // 'idToken': String
   },
   data() {

@@ -5,15 +5,15 @@
   </h1>
   <div class="name">
     <h2>name</h2>
-    <Contents :toItem="toItem" :items="searchName" />
+    <Contents :toItem="toItem" :items="searchName" :confirmLiked="confirmLiked" :like="like" />
   </div>
   <div class="genre">
     <h2>genre</h2>
-    <Contents :toItem="toItem" :items="searchGenre" />
+    <Contents :toItem="toItem" :items="searchGenre" :confirmLiked="confirmLiked" :like="like" />
   </div>
   <div class="place">
     <h2>place</h2>
-    <Contents :toItem="toItem" :items="searchPlace" />
+    <Contents :toItem="toItem" :items="searchPlace" :confirmLiked="confirmLiked" :like="like" />
   </div>
 </div>
 </template>
@@ -28,6 +28,8 @@ export default {
     'toform': Function,
     "toItem": Function,
     "items": Array,
+    'confirmLiked': Function,
+    'like': Function,
   },
   components: {
     Contents

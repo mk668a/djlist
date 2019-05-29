@@ -14,6 +14,7 @@ import about from '@/components/about'
 import itemMain from '@/components/itemcomponents/itemMain'
 import searchMain from '@/components/searchcomponents/searchMain'
 import postItem from '@/components/postItem'
+import renewItem from '@/components/renewItem'
 
 export default new Router({
   mode: 'history',
@@ -33,7 +34,7 @@ export default new Router({
     path: '/userInfo',
     name: 'userInfo',
     component: userInfo
-  },{
+  }, {
     path: '/itemMain',
     name: 'itemMain',
     component: itemMain
@@ -45,6 +46,10 @@ export default new Router({
     path: '/postItem',
     name: 'postItem',
     component: postItem
+  }, {
+    path: '/renewItem',
+    name: 'renewItem',
+    component: renewItem
   }, {
     path: '/privacypolicy',
     name: 'privacypolicy',

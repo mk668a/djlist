@@ -2,7 +2,7 @@
 <div id="app">
   <main id="top">
     <Header />
-    <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" />
+    <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" />
     <Footer />
   </main>
 </div>
@@ -51,6 +51,14 @@ export default {
         })
       }
     },
+    toRenew(obj) {
+      this.$router.push({
+        path: '/renewItem',
+        query: {
+          name: obj.name
+        }
+      })
+    },
     getItems() {
       firebase.database().ref('/items').on('value', snapshot => {
         if (snapshot) {
@@ -77,7 +85,7 @@ export default {
     },
     confirmLiked(userId, popular) {
       console.log(popular);
-      if(popular==undefined){
+      if (popular == undefined) {
         return false
       }
       var flag = false

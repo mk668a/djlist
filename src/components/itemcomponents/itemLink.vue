@@ -1,22 +1,15 @@
 <template>
 <div class="itemLink" v-if="edit">
-  <h3 style="text-align:left;">関連リンク
-    <i class="el-icon-edit" style="cursor:pointer; position:absolute; padding-top:7px;" @click="editlinks"></i>
+  <h3 style="text-align:left;">
+    関連リンク
   </h3>
   <!-- if -->
-  <ul v-if="editlink" style="text-align:left;">
+  <ul style="text-align:left;">
     <li v-for="(item, index) in item.url" :key="index">
       <!-- </a>{{index}}: </a> -->
       <a @click="toLink(item)" style="cursor:pointer; color:gray">{{item}}</a>
     </li>
   </ul>
-  <!-- else -->
-  <div v-else>
-    <el-input v-for="(genre, index) in genres" :key="index" type="url" v-model="genres[index]" required></el-input>
-    <el-button @click.prevent="removeLink(domain)">削除</el-button>
-    <el-button @click="addLink">追加</el-button>
-    <el-button @click="postL">確定</el-button>
-  </div>
 </div>
 </template>
 
@@ -43,9 +36,6 @@ export default {
     }
   },
   methods: {
-    editlinks() {
-      this.editlink = !this.editlink
-    },
     removeLink(item) {
       var index = this.LinkForm.links.indexOf(item);
       if (index !== -1) {

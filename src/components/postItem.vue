@@ -81,46 +81,12 @@ export default {
     };
   },
   methods: {
-    //リンク追加用
-    // submitForm(formName) {
-    //   this.$refs[formName].validate((valid) => {
-    //     if (valid) {
-    //       alert('submit!');
-    //     } else {
-    //       console.log('error submit!!');
-    //       return false;
-    //     }
-    //   });
-    // },
-    // resetForm(formName) {
-    //   this.$refs[formName].resetFields();
-    // },
-    // removeDomain(item) {
-    //   var index = this.dynamicValidateForm.domains.indexOf(item);
-    //   if (index !== -1) {
-    //     this.dynamicValidateForm.domains.splice(index, 1);
-    //   }
-    // },
-    // addDomain() {
-    //   // this.addlink = true
-    //   this.dynamicValidateForm.domains.push({
-    //     name: '',
-    //     link: ''
-    //   })
-    //   console.log(this.dynamicValidateForm.domains);
-    // },
-    //
     postC() {
-      // for (var i = 0; i < this.dynamicValidateForm.domains.length; i++) {
-      //   if (this.dynamicValidateForm.domains[i].name == '' || this.dynamicValidateForm.domains[i].link == '') {
-      //     this.dynamicValidateForm.domains.slice(i, 1)
-      //   }
-      // }
-      var uid = "anonymous"
+      var userId = "anonymous"
       if (firebase.auth().currentUser != null) {
-        uid = firebase.auth().currentUser;
+        userId = firebase.auth().currentUser.uid;
       }
-      // console.log(uid);
+      console.log(userId);
 
       if (this.name == "" || this.img == "") {
         this.$notify.error({
@@ -135,7 +101,7 @@ export default {
           url: this.urls.slice(0, -1),
           genre: this.genres.slice(0, -1),
           created_at: Date.now(),
-          uid: uid,
+          uid: userId,
         };
         var newPostKey = firebase.database().ref('items/').push().key;
 
