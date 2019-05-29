@@ -12,22 +12,27 @@
     ユーザー名: {{username}}
   </div>
   <button @click="logout">ログアウト</button>
-  <userContents :postItems="postItems" :toItem="toItem"/>
+  <h2>お気に入り</h2>
+  <Contents :toItem="toItem" :items="likedItems" :confirmLiked="confirmLiked" :like="like" />
+  <h2>投稿したitem</h2>
+  <Contents :toItem="toItem" :items="postItems" :confirmLiked="confirmLiked" :like="like" />
 </div>
 </template>
 
 <script>
 import firebase from 'firebase'
-import userContents from '@/components/usercomponents/userContents'
+import Contents from '@/components/Contents'
 
 export default {
   name: 'userInfo',
   components: {
-    userContents
+    Contents
   },
   props: {
     "items": Array,
-    "toItem": Function
+    "toItem": Function,
+    'confirmLiked': Function,
+    'like': Function
   },
   data() {
     return {
@@ -36,6 +41,7 @@ export default {
       email: '',
       uid: '',
       postItems: [],
+      likedItems: [],
       getUsername: false
     }
   },
@@ -83,10 +89,19 @@ export default {
         }
       })
     },
-    getUserItems(uid, items) {
+    getPostItems(uid, items) {
       for (var i in items) {
         if (items[i].uid == firebase.auth().currentUser.uid) {
           this.postItems.push(items[i])
+        }
+      }
+    },
+    getLikedItems(uid, items) {
+      for (var i in items) {
+        for (var j in items[i].popular) {
+          if (items[i].popular[j].uid == uid) {
+            this.likedItems.push(items[i])
+          }
         }
       }
     },
@@ -102,7 +117,8 @@ export default {
             items.push(responsedata[val])
           })
           self.obj = items
-          self.getUserItems(self.uid, items)
+          self.getPostItems(self.uid, items)
+          self.getLikedItems(self.uid, items)
         }
       })
     }
@@ -113,7 +129,8 @@ export default {
     if (this.items.length == 0) {
       this.getItems()
     } else {
-      this.getUserItems(firebase.auth().currentUser.uid, this.items)
+      this.getPostItems(firebase.auth().currentUser.uid, this.items)
+      this.getLikedItems(firebase.auth().currentUser.uid, this.items)
     }
     console.log(this.obj);
     console.log(this.postItems);
