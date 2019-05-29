@@ -1,6 +1,6 @@
 <template>
 <div class="itemMain">
-  <itemContent :item="item" :unixTime2ymd="unixTime2ymd" :width="width" :toform="toform" />
+  <itemContent :item="item" :unixTime2ymd="unixTime2ymd" :width="width" :toform="toform" :confirmLiked="confirmLiked" :like="like"/>
   <itemLink :item="item"></itemLink>
   <itemComments :item="item" :unixTime2ymd="unixTime2ymd"></itemComments>
 </div>
@@ -21,7 +21,9 @@ export default {
     'toform': Function,
     'logined': Boolean,
     // 'idToken': String,
-    'suggestlist': Array
+    'suggestlist': Array,
+    'confirmLiked': Function,
+    'like': Function,
   },
   components: {
     itemContent,

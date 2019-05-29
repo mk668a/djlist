@@ -8,13 +8,10 @@
       <tr>
         <td>人気度:</td>
         <td>{{getPopular(item)}}</td>
-        <div v-if="!confirmLiked(item.id)" @click="like(item)" style="width:20px; margin:3px 0 0 auto; cursor:pointer;">
+        <div v-if="!confirmLiked(item.uid, item.popular)" @click="like(item)">
           <i class="el-icon-star-off"></i>
         </div>
-        <div v-else="s" style="width:20px; margin:3px 0 0 auto; cursor:pointer;">
-          <i class="el-icon-star-on"></i>
-        </div>
-        <div v-else style="width:20px; margin:3px 0 0 auto; cursor:pointer;">
+        <div v-else @click="like(item)">
           <i class="el-icon-star-on"></i>
         </div>
       </tr>
@@ -45,6 +42,8 @@ export default {
     'unixTime2ymd': Function,
     'width': Number,
     'toform': Function,
+    'confirmLiked': Function,
+    'like': Function
     // 'idToken': String
   },
   data() {
@@ -57,7 +56,7 @@ export default {
       if (item.popular == undefined) {
         return 0
       } else {
-        return item.popular.length
+        return Object.keys(item.popular).length
       }
     }
   },
