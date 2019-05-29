@@ -80,9 +80,9 @@ export default {
       firebase.database().ref('/items').orderByChild("name").equalTo(self.query).
       on("child_added", function(snapshot) {
         self.item = snapshot.val()
-        self.places = self.item.places
-        self.urls = self.item.url
-        self.genres = self.item.genre
+        if (self.item.places != undefined) self.places = self.item.places
+        if (self.item.url != undefined) self.urls = self.item.url
+        if (self.item.genre != undefined) self.genres = self.item.genre
         console.log(self.item);
       })
       // }
@@ -94,46 +94,49 @@ export default {
   watch: {
     places: {
       handler: function(val) {
-        var c = 0
-        for (var i = 0; i < this.places.length; i++) {
+        var array = []
+        for (var i in this.places) {
           if (this.places[i] != "") {
-            c++
+            array.push(this.places[i])
           }
         }
-        this.places.length = c + 1
-        this.places[c] = ""
-        // console.log("places");
-        // console.log(val);
+        array.push("")
+        for (var i in array) {
+          this.places[i] = array[i]
+        }
+        this.places.length = array.length
       },
       deep: true
     },
     urls: {
       handler: function(val) {
-        var c = 0
-        for (var i = 0; i < this.urls.length; i++) {
+        var array = []
+        for (var i in this.urls) {
           if (this.urls[i] != "") {
-            c++
+            array.push(this.urls[i])
           }
         }
-        this.urls.length = c + 1
-        this.urls[c] = ""
-        // console.log("urls");
-        // console.log(val);
+        array.push("")
+        for (var i in array) {
+          this.urls[i] = array[i]
+        }
+        this.urls.length = array.length
       },
       deep: true
     },
     genres: {
       handler: function(val) {
-        var c = 0
-        for (var i = 0; i < this.genres.length; i++) {
+        var array = []
+        for (var i in this.genres) {
           if (this.genres[i] != "") {
-            c++
+            array.push(this.genres[i])
           }
         }
-        this.genres.length = c + 1
-        this.genres[c] = ""
-        // console.log("genres");
-        // console.log(val);
+        array.push("")
+        for (var i in array) {
+          this.genres[i] = array[i]
+        }
+        this.genres.length = array.length
       },
       deep: true
     }
