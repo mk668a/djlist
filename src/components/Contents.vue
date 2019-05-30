@@ -6,10 +6,6 @@
         <div class="filter"></div>
         <img v-lazy="item.img" style="max-width: 100%" v-scroll-to="'#top'" @click="toItem(item)" />
       </div>
-      <!-- <div class="data-product">
-        <a v-text="item.product" @click="toLink(item.url)">
-        </a>
-      </div <div class="data-name"> -->
       <a v-text="item.name" v-scroll-to="'#top'">
       </a>
       <div v-if="!confirmLiked(item.uid, item.popular)" @click="like(item)">
@@ -33,28 +29,11 @@ export default {
   props: {
     'toItem': Function,
     "items": Array,
+    'item': Object,
     'confirmLiked': Function,
     'like': Function,
-    // 'toProduct': Function,
-    // 'toSearch': Function
-  },
-  components: {},
-  data() {
-    return {
-      isA: true,
-      characterdata: Object,
-      star: true,
-      store: false,
-      s: false
-    }
   },
   methods: {
-    toLink(link) {
-      console.log(link);
-      if (link != 'null') {
-        window.open(link);
-      }
-    },
     getPopular(item) {
       if (item.popular == undefined) {
         return 0
@@ -63,10 +42,6 @@ export default {
       }
     }
   },
-  mounted() {
-    // console.log('localStorage');
-    // console.log(localStorage.getItem("id"))
-  }
 }
 </script>
 

@@ -1,8 +1,8 @@
 <template>
 <div class="itemMain">
-  <itemContent :item="item" :unixTime2ymd="unixTime2ymd" :width="width" :toform="toform" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" />
-  <itemLink :item="item"></itemLink>
-  <itemComments :item="item" :unixTime2ymd="unixTime2ymd"></itemComments>
+  <itemContent :item="itemobj" :unixTime2ymd="unixTime2ymd" :toform="toform" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" />
+  <itemLink :item="itemobj"></itemLink>
+  <itemComments :item="itemobj" :unixTime2ymd="unixTime2ymd"></itemComments>
 </div>
 </template>
 
@@ -16,13 +16,11 @@ export default {
   name: 'itemMain',
   props: {
     'unixTime2ymd': Function,
-    'width': Number,
     'toform': Function,
-    'logined': Boolean,
-    'suggestlist': Array,
     'confirmLiked': Function,
     'like': Function,
-    'toRenew': Function
+    'toRenew': Function,
+    'item': Object
   },
   components: {
     itemContent,
@@ -33,32 +31,34 @@ export default {
     return {
       // load: false,
       query: null,
-      item: {}
+      itemobj: {}
     }
   },
   methods: {
-    imgcheck(img) {
-      console.log(img);
-      if (img == "none") {
-        return false
-      } else {
-        return true
-      }
-    },
+    // imgcheck(img) {
+    //   console.log(img);
+    //   if (img == "none") {
+    //     return false
+    //   } else {
+    //     return true
+    //   }
+    // },
     getItem() {
       this.query = this.$route.query.name
-      // if (Object.keys(this.item).length == 0) {
       let self = this
       firebase.database().ref('/items').orderByChild("name").equalTo(self.query).
       on("child_added", function(snapshot) {
-        self.item = snapshot.val()
-        console.log(self.item);
+        self.itemobj = snapshot.val()
+        console.log(self.itemobj);
       })
-      // }
     }
   },
   created() {
-    this.getItem()
+    if (Object.keys(this.item).length == 0) {
+      this.getItem()
+    } else {
+      this.itemobj = this.item
+    }
   }
 }
 </script>

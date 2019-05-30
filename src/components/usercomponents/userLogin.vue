@@ -3,11 +3,11 @@
   <h2>ログイン</h2>
   <form>
     <div>
-      <!-- <v-icon name="mail" style="height:24px; max-width: 100%;"></v-icon> -->
+      <v-icon name="mail" style="height:24px; max-width: 100%;"></v-icon>
       <input type="text" placeholder="メールアドレス" v-model="email" required />
     </div>
     <div>
-      <!-- <v-icon name="lock" style="height:24px; max-width: 100%;"></v-icon> -->
+      <v-icon name="lock" style="height:24px; max-width: 100%;"></v-icon>
       <input type="password" placeholder="パスワード" v-model="password" required />
     </div>
   </form>
@@ -27,7 +27,6 @@ export default {
     return {
       email: '',
       password: '',
-      visible: false,
       id: ''
     }
   },
@@ -36,16 +35,10 @@ export default {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(
           user => {
-            console.log('Success!')
-            // console.log(localStorage)
+            // console.log('Success!')
             this.$router.push('userInfo')
-            // console.log(result);
-            // this.id = result.idToken.jwtToken
-            // localStorage.setItem("idToken", this.id)
-            // window.location.reload();
           },
           err => {
-            alert('error!')
             console.log(err.message);
             if (this.email != '' && this.password != '') {
               this.$notify.error({
@@ -56,10 +49,6 @@ export default {
           }
         )
     }
-  },
-  mounted() {
-    console.log("firebase.auth()");
-    console.log(firebase.auth().currentUser);
   }
 }
 </script>

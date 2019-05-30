@@ -22,6 +22,9 @@ Vue.use(VueLazyload, {
   attempt: 1 // ロード失敗した時のリトライの上限指定
 });
 
+import feather from 'vue-icon'
+Vue.use(feather, 'v-icon')
+
 import firebase from "firebase";
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -42,5 +45,6 @@ new Vue({
     App
   },
   router,
-  template: '<App/>'
+  template: '<App/>',
+  render: h => h(App)
 })

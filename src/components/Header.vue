@@ -1,9 +1,9 @@
 <template>
 <div class="header">
-  <h1 @click="home" class="title">
+  <h1 @click="routerPush('/')" class="title">
     DJ List
   </h1>
-  <div @click="toPost" class="user">
+  <div @click="routerPush('postItem')" class="user">
     post
   </div>
   <div @click="toUser" class="user">
@@ -18,8 +18,8 @@ import firebase from 'firebase'
 export default {
   name: 'Header',
   methods: {
-    home() {
-      this.$router.push('/')
+    routerPush(route) {
+      this.$router.push(route)
     },
     toUser() {
       if (firebase.auth().currentUser == null) {
@@ -28,9 +28,6 @@ export default {
         this.$router.push('userInfo')
       }
     },
-    toPost() {
-      this.$router.push('postItem')
-    }
   }
 }
 </script>

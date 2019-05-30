@@ -25,7 +25,6 @@ import Contents from '@/components/Contents'
 export default {
   name: 'searchMain',
   props: {
-    'toform': Function,
     "toItem": Function,
     "items": Array,
     'confirmLiked': Function,
@@ -48,25 +47,17 @@ export default {
     let self = this
     let items_ref = firebase.database().ref('/items')
 
-    // getSearchName
-    // api
-    // items_ref.orderByChild("name").equalTo(self.query).
-    // on("child_added", function(snapshot) {
-    //   self.searchName = snapshot.val()
-    //   console.log("searchName");
-    //   console.log(self.searchName);
-    // })
-    console.log("searchName");
+    // searchName
+    // console.log("searchName");
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i].name == this.query) {
-        // console.log(this.items[i]);
         this.searchName.push(this.items[i])
       }
     }
-    console.log(this.searchName);
+    // console.log(this.searchName);
 
-    // getSearchGenre
-    console.log("searchGenre");
+    // searchGenre
+    // console.log("searchGenre");
     for (var i = 0; i < this.items.length; i++) {
       for (var j = 0; j < Object.keys(this.items[i].genre).length; j++) {
         if (this.items[i].genre[j] != null || this.items[i].genre[j] != '') {
@@ -77,10 +68,10 @@ export default {
         }
       }
     }
-    console.log(this.searchGenre);
+    // console.log(this.searchGenre);
 
-    // getSearchGenre
-    console.log("searchPlace");
+    // searchPlace
+    // console.log("searchPlace");
     for (var i = 0; i < this.items.length; i++) {
       for (var j = 0; j < Object.keys(this.items[i].places).length; j++) {
         if (this.items[i].places[j] != null || this.items[i].places[j] != '') {
@@ -90,7 +81,7 @@ export default {
         }
       }
     }
-    console.log(this.searchPlace);
+    // console.log(this.searchPlace);
   }
 }
 </script>

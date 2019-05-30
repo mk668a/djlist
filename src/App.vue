@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     toItem(obj) {
-      // this.item = obj
+      this.item = obj
       this.$router.push({
         path: '/itemMain',
         query: {

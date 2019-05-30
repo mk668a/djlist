@@ -2,11 +2,10 @@
 <div class="footer">
   <ul class="footerLilst">
     <li>
-      <!-- <a @click="advertisement" v-scroll-to="'#top'">広告掲載</a> -->
+      <!-- <a @click="toLink()" >運営</a> -->
       <a v-scroll-to="'#top'">運営</a>
     </li>
     <li>
-      <!-- <a　@click="about" v-scroll-to="'#top'">DJ List</a> -->
       <a　@click="routerPush('about')" v-scroll-to="'#top'">DJ Listとは</a>
     </li>
     <li>
@@ -28,6 +27,12 @@ export default {
   methods: {
     routerPush(route) {
       this.$router.push(route)
+    },
+    toLink(link) {
+      console.log(link);
+      if (link != 'null') {
+        window.open(link);
+      }
     }
   }
 }

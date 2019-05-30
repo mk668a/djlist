@@ -7,10 +7,6 @@
       <el-switch style="display: block" v-model="selectP" active-color="#c1c1c1" inactive-color="#c1c1c1" active-text="URL" inactive-text="アップロード">
       </el-switch>
       <el-input v-if="selectP" class="uploadImgUrl" v-model="img" :rules="[{required: true, type: text}]"></el-input>
-      <!-- <el-upload v-else class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-        <img v-if="img" :src="img" class="avatar">
-        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-      </el-upload> -->
       <label v-else class="uploadImgFile">
         ファイルを選択
         <input type="file" @change="selectedFile" style="display:none"></input>
@@ -54,31 +50,8 @@ export default {
       places: [""],
       urls: [""],
       genres: [""],
-      pre: '',
-      t: false,
-      //suggest用
-      onFocus: true,
-      chosen: '',
-      suggestlist: [],
-      newsuggest: [],
-      datalist: [],
-      entered: false,
-      backed: false,
-      text: '',
-      //リンク追加用
-      dynamicValidateForm: {
-        domains: [{
-          name: '',
-          link: ''
-        }],
-        email: ''
-      },
-      // addlink: false,
-      domain: '',
-      //
       selectP: true,
-      character: {}
-    };
+    }
   },
   methods: {
     postC() {
@@ -121,92 +94,12 @@ export default {
         res = null;
       }
     },
-    //suggest用
-    disappear() {
-      this.onFocus = false
-    },
-    appear() {
-      if (this.input == '') {
-        this.onFocus = true
-      }
-    },
-    IsArrayExists: function(array, value) {
-      for (var i = 0, len = array.length; i < len; i++) {
-        if (value == array[i]) {
-          return true;
-        }
-      }
-      return false;
-    },
-    toform: function(item) {
-      // console.log(item);
-      // this.inputoficial = ''
-      this.inputproduct = item
-      this.onFocus = true
-    },
-    enter() {
-      // console.log('enter');
-      this.entered = true
-    },
-    back() {
-      // console.log('back');
-      this.backed = true
-    },
-    change(e) {
-      // console.log("start axios");
-      axios
-        .get('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/product/s', {
-          params: {
-            q: e.target.value
-          }
-        })
-        .then(response => {
-          console.log(response);
-          if (response.data.suggest.length == 0) { //配列が空のとき（変換してる時か、決定した時、または「ひらがな」で入力してるけどない時）
-            if (this.entered == true || this.backed == true) { //Enterを押していた場合
-              this.entered = false
-              this.backed = false
-              this.newsuggest = []
-              console.log(this.newsuggest);
-              for (var i = 0; i < this.datalist.length; i++) {
-                if (this.datalist[i].indexOf(this.input) != -1) {
-                  this.newsuggest.push(this.datalist[i])
-                  this.inputurl = response.data.suggest[i].url
-                }
-              }
-              this.suggestlist = this.newsuggest
-              console.log(this.newsuggest);
-            }
-            return
-          } else {
-            this.datalist = []
-            for (var i = 0; i < response.data.suggest.length; i++) {
-              this.datalist.push(response.data.suggest[i].product)
-              this.inputurl = response.data.suggest[i].url
-            }
-            this.suggestlist = this.datalist
-          }
-          console.log(this.inputurl);
-          // console.log(response);
-          // console.log(this.suggestlist);
-        })
-        .catch(error => console.log(error))
-    },
     selectedFile(e) {
       e.preventDefault();
       var img = e.target.files;
       this.img = window.URL.createObjectURL(img[0]);
       console.log(this.img);
     },
-    blobToFile(theBlob, fileName) {
-      //A Blob() is almost a File() - it's just missing the two properties below which we will add
-      theBlob.lastModifiedDate = new Date();
-      theBlob.name = fileName;
-      return theBlob;
-    }
-  },
-  mounted() {
-    this.idToken = localStorage.getItem("idToken")
   },
   watch: {
     places: {
@@ -262,71 +155,9 @@ export default {
 </script>
 
 <style>
-#suggestform {
-  height: 40px;
-  width: 300px;
-  border-radius: .3em;
-  border: 1px solid #DCDFE5;
-  outline: none;
-  font-size: 14px;
-}
-
-#suggestform:hover {
-  transition-duration: 0.3s;
-  border: 1px solid #c1c1c1;
-}
-
-/* #suggestform:active{
-  transition-duration: 0.3s;
-  border: 1px solid #569EF8!important;
-} */
-
-.postItem>form>.suggest {
-  cursor: text;
-}
-
-.postItem>form>.suggest>a {
-  top: 0;
-  line-height: 10px;
-  height: 10px;
-  margin: 16px 10px;
-  cursor: text;
-}
-
-.postItem>form>.suggest>span {
-  margin: 10.5px 0;
-  cursor: text;
-}
-
-.postItem>form>.suggest {
-  display: inline-flex;
-  z-index: 3;
-  text-align: center;
-}
-
 .postItem>form>.el-switch.is-checked,
 .postItem>form>.el-switch {
   padding-top: 30px;
-}
-
-.postItem>form>.suggest>.box {
-  display: block;
-  /* width: 100%; */
-}
-
-.postItem>form>.suggest>.box>input {
-  color: #606266;
-}
-
-.postItem>form>.suggest>.box>.suggestItem {
-  position: relative;
-  text-align: left;
-  cursor: pointer;
-  background: white;
-}
-
-.postItem>form>.suggest>.box>.suggestItem:hover {
-  background: #e6e6e6;
 }
 
 .postItem {
@@ -499,16 +330,6 @@ export default {
 
   .postItem>form>.preview>.original>div {
     display: block;
-  }
-
-  .postItem>form>.suggest {
-    display: block;
-    margin: auto 37.5px;
-    text-align: center;
-  }
-
-  .postItem>form>.suggest>.suggestItem:nth-last-of-type(1) {
-    border-radius: 0 0 .3em .3em;
   }
 
   .el-form-item>.el-form-item__content {

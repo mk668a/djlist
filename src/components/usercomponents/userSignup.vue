@@ -3,17 +3,16 @@
   <h2>ユーザー登録</h2>
   <form>
     <div>
-      <!-- <v-icon name="mail" style="height:24px;"></v-icon> -->
+      <v-icon name="mail" style="height:24px;"></v-icon>
       <input type="text" placeholder="メールアドレス" v-model="email" required />
     </div>
-    <!-- <div>
-      <v-icon name="user" style="height:24px;"></v-icon>
-      <input type="text" placeholder="ユーザー名" v-model="username" required />
-    </div> -->
     <div>
-      <!-- <v-icon name="unlock" style="height:24px;"></v-icon> -->
+      <v-icon name="unlock" style="height:24px;"></v-icon>
       <input type="password" placeholder="パスワード" v-model="password" required />
     </div>
+    <p>
+      6文字以上
+    </p>
   </form>
   <button style="boder:solid 1px #c1c1c1; border-radius: .3em; width:100px; height:40px;" @click="singup"><a>登録</a></button>
 </div>
@@ -24,35 +23,29 @@ import firebase from 'firebase'
 
 export default {
   name: 'userSignup',
-  props: {
-    // 'width': Number,
-    // 'display': Function
-  },
   data() {
     return {
       email: '',
       password: '',
-      username: '',
-      passwordConfirm: ''
     }
   },
   methods: {
     singup() {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(res => {
-        // this.$notify({
-        //   title: '確認コードを入力してください',
-        //   message: this.email + 'に確認コードを送信しました',
-        //   type: 'success'
-        // })
+        this.$notify({
+          title: 'メールアドレスを確認してください',
+          message: this.email + 'に確認コードを送信しました',
+          type: 'success'
+        })
         // 登録に成功したら、確認コードの入力画面を表示
         console.log('Create account: ', res.user.email)
         this.$router.push('userLogin')
       }).catch(error => {
         console.log(error.message)
-        // this.$notify.error({
-        //   title: ' パスワードが一致しません',
-        //   message: 'パスワードが一致しているか確認してください'
-        // })
+        this.$notify.error({
+          title: ' 入力エラー',
+          message: '正しいメールアドレス, パスワードを入力してください'
+        })
       })
     }
   }

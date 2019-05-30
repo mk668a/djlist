@@ -40,11 +40,9 @@ export default {
     return {
       form: '',
       commentform: '',
-      commentlist: [],
       userId: null,
       username: null,
       itemId: null,
-      numOfComment: null
     }
   },
   methods: {

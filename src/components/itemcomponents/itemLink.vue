@@ -1,12 +1,10 @@
 <template>
-<div class="itemLink" v-if="edit">
+<div class="itemLink">
   <h3 style="text-align:left;">
     関連リンク
   </h3>
-  <!-- if -->
   <ul style="text-align:left;">
     <li v-for="(item, index) in item.url" :key="index">
-      <!-- </a>{{index}}: </a> -->
       <a @click="toLink(item)" style="cursor:pointer; color:gray">{{item}}</a>
     </li>
   </ul>
@@ -14,8 +12,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'itemLink',
   props: {
@@ -23,62 +19,20 @@ export default {
   },
   data() {
     return {
-      idToken: '',
-      edit: true,
       LinkForm: {
         links: [{
           name: '',
           link: ''
         }]
       },
-      commentlist: [{}],
-      editlink: true,
     }
   },
   methods: {
-    removeLink(item) {
-      var index = this.LinkForm.links.indexOf(item);
-      if (index !== -1) {
-        this.LinkForm.links.splice(index, 1);
-      }
-    },
-    addLink() {
-      this.LinkForm.links.push({
-        name: '',
-        link: ''
-      })
-      console.log(this.LinkForm.links);
-    },
     toLink(link) {
       console.log(link);
       if (link != 'null') {
         window.open(link);
       }
-    },
-    postL() {
-      axios
-        .put('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev', {
-          wiki: this.item.wiki,
-          id: this.item.id,
-          features: this.item.features,
-          links: this.LinkForm.links
-        })
-        .then(response => {
-          console.log(response);
-          this.$notify({
-            title: '関連リンクを更新しました',
-            // message: this.inputname + 'の情報が更新されました',
-            type: 'success'
-          })
-          this.editlink = !this.editlink
-        })
-        .catch(error => {
-          (console.log(error))
-          this.$notify.error({
-            title: '更新できませんでした',
-            // message: '全ての必須項目に入力してください'
-          })
-        })
     }
   },
   created() {

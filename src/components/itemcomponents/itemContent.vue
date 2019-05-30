@@ -1,11 +1,10 @@
 <template>
 <div class="itemContent">
   <img :src="item.img" style="width:100%" />
-  <h1 v-if="edit">
+  <h1>
     {{item.name}}
     <i class="el-icon-edit" style="cursor:pointer; position:absolute; padding-top:7px;" @click="toRenew(item)"></i>
   </h1>
-  <el-input v-else type="text" v-model="item.name"></el-input>
   <div class="Cinfo">
     <table>
       <tr>
@@ -43,17 +42,10 @@ export default {
   props: {
     'item': Object,
     'unixTime2ymd': Function,
-    'width': Number,
     'toform': Function,
     'confirmLiked': Function,
     'like': Function,
     'toRenew': Function
-    // 'idToken': String
-  },
-  data() {
-    return {
-      edit: true,
-    }
   },
   methods: {
     getPopular(item) {

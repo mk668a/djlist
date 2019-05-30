@@ -1,16 +1,10 @@
 <template>
 <div class="search">
   <div class="form">
-    <input type="text" class="searchInput" placeholder="search" v-model="input" @keyup.enter="enter" @keyup.delete="back" @keyup.space="space" @input="change" 　@focus="disappear" @blur="appear" />
+    <input type="text" class="searchInput" placeholder="search" v-model="input" />
     <el-button type="primary" class="searchButton" icon="el-icon-search" @click="toform(input)">
-      <!-- <img src="../assets/search.png" /> -->
     </el-button>
   </div>
-  <!-- <div class="suggest">
-    <div v-for="(item, index) in suggestlist" class="suggestItem" v-if="!onFocus" @click="toform(item)">
-      {{item}}
-    </div>
-  </div> -->
   <div class="tag">
     <div v-for="(item, index) in tags" :key="index" class="item" @click="toform(item)">
       {{item}}
@@ -20,113 +14,16 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'Search',
   props: {
-    'responsedata': Array,
     'toform': Function
   },
   data() {
     return {
-      load: false,
-
-      onFocus: true,
-      input: '',
-      chosen: '',
-      suggestlist: [],
-      newsuggest: [],
-      datalist: [],
-      entered: false,
-      backed: false,
-      spaced: false,
+      input: "",
       tags: ["dubstep", "house", "zedd", "japan"]
     }
-  },
-  methods: {
-    // content_router: function() {
-    //   this.$router.push({
-    //     path: '/searchMain',
-    //     query: {
-    //       dev: this.input
-    //     }
-    //   })
-    // },
-    disappear() {
-      this.onFocus = false
-    },
-    appear() {
-      if (this.input == '') {
-        this.onFocus = true
-      }
-    },
-    IsArrayExists(array, value) {
-      // for (var i = 0, len = array.length; i < len; i++) {
-      //   if (value == array[i]) {
-      //     return true;
-      //   }
-      // }
-      return false;
-    },
-    enter() {
-      console.log('enter');
-      this.entered = true
-    },
-    back() {
-      console.log('back');
-      this.backed = true
-    },
-    space() {
-      console.log('space');
-      this.spaced = true
-    },
-    change(e) {
-      //   // console.log(e.target.value);
-      //   console.log("start axios");
-      //   axios
-      //     .get('https://198o53es1f.execute-api.ap-northeast-1.amazonaws.com/dev/s', {
-      //       params: {
-      //         q: e.target.value
-      //       }
-      //     })
-      //     .then(response => {
-      //       console.log(response);
-      //       // if (response.data.suggest.length == 0) { //配列が空のとき（変換してる時か、決定した時、または「ひらがな」で入力してるけどない時）
-      //       if (this.entered == true || this.backed == true || this.spaced == true) { //Enterを押していた場合
-      //         this.entered = false
-      //         this.backed = false
-      //         this.newsuggest = []
-      //         console.log(this.newsuggest);
-      //         for (var i = 0; i < this.datalist.length; i++) {
-      //           if (this.datalist[i].indexOf(this.input) != -1) {
-      //             this.newsuggest.push(this.datalist[i])
-      //           }
-      //         }
-      //         this.suggestlist = this.newsuggest
-      //         console.log(this.newsuggest);
-      //         // }
-      //         // return
-      //       } else {
-      //         this.datalist = []
-      //         for (var i = 0; i < response.data.suggest.length; i++) {
-      //           this.datalist.push(response.data.suggest[i].wiki)
-      //         }
-      //         this.suggestlist = this.datalist
-      //       }
-      //       // console.log(response);
-      //       // console.log(this.suggestlist);
-      //     })
-      //     .catch(error => console.log(error))
-    }
-  },
-  created() {
-    this.load = false
-
-    for (var i = 0; i < 4; i++) {
-      // this.tags.push(this.responsedata[Math.floor(Math.random() * this.responsedata.length)].wiki)
-    }
-    this.load = true
   }
 }
 </script>
