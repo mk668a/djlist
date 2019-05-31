@@ -100,7 +100,7 @@
 </div>
 </template>
 
-<style>
+<style lang="scss">
 .termsofservise {
   text-align: left;
 }

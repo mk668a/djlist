@@ -52,7 +52,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .userSignup {
   background: no-repeat url("../../assets/backgroundimg.png");
   background-size: contain;

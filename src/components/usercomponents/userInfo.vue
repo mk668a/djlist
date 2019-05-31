@@ -138,7 +138,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .userInfo>form {
   margin: 100px auto auto;
 }

@@ -53,7 +53,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .userLogin {
   background-size: contain;
   background-position: top;

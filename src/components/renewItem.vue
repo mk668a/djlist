@@ -144,7 +144,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #suggestform {
   height: 40px;
   width: 300px;

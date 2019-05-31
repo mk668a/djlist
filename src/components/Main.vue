@@ -1,6 +1,9 @@
 <template>
 <div class="main">
-  <router-link to="/about">DJ Listとは</router-link>
+  <div v-if="about" class="toAbout">
+    <router-link to="/about">DJ Listとは</router-link>
+    <button @click="deleteAbout">delete</button>
+  </div>
   <Search :toform='toform' />
   <Contents :toItem="toItem" :items="items" :confirmLiked="confirmLiked" :like="like" />
 </div>
@@ -23,9 +26,23 @@ export default {
     "confirmLiked": Function,
     "like": Function,
   },
+  data() {
+    return {
+      about: true
+    }
+  },
+  methods: {
+    deleteAbout() {
+      this.about = false
+    }
+  }
 }
 </script>
 
-<style>
-.main {}
+<style lang="scss">
+.main {
+    .toAbout{
+      display: flex;
+    }
+}
 </style>

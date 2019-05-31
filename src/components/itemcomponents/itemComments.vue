@@ -99,7 +99,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .itemComments {
   margin: auto 30px;
 }

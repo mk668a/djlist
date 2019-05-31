@@ -38,18 +38,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .footer {
-  background: #c1c1c1;
-  padding: 10px 0;
-}
+    background: #c1c1c1;
+    padding: 10px 0;
 
-.footerLilst {
-  padding: 0;
-}
-
-.footerLilst li {
-  text-align: center;
-  display: block;
+    .footerLilst {
+        padding: 0;
+        li {
+            text-align: center;
+            display: block;
+        }
+    }
 }
 </style>

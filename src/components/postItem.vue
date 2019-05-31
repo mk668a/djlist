@@ -154,7 +154,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .postItem>form>.el-switch.is-checked,
 .postItem>form>.el-switch {
   padding-top: 30px;

@@ -61,7 +61,7 @@ export default {
 </script>
 
 
-<style>
+<style lang="scss">
 .itemContent {
   width: auto;
   margin: 50px !important;

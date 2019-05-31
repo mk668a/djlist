@@ -9,9 +9,10 @@
 </div>
 </template>
 
-<style>
+<style lang="scss">
 .about {
   text-align: left;
+  transition-delay: 1s;
 }
 
 .about h2 {

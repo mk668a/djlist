@@ -94,7 +94,7 @@
 </div>
 </template>
 
-<style>
+<style lang="scss">
 .privacypolicy {
   text-align: left;
 }

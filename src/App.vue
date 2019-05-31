@@ -2,7 +2,9 @@
 <div id="app">
   <main id="top">
     <Header />
-    <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" />
+    <div class="container">
+      <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" />
+    </div>
     <Footer />
   </main>
 </div>
@@ -164,34 +166,48 @@ export default {
 </script>
 
 <style>
-@font-face {
+/* @font-face {
   font-family: "Kingthings_Foundation";
   src: url(https://dl.dropboxusercontent.com/s/junww0gr4uxkc9h/Kingthings_Foundation.otf);
-}
+} */
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'ヒラギノ明朝 ProN W6', 'HiraMinProN-W6', 'HiraMinProN-W6', 'Avenir', Helvetica, Arial, sans-serif;
   /* -webkit-font-smoothing: antialiased; */
   /* -moz-osx-font-smoothing: grayscale; */
 }
 
 body {
   margin: 0;
+  /* background: #161033; */
 }
 
 h1 {
-  font-family: 'Kingthings_Foundation';
-  font-size: 20px;
+  font-size: 38px;
   cursor: pointer;
+  color: #EC0D08;
+  font-weight: bold;
 }
 
-h2 {}
+h2 {
+  color: #EC0D08;
 
-h3 {}
+}
+
+h3 {
+  color: #EC0D08;
+}
 
 a {
   cursor: pointer;
+  /* color: #EC0D08; */
 }
 
-p {}
+p {
+  color: #EC0D08;
+}
+
+.container{
+  padding: 20px;
+}
 </style>
