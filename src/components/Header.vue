@@ -4,7 +4,7 @@
     <i class="far fa-smile"></i>
   </div>
   <h1 @click="reload" class="title">
-    DJ List
+    Dj List
   </h1>
   <div @click="routerPush('postItem')" class="post">
     <i class="far fa-arrow-alt-circle-up"></i>
@@ -29,8 +29,12 @@ export default {
       }
     },
     reload() {
-      this.$router.push('/')
-      location.reload();
+      if (this.$route.name == 'Main') {
+        location.reload();
+        this.$router.push('/')
+      } else {
+        this.$router.push('/')
+      }
     }
   }
 }

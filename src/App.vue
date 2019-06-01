@@ -85,8 +85,15 @@ export default {
       var sec = ('0' + d.getSeconds()).slice(-2);
       return (year + '年' + month + '月' + day + '日 ' + hour + ':' + min + ':' + sec);
     },
-    confirmLiked(userId, popular) {
+    confirmLiked(popular) {
       // console.log(popular);
+      var userId = null
+      if (firebase.auth().currentUser == null) {
+        return false
+      } else {
+        userId = firebase.auth().currentUser.uid
+      }
+
       if (popular == undefined) {
         return false
       }
@@ -173,9 +180,16 @@ $main-color: #EC0D08;
     src: url("https://dl.dropboxusercontent.com/s/junww0gr4uxkc9h/Kingthings_Foundation.otf");
 }
 
+@font-face {
+    font-family: "KSblockblock";
+    src: url("https://dl.dropboxusercontent.com/s/r5sdu2jjwpx4zbn/KSblockblock.otf");
+}
+
 body {
-    margin: 10px;
-    background-color: #FDE816;
+    // background-color: #FDE816;
+    background: url("https://mir-s3-cdn-cf.behance.net/project_modules/fs/d93b3534838097.56e63973c4e5d.jpg") no-repeat center;
+    background-size: cover;
+    margin: 0;
 
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;

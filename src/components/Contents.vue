@@ -12,21 +12,19 @@
             <div class="filter"></div>
             <img v-lazy="item.img" style="max-width: 100%" v-scroll-to="'#top'" @click="toItem(item)" />
           </div>
-          <div v-if="!confirmLiked(item.uid, item.popular)" class="popular" @click="like(item)">
-            <!-- <i class="el-icon-star-off"></i> -->
-            <a>☆{{getPopular(item)}}</a>
+          <div v-if="!confirmLiked(item.popular)" class="popular" @click="like(item)">
+            <a class="off">☆{{getPopular(item)}}</a>
           </div>
           <div v-else class="popular" @click="like(item)">
-            <!-- <i class="el-icon-star-on"></i> -->
-            <a>★{{getPopular(item)}}</a>
+            <a class="on">★{{getPopular(item)}}</a>
           </div>
         </div>
       </masonry>
     </div>
-    <div class="arrowUp" v-show="!loading">
-      <el-button icon="el-icon-arrow-up" href="#" v-scroll-to="'#top'" circle></el-button>
-    </div>
   </transition>
+  <div class="arrowUp" v-show="!loading">
+    <el-button icon="el-icon-arrow-up" href="#" v-scroll-to="'#top'" circle></el-button>
+  </div>
   <div class="loading" v-show="loading">
     <div class="lds-roller">
       <div></div>
@@ -156,7 +154,11 @@ $main-color: #ec0d08;
                     top: -10px;
                 }
 
+                .on {
+                    color: rgba($main-color, 1);
+                }
             }
+
         }
     }
 

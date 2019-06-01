@@ -11,24 +11,22 @@
 
 <style lang="scss">
 .about {
-  text-align: left;
-  transition-delay: 1s;
+    text-align: left;
+    transition-delay: 1s;
 }
 
 .about h2 {
-  background: #F1F4F7;
-  margin: 0;
-  padding: 30px;
+    background: #F1F4F7;
+    margin: 0;
+    padding: 30px;
 }
 
-
-@media screen and (max-width:768px) {
-}
+@media screen and (max-width:768px) {}
 </style>
 
 
 <script>
 export default {
-  name: 'about'
+  name: 'about',
 }
 </script>

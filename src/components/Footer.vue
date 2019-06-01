@@ -9,7 +9,7 @@
       <a　@click="routerPush('about')" v-scroll-to="'#top'">DJ Listとは</a>
     </li>
     <li>
-      <div class="title">DJ List</div>
+      <div class="title">Dj List</div>
     </li>
     <li>
       <a @click="routerPush('termsofservise')" v-scroll-to="'#top'">利用規約</a>
@@ -39,6 +39,8 @@ export default {
 </script>
 
 <style lang="scss">
+$main-color: #ec0d08;
+
 @mixin exborder($color:#fff) {
     // 上
     text-shadow: 1px 1px 0 $color, -1px 1px 0 $color, 1px -1px 0 $color, -1px -1px 0 $color;
@@ -47,19 +49,21 @@ export default {
 }
 
 .footer {
-    background: #c1c1c1;
-    padding: 10px 0;
+    padding: 20px 0 10px;
+    background: linear-gradient(0rad, rgba(#fff, 1), rgba(#fff, .5) 85%, rgba(#fff, 0));
 
     .footerLilst {
         padding: 0;
+        z-index: 100;
         li {
             text-align: center;
             display: block;
         }
 
-        .title{
-          @include exborder(#EC0D08);
-          color: #c1c1c1;
+        .title {
+            // @include exborder(#EC0D08);
+            font-family: 'Monoton';
+            color: $main-color;
         }
     }
 }
