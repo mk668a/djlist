@@ -1,13 +1,13 @@
 <template>
 <div class="header">
   <div @click="toUser" class="user">
-    <i class="el-icon-user"></i>
+    <i class="far fa-smile"></i>
   </div>
-  <h1 @click="routerPush('/')" class="title">
+  <h1 @click="reload" class="title">
     DJ List
   </h1>
   <div @click="routerPush('postItem')" class="post">
-    <i class="el-icon-upload2"></i>
+    <i class="far fa-arrow-alt-circle-up"></i>
   </div>
 </div>
 </template>
@@ -28,20 +28,26 @@ export default {
         this.$router.push('userInfo')
       }
     },
+    reload() {
+      this.$router.push('/')
+      location.reload();
+    }
   }
 }
 </script>
 
 <style lang="scss">
+$main-color: #ec0d08;
 @mixin exborder($color:#fff) {
     // 上
-    text-shadow: 1px 1px 0 $color, -1px 1px 0 $color, 1px -1px 0 $color, -1px -1px 0 $color;
+    text-shadow: 1.5px 1.5px 0 $color, -1.5px 1.5px 0 $color, 1.5px -1.5px 0 $color, -1.5px -1.5px 0 $color;
     // 下
-    text-shadow: 1px 1px 1px $color, -1px 1px 1px $color, 1px -1px 1px $color, -1px -1px 1px $color;
+    text-shadow: 1.5px 1.5px 1.5px $color, -1.5px 1.5px 1.5px $color, 1.5px -1.5px 1.5px $color, -1.5px -1.5px 1.5px $color;
 }
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
 .header {
-    background: rgba(255, 255, 255, 0.5);
+    // background: rgba(255, 255, 255, 0.5);
     height: auto;
     padding: 0 10px;
     display: flex;
@@ -52,8 +58,10 @@ export default {
 
     .title {
         margin: auto;
-        @include exborder(#EC0D08);
-        color: #fff;
+        // @include exborder(#EC0D08);
+        color: $main-color;
+        // font-family: "Kingthings_Foundation";
+        font-family: 'Monoton';
     }
 
     .post {
@@ -61,8 +69,9 @@ export default {
     }
 
     i {
+        font-size: 28px;
         cursor: pointer;
-        color: #EC0D08;
+        color: $main-color;
         height: 100%;
     }
 }

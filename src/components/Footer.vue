@@ -39,6 +39,13 @@ export default {
 </script>
 
 <style lang="scss">
+@mixin exborder($color:#fff) {
+    // 上
+    text-shadow: 1px 1px 0 $color, -1px 1px 0 $color, 1px -1px 0 $color, -1px -1px 0 $color;
+    // 下
+    text-shadow: 1px 1px 1px $color, -1px 1px 1px $color, 1px -1px 1px $color, -1px -1px 1px $color;
+}
+
 .footer {
     background: #c1c1c1;
     padding: 10px 0;
@@ -48,6 +55,11 @@ export default {
         li {
             text-align: center;
             display: block;
+        }
+
+        .title{
+          @include exborder(#EC0D08);
+          color: #c1c1c1;
         }
     }
 }

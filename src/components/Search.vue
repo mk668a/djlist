@@ -32,6 +32,8 @@ export default {
 </script>
 
 <style lang="scss">
+$main-color: #ec0d08;
+
 .search {
     margin: 10px 30px 30px;
 
@@ -49,23 +51,43 @@ export default {
                 width: 100%;
                 font-size: 20px;
                 padding: 0 10px;
-                border-radius: 0.3em 0 0 0.3em;
-                border: solid 1px #c1c1c1;
+                border-radius: 0.1em 0 0 0.1em;
+                border: solid 1px $main-color;
                 outline: none;
+                color: $main-color;
+
+                // placeholder
+                &::placeholder {
+                    /* Chrome, Firefox, Opera, Safari 10.1+ */
+                    color: $main-color;
+                    opacity: 0.7;
+                    /* Firefox */
+                }
+
+                &:-ms-input-placeholder {
+                    /* Internet Explorer 10-11 */
+                    color: $main-color;
+                }
+
+                &::-ms-input-placeholder {
+                    /* Microsoft Edge */
+                    color: $main-color;
+                }
+
             }
 
             .searchButton {
                 display: block;
                 background: transparent;
-                border: 1px solid #c1c1c1;
+                border: 1px solid $main-color;
                 border-left: 0;
-                border-radius: 0 0.3em 0.3em 0;
+                border-radius: 0 0.1em 0.1em 0;
                 outline: none;
                 cursor: pointer;
 
                 .el-icon-search {
                     &:before {
-                        color: #c1c1c1;
+                        color: $main-color;
                     }
                 }
             }
@@ -76,11 +98,13 @@ export default {
         display: flex;
         .item {
             margin: 3px 5px;
-            padding: 0 3px;
+            padding: 1px 3px;
             cursor: pointer;
-            background: #f1f4f7;
+            color: #fff;
+            background: linear-gradient(0deg, #CA5556, #f46566 60%, #fff);
             border-radius: 0.3em;
             font-size: 14px;
+            // box-shadow: 10px 10px 10px 1px rgba(0,0,0,0.4);
         }
 
         .el-icon-refresh {

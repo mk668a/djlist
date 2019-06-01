@@ -86,7 +86,7 @@ export default {
       return (year + '年' + month + '月' + day + '日 ' + hour + ':' + min + ':' + sec);
     },
     confirmLiked(userId, popular) {
-      console.log(popular);
+      // console.log(popular);
       if (popular == undefined) {
         return false
       }
@@ -165,49 +165,51 @@ export default {
 }
 </script>
 
-<style>
-/* @font-face {
-  font-family: "Kingthings_Foundation";
-  src: url(https://dl.dropboxusercontent.com/s/junww0gr4uxkc9h/Kingthings_Foundation.otf);
-} */
+<style lang="scss">
+$main-color: #EC0D08;
 
-#app {
-  font-family: 'ヒラギノ明朝 ProN W6', 'HiraMinProN-W6', 'HiraMinProN-W6', 'Avenir', Helvetica, Arial, sans-serif;
-  /* -webkit-font-smoothing: antialiased; */
-  /* -moz-osx-font-smoothing: grayscale; */
+@font-face {
+    font-family: "Kingthings_Foundation";
+    src: url("https://dl.dropboxusercontent.com/s/junww0gr4uxkc9h/Kingthings_Foundation.otf");
 }
 
 body {
-  margin: 0;
-  /* background: #161033; */
-}
+    margin: 10px;
+    background-color: #FDE816;
 
-h1 {
-  font-size: 38px;
-  cursor: pointer;
-  color: #EC0D08;
-  font-weight: bold;
-}
+    #app {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        /* -webkit-font-smoothing: antialiased; */
+        /* -moz-osx-font-smoothing: grayscale; */
+    }
 
-h2 {
-  color: #EC0D08;
+    h1 {
+        font-size: 48px;
+        cursor: pointer;
+        color: $main-color;
+        font-weight: bold;
+    }
 
-}
+    h2 {
+        color: #EC0D08;
 
-h3 {
-  color: #EC0D08;
-}
+    }
 
-a {
-  cursor: pointer;
-  /* color: #EC0D08; */
-}
+    h3 {
+        color: #EC0D08;
+    }
 
-p {
-  color: #EC0D08;
-}
+    a {
+        cursor: pointer;
+        /* color: #EC0D08; */
+    }
 
-.container{
-  padding: 20px;
+    p {
+        color: #EC0D08;
+    }
+
+    .container {
+        padding: 20px;
+    }
 }
 </style>
