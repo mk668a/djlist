@@ -185,6 +185,7 @@ $main-color: #ec0d08;
             div {
                 h3 {
                     padding-left: 20px;
+                    margin-bottom: 0;
                 }
             }
 

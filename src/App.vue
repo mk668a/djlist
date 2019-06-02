@@ -205,6 +205,11 @@ $main-color: #EC0D08;
     src: url("https://dl.dropboxusercontent.com/s/2x3b8i1xtub89x7/nicomoji-plus_1.11.ttf");
 }
 
+@font-face {
+    font-family: "Canterbury";
+    src: url("https://dl.dropboxusercontent.com/s/h5a6qi2p7qvcv7t/Canterbury.ttf");
+}
+
 body {
     background-color: #FDE816;
     // background: url("./assets/lightshow.jpg") no-repeat center;

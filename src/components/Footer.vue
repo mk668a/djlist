@@ -57,6 +57,7 @@ $main-color: #ec0d08;
         padding: 0;
         z-index: 100;
         li {
+            margin-bottom: 20px;
             text-align: center;
             display: block;
             color: #a458ec;

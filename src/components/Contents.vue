@@ -175,11 +175,11 @@ $main-color: #ec0d08;
             border-color: $main-color;
             border-width: 3px;
 
-            .el-icon-arrow-up{
-              &::before{
-                font-size: 30px;
-                font-weight: bold;
-              }
+            .el-icon-arrow-up {
+                &::before {
+                    font-size: 30px;
+                    font-weight: bold;
+                }
             }
         }
     }
