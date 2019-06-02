@@ -7,21 +7,21 @@
     <div id="flex">
       <v-icon name="mail"></v-icon>
       <div>
-        <input type="text" placeholder="メールアドレス" v-model="email" />
+        <input type="text" placeholder="e-mail" v-model="email" />
       </div>
     </div>
     <div id="flex">
       <v-icon name="lock"></v-icon>
       <div>
-        <input type="password" placeholder="パスワード" v-model="password" />
+        <input type="password" placeholder="password" v-model="password" />
       </div>
     </div>
     <div class="button" id="block">
       <div id="flex">
-        <button @click="login">ログイン</button>
+        <button @click="login">LOGIN</button>
       </div>
       <div id="flex">
-        <button @click="toUsrSignUp">ユーザー登録</button>
+        <button @click="toUsrSignUp">SIGN UP</button>
       </div>
     </div>
   </form>
@@ -90,7 +90,7 @@ export default {
 
         div {
           margin-bottom: 20px;
-          
+
             div {
                 margin-right: auto;
                 margin-left: 0;
