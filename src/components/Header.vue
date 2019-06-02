@@ -14,9 +14,21 @@
 
 <script>
 import firebase from 'firebase'
+import Search from '@/components/Search'
 
 export default {
   name: 'Header',
+  data() {
+    return {
+      flagSearch: true,
+    }
+  },
+  components: {
+    Search
+  },
+  props: {
+    'toform': Function
+  },
   methods: {
     routerPush(route) {
       this.$router.push(route)
@@ -36,7 +48,12 @@ export default {
         this.$router.push('/')
       }
     }
-  }
+  },
+  created() {
+    // console.log(this.$route.name);
+    // this.route = this.$route.name
+    // console.log(this.route);
+  },
 }
 </script>
 
@@ -51,9 +68,15 @@ $main-color: #ec0d08;
 @import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
 .header {
-    // background: rgba(255, 255, 255, 0.5);
+    z-index: 100;
+    display: block;
     height: auto;
-    padding: 0 10px;
+    width: 90%;
+    padding: 0 5%;
+    position: fixed;
+    background: #fff;
+
+    // background: rgba(255, 255, 255, 0.5);
     display: flex;
 
     .user {

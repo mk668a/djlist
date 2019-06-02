@@ -1,9 +1,9 @@
 <template>
 <div id="app">
   <main id="top">
-    <Header />
+    <Header :toform="toform" />
     <div class="container">
-      <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" />
+      <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" :about="about" :deleteAbout="deleteAbout" />
     </div>
     <Footer />
   </main>
@@ -19,7 +19,7 @@ export default {
   name: 'App',
   components: {
     Header,
-    Footer
+    Footer,
   },
   data() {
     return {
@@ -28,9 +28,13 @@ export default {
       items: [],
       item: {},
       database: {},
+      about: true,
     }
   },
   methods: {
+    deleteAbout() {
+      this.about = false
+    },
     toItem(obj) {
       this.item = obj
       this.$router.push({
@@ -41,16 +45,27 @@ export default {
       })
     },
     toform(item) {
+      console.log(this.$route.name);
       // console.log(item);
       if (item != '') {
         this.input = item
         this.onFocus = true
-        this.$router.push({
-          path: '/searchMain',
-          query: {
-            dev: this.input
-          }
-        })
+        if (this.$route.name == 'searchMain') {
+          this.$router.push({
+            path: '/searchMain',
+            query: {
+              dev: this.input
+            }
+          })
+          location.reload();
+        } else {
+          this.$router.push({
+            path: '/searchMain',
+            query: {
+              dev: this.input
+            }
+          })
+        }
       }
     },
     toRenew(obj) {
@@ -185,10 +200,15 @@ $main-color: #EC0D08;
     src: url("https://dl.dropboxusercontent.com/s/r5sdu2jjwpx4zbn/KSblockblock.otf");
 }
 
+@font-face {
+    font-family: "nicomojiPlus";
+    src: url("https://dl.dropboxusercontent.com/s/2x3b8i1xtub89x7/nicomoji-plus_1.11.ttf");
+}
+
 body {
-    // background-color: #FDE816;
-    background: url("https://mir-s3-cdn-cf.behance.net/project_modules/fs/d93b3534838097.56e63973c4e5d.jpg") no-repeat center;
-    background-size: cover;
+    background-color: #FDE816;
+    // background: url("./assets/lightshow.jpg") no-repeat center;
+    // background-size: cover;
     margin: 0;
 
     #app {
@@ -206,11 +226,13 @@ body {
 
     h2 {
         color: #EC0D08;
-
+        font-size: 38px;
+        font-family: "nicomojiPlus";
     }
 
     h3 {
         color: #EC0D08;
+        font-size: 28px;
     }
 
     a {
@@ -223,7 +245,9 @@ body {
     }
 
     .container {
-        padding: 20px;
+        z-index: 0;
+        padding: 20px 0;
+        position: relative;
     }
 }
 </style>

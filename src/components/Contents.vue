@@ -1,5 +1,5 @@
 <template>
-<div class="contents">
+<div class="contents" :class="{active: about}">
   <transition name="bounce">
     <div class="masonry" v-show="!loading">
       <masonry :cols="{default: 4, 1000: 3, 700: 2, 400: 2}" :gutter="{default: '30px', 700: '20px'}">
@@ -49,6 +49,7 @@ export default {
     'item': Object,
     'confirmLiked': Function,
     'like': Function,
+    'about': Boolean
   },
   data() {
     return {
@@ -105,10 +106,11 @@ $main-color: #ec0d08;
     .masonry {
         max-height: 200vh;
         overflow-y: scroll;
+        padding: 0 20px;
 
         .item {
             padding: 10px 20px;
-            margin: auto auto 20px;
+            margin: 20px 0;
             // background: #FFE306;
             background: no-repeat url("../assets/panel.png");
             box-shadow: 10px 10px 10px 1px rgba(0,0,0,0.4);
@@ -171,6 +173,14 @@ $main-color: #ec0d08;
             color: $main-color;
             background: transparent;
             border-color: $main-color;
+            border-width: 3px;
+
+            .el-icon-arrow-up{
+              &::before{
+                font-size: 30px;
+                font-weight: bold;
+              }
+            }
         }
     }
 

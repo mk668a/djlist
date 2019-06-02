@@ -2,6 +2,7 @@
 <div class="search">
   <div class="searchform">
     <div class="form">
+      <!-- :keyup.enter="toform(input)" -->
       <div class="searchInput">
         <input type="text" placeholder="search" v-model="input" />
       </div>
@@ -43,12 +44,15 @@ $main-color: #ec0d08;
 }
 
 .search {
-    margin: 10px 30px 30px;
+    margin: 30px 5%;
+    width: 90%;
 
     .searchform {
         display: flex;
 
         .form {
+            box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.4);
+
             margin: auto;
             display: flex;
             width: 100%;
@@ -76,6 +80,7 @@ $main-color: #ec0d08;
                     @include exborder(#ff0600);
                     outline: none;
 
+                    // reflect
                     -webkit-box-reflect: below 4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
                     -webkit-text-stroke-width: 1px;
                     -webkit-text-stroke-color: #fff975;
@@ -131,7 +136,8 @@ $main-color: #ec0d08;
             padding: 2px 5px;
             cursor: pointer;
             color: #fff;
-            background: linear-gradient(0deg, #602f8e, #a458ec 60%, #fff);
+            font-family: "nicomojiPlus";
+            background: linear-gradient(0deg, #FDE816 1%, #a458ec 60%, #fff);
             border-radius: 0.3em;
             font-size: 14px;
             box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.4);
@@ -142,11 +148,13 @@ $main-color: #ec0d08;
             cursor: pointer;
 
             &:before {
+                font-weight: bold;
                 color: #fff;
                 border-radius: 50px;
                 padding: 2px;
                 margin: auto auto 3px;
-                background: linear-gradient(0deg, #602f8e, #a458ec 60%, #fff);
+                background: linear-gradient(0deg, #FDE816 1%, #a458ec 60%, #fff);
+                box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.4);
             }
         }
     }
