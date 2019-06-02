@@ -70,7 +70,7 @@ $main-color: #ec0d08;
 .header {
     z-index: 100;
     display: block;
-    height: auto;
+    height: 100px;
     width: 90%;
     padding: 0 5%;
     position: fixed;

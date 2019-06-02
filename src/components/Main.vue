@@ -103,11 +103,11 @@ $main-color: #ec0d08;
 }
 
 .main {
-  
+
     .searchSpan {
         transition: 0.3s cubic-bezier(.4, 0, .2, 1);
         position: fixed;
-        margin-top: 50px;
+        margin-top: 70px;
         width: 100%;
         z-index: 100;
         // background: linear-gradient(0rad, rgba(#fff, 0) , rgba(#FDE816, .5) 50%, rgba(#fff, 1));
@@ -117,7 +117,7 @@ $main-color: #ec0d08;
     .toAboutSpan {
         transition: 0.3s cubic-bezier(.4, 0, .2, 1);
         z-index: 100;
-        margin-top: 200px;
+        margin-top: 220px;
         position: fixed;
         width: 100%;
     }
@@ -126,10 +126,9 @@ $main-color: #ec0d08;
         z-index: 0;
         position: relative;
         .contents {
-            padding-top: 200px;
         }
         .contents.active {
-            padding-top: 300px;
+            padding-top: 320px;
         }
     }
 }

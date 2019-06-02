@@ -213,9 +213,9 @@ $main-color: #EC0D08;
     src: url("https://dl.dropboxusercontent.com/s/h5a6qi2p7qvcv7t/Canterbury.ttf");
 }
 
-#top{
-  z-index: 200;
-  position: relative;
+#top {
+    z-index: 200;
+    position: relative;
 }
 
 body {
@@ -248,6 +248,13 @@ body {
         font-size: 28px;
     }
 
+    li,
+    td,
+    tr {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
     a {
         cursor: pointer;
         /* color: #EC0D08; */
@@ -257,6 +264,9 @@ body {
         color: #EC0D08;
     }
 
+    td {
+        color: rgb(57, 57, 57);
+    }
     .container {
         z-index: 0;
         padding: 20px 0;

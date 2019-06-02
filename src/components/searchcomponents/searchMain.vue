@@ -127,10 +127,9 @@ $main-color: #ec0d08;
 
     .searchSpan {
         position: fixed;
-        margin-top: 18px;
+        margin-top: 42px;
         width: 100%;
         z-index: 100;
-        background: linear-gradient(0rad, rgba(#fff, 0) , rgba(#FDE816, .5) 50%, rgba(#fff, 1));
     }
 
     .resultSpan {
