@@ -6,7 +6,6 @@
     </div>
   </div>
   <div class="itemName">
-    <i class="el-icon-edit" style="cursor:pointer; position:absolute; padding-top:7px;" @click="toRenew(item)"></i>
     <h2>
       {{item.name}}
     </h2>
@@ -75,7 +74,7 @@ export default {
 $main-color: #EC0D08;
 
 .itemContent {
-    padding: 0 20px;
+    padding: 0 50px;
     display: block;
 
     .itemImage {
@@ -88,6 +87,7 @@ $main-color: #EC0D08;
             width: 80%;
             height: 100%;
             img {
+                border-radius: 0.5em;
                 width: 100%;
                 height: auto;
             }
@@ -108,11 +108,9 @@ $main-color: #EC0D08;
 
         .popular {
             margin: auto auto auto 0;
-            line-height: 45px;
 
             a {
                 color: rgba($main-color, 0.7);
-                font-family: 'ヒラギノ明朝 ProN W6', 'HiraMinProN-W6', 'HiraMinProN-W6', 'Avenir', Helvetica, Arial, sans-serif;
                 font-weight: bold;
                 font-size: 38px;
             }
@@ -121,22 +119,21 @@ $main-color: #EC0D08;
                 color: rgba($main-color, 1);
             }
         }
-
-        .el-icon-edit {
-            margin: auto 0;
-            color: #a458ec;
-            position: static!important;
-        }
     }
 
     .Cinfo {
-        width: 100%;
+        background: rgba(#fff, .5);
+        padding: 20px 10px;
+        border-radius: 0.5em;
+
         table {
             width: 100%;
 
             tr {
+                display: flex;
                 td {
                     &:nth-of-type(1) {
+                        width: 30%;
                         font-size: 20px;
                         padding-right: 20px;
                     }
@@ -149,16 +146,16 @@ $main-color: #EC0D08;
         font-weight: bold;
     }
 
-    .genre, .area {
-        width: 100%;
+    .area,
+    .genre {
 
         .tag {
-            width: 100%;
+            width: 70%;
             height: auto;
-            display: flex;
             margin-top: 5px;
 
             .item {
+                float: left;
                 margin: 3px 5px;
                 padding: 2px 5px;
                 cursor: pointer;

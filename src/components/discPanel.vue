@@ -34,7 +34,7 @@ export default {
 <style>
 .discPanel {
   position: fixed;
-  bottom: 360px;
+  bottom: 370px;
   z-index: 0;
 }
 

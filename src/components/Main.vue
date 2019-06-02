@@ -51,16 +51,7 @@ export default {
 
       this.targetRect = rect;
 
-      // if (this.targetRect < -150) {
-      //   this.$set(this.searchHiddenStyle, 'visibility', 'hidden');
-      //   search.classList.add('head-animation');
-      //   console.log(this.searchHiddenStyle);
-      // } else {
-      //   this.$set(this.searchHiddenStyle, 'visibility', 'visible');
-      //   search.classList.remove('head-animation');
-      // }
-
-      if (this.targetRect < -20) {
+      if (this.targetRect < 20) {
         this.$set(this.searchHiddenStyle, 'visibility', 'hidden');
         search.classList.add('head-animation');
 
@@ -125,7 +116,10 @@ $main-color: #ec0d08;
     .contentsSpan {
         z-index: 0;
         position: relative;
+
         .contents {
+          transition: 0.3s;
+          padding-top: 200px;
         }
         .contents.active {
             padding-top: 320px;

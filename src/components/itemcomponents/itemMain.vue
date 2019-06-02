@@ -3,6 +3,10 @@
   <itemContent :item="itemobj" :unixTime2ymd="unixTime2ymd" :toform="toform" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" />
   <itemLink :item="itemobj"></itemLink>
   <itemComments :item="itemobj" :unixTime2ymd="unixTime2ymd"></itemComments>
+  <itemChange :item="itemobj" :toRenew="toRenew" />
+  <div class="arrowUp" v-show="!loading">
+    <el-button icon="el-icon-arrow-up" href="#" v-scroll-to="'#top'" circle></el-button>
+  </div>
 </div>
 </template>
 
@@ -11,6 +15,7 @@ import firebase from 'firebase'
 import itemContent from './itemContent'
 import itemLink from './itemLink'
 import itemComments from './itemComments'
+import itemChange from './itemChange'
 
 export default {
   name: 'itemMain',
@@ -25,7 +30,8 @@ export default {
   components: {
     itemContent,
     itemLink,
-    itemComments
+    itemComments,
+    itemChange
   },
   data() {
     return {
@@ -64,7 +70,13 @@ export default {
 </script>
 
 <style lang="scss">
-.itemMain{
-  margin-top: 100px;
+.itemMain {
+    margin-top: 130px;
+
+    .el-icon-edit {
+        margin: auto 0;
+        color: #a458ec;
+        position: static!important;
+    }
 }
 </style>

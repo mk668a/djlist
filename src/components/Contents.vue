@@ -8,7 +8,7 @@
             <a v-text="item.name">
             </a>
           </div>
-          <div class="dataImg" v-scroll-to="'#top'" @click="toItem(item)" >
+          <div class="dataImg" v-scroll-to="'#top'" @click="toItem(item)">
             <div class="filter"></div>
             <img v-lazy="item.img" style="max-width: 100%" />
           </div>
@@ -102,6 +102,7 @@ $main-color: #ec0d08;
 }
 
 .contents {
+    min-height: 100vh;
 
     .masonry {
         max-height: 200vh;
@@ -123,7 +124,6 @@ $main-color: #ec0d08;
                 a {
                     font-weight: bold;
                     color: $main-color;
-                    font-family: 'ヒラギノ明朝 ProN W6', 'HiraMinProN-W6', 'HiraMinProN-W6', 'Avenir', Helvetica, Arial, sans-serif;
                     font-size: #{$margin-size*2}px;
                     line-height: 0;
                     @include exborder(#fff);
@@ -148,7 +148,6 @@ $main-color: #ec0d08;
 
                 a {
                     color: rgba($main-color, 0.7);
-                    font-family: 'ヒラギノ明朝 ProN W6', 'HiraMinProN-W6', 'HiraMinProN-W6', 'Avenir', Helvetica, Arial, sans-serif;
                     font-weight: bold;
                     font-size: #{$margin-size*2.5}px;
                     @include exborder(#fff);
@@ -164,43 +163,47 @@ $main-color: #ec0d08;
         }
     }
 
-    .arrowUp {
+    .loading {
+        margin-top: 50px;
         display: flex;
-        margin: 50px 0;
+    }
+}
 
-        .el-button {
-            margin: auto;
-            color: #fff;
-            background: linear-gradient(0deg, #FDE816 1%, #a458ec 60%, #fff);
-            border-color: transparent;
-            border-width: 0;
-            box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.5);
+// arrowUp
+.arrowUp {
+    display: flex;
+    margin: 50px 0;
+    height: 52px;
 
-            &:hover {
-                width: 55px;
-                height: 55px;
-                box-shadow: 0 0 10px 1px rgba(0,0,0,0.3);
-            }
+    .el-button {
+        margin: auto;
+        color: #fff;
+        background: linear-gradient(0deg, #FDE816 1%, #a458ec 60%, #fff);
+        border-color: transparent;
+        border-width: 0;
+        box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.5);
+        transition: 0.3s;
 
-            &:hover {
-                .el-icon-arrow-up {
-                    &::before {
-                        font-size: 28px;
-                    }
-                }
-            }
+        &:hover {
+            transition: 0.3s;
+            transform: scale(.95);
+            box-shadow: 0 0 10px 1px rgba(0,0,0,0.3);
+        }
 
+        &:hover {
             .el-icon-arrow-up {
                 &::before {
-                    font-size: 30px;
-                    font-weight: bold;
+                    // font-size: 28px;
                 }
             }
         }
-    }
 
-    .loading {
-        display: flex;
+        .el-icon-arrow-up {
+            &::before {
+                font-size: 30px;
+                font-weight: bold;
+            }
+        }
     }
 }
 

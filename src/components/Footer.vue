@@ -60,7 +60,7 @@ $main-color: #ec0d08;
             margin-bottom: 20px;
             text-align: center;
             display: block;
-            color: #a458ec;
+            // color: #a458ec;
             @include exborder(#fff);
         }
 

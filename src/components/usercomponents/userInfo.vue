@@ -56,12 +56,17 @@ export default {
       this.$router.push('userLogin')
     },
     CreateUsrename() {
-      if (this.username != '') {
+      if (this.username != '' && this.username != 'anonymous') {
         let self = this
         firebase.auth().currentUser.updateProfile({
           displayName: self.username
         }).then(function() {
-          console.log("Update successful");
+          // console.log("Update successful");
+          this.$notify({
+            title: 'ユーザーネームを登録しました',
+            message: 'ユーザーネーム"' + this.username + '"を登録しました',
+            type: 'success'
+          })
           self.getUsername = true
           self.$router.push('userInfo')
         }).catch(function(error) {
@@ -139,28 +144,28 @@ export default {
 </script>
 
 <style lang="scss">
-.userInfo>form {
-  margin: 100px auto auto;
+.userInfo > form {
+    margin: 100px auto auto;
 }
 
-.userInfo>h2 {
-  color: #f2cf01;
-  padding-top: 30px;
+.userInfo > h2 {
+    color: #f2cf01;
+    padding-top: 30px;
 }
 
 .userInfo button {
-  margin-bottom: 100px;
+    margin-bottom: 100px;
 }
 
-.userInfo>form>* {
-  margin: 30px;
+.userInfo > form > * {
+    margin: 30px;
 }
 
-.userInfo>form>div>.el-input {
-  width: 200px;
+.userInfo > form > div > .el-input {
+    width: 200px;
 }
 
-.userInfo button>a:visited {
-  color: inherit;
+.userInfo button > a:visited {
+    color: inherit;
 }
 </style>

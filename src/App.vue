@@ -101,7 +101,7 @@ export default {
       var hour = ('0' + d.getHours()).slice(-2);
       var min = ('0' + d.getMinutes()).slice(-2);
       var sec = ('0' + d.getSeconds()).slice(-2);
-      return (year + '年' + month + '月' + day + '日 ' + hour + ':' + min + ':' + sec);
+      return (year + '/' + month + '/' + day + ' (' + hour + ':' + min + ')');
     },
     confirmLiked(popular) {
       // console.log(popular);
@@ -220,12 +220,17 @@ $main-color: #EC0D08;
 
 body {
     background-color: #FDE816;
+    color: #393939;
     // background: url("./assets/lightshow.jpg") no-repeat center;
     // background-size: cover;
     margin: 0;
 
     #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+        letter-spacing: 1.2px;
+        // font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        // font-family: 'ヒラギノ明朝 ProN W6', 'HiraMinProN-W6', 'HiraMinProN-W6', 'Avenir', Helvetica, Arial, sans-serif;
+
         /* -webkit-font-smoothing: antialiased; */
         /* -moz-osx-font-smoothing: grayscale; */
     }
@@ -240,7 +245,6 @@ body {
     h2 {
         color: #EC0D08;
         font-size: 38px;
-        font-family: "nicomojiPlus";
     }
 
     h3 {

@@ -3,11 +3,13 @@
   <h3 style="text-align:left;">
     Links
   </h3>
-  <ul style="text-align:left;">
-    <li v-for="(item, index) in item.url" :key="index">
-      <p @click="toLink(item)" style="cursor:pointer; color:gray">{{item}}</p>
-    </li>
-  </ul>
+  <div class="links">
+    <ul style="text-align:left;">
+      <li v-for="(item, index) in item.url" :key="index">
+        <p @click="toLink(item)" style="cursor:pointer;">{{item}}</p>
+      </li>
+    </ul>
+  </div>
 </div>
 </template>
 
@@ -43,12 +45,20 @@ export default {
 
 <style lang="scss">
 .itemLink {
-    padding: 0 20px;
+    padding: 0 50px;
 
-    ul {
-        li {
-            p {
-                word-break: break-all;
+    .links {
+        background: rgba(#fff, .5);
+        padding: 20px 10px;
+        border-radius: 0.5em;
+
+        ul {
+
+            li {
+                p {
+                    word-break: break-all;
+                    color: #5e5e5e;
+                }
             }
         }
     }

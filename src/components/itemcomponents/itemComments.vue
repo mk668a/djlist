@@ -12,7 +12,7 @@
     </el-form-item>
   </el-form>
   <div class="commentContainer">
-    <div v-for="(i, index) in this.item.comments" :key="index">
+    <div v-for="(i, index) in this.item.comments" :key="index" class="comment">
       <a>
         {{i.username}}
       </a>
@@ -58,7 +58,7 @@ export default {
 
         if (firebase.auth().currentUser == null) {
           this.userId = 'none'
-          this.username = '匿名'
+          this.username = 'anonymous'
         } else {
           this.username = firebase.auth().currentUser.displayName
         }
@@ -100,7 +100,76 @@ export default {
 </script>
 
 <style lang="scss">
-.itemComments{
-  padding: 0 20px;
+$main-color: #EC0D08;
+
+.itemComments {
+    padding: 0 50px;
+
+    .el-form {
+        width: 100%;
+        display: flex;
+        .el-form-item.commentform {
+            width: 70%;
+            input {
+                background: transparent;
+                border: solid 3px #a458ec;
+
+                &:focus {
+                    color: $main-color;
+                    border-color: $main-color;
+                }
+            }
+        }
+        .el-form-item {
+            margin-left: 10px;
+            .el-form-item__content {
+                button {
+                    background: transparent;
+                    border: solid 3px #a458ec;
+                    color: #a458ec;
+                    font-weight: bold;
+
+                    &:hover {
+                        color: $main-color;
+                        border-color: $main-color;
+                    }
+                    &:focus {
+                        background: #a458ec;
+                        color: #fff;
+                        border-color: #a458ec;
+                    }
+                }
+            }
+        }
+    }
+
+    .commentContainer {
+        max-height: 100vh;
+        overflow-y: scroll;
+
+        .comment {
+            background: rgba(#fff, .5);
+            padding: 20px 10px;
+            border-radius: 0.5em;
+            margin-bottom: 10px;
+
+            a {
+                color: rgba(#a458ec, 0.8);
+                font-weight: bold;
+                font-size: 150%;
+            }
+
+            div {
+                &:nth-of-type(1) {
+                    color: #939393;
+                }
+
+                &:nth-of-type(2) {
+                    font-size: 120%;
+                }
+
+            }
+        }
+    }
 }
 </style>
