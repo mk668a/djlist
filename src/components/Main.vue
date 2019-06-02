@@ -57,7 +57,7 @@ export default {
 
         this.$set(this.aboutHiddenStyle, 'visibility', 'hidden');
         about.classList.add('head-animation');
-        console.log(this.aboutHiddenStyle);
+        // console.log(this.aboutHiddenStyle);
       } else {
         this.$set(this.searchHiddenStyle, 'visibility', 'visible');
         search.classList.remove('head-animation');

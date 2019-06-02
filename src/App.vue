@@ -276,5 +276,66 @@ body {
         padding: 20px 0;
         position: relative;
     }
+
+    #blok {
+        display: block;
+    }
+
+    #flex {
+        display: flex;
+    }
+
+    // form
+    .purple {
+        input {
+            width: auto;
+            padding: 5px;
+            height: 30px;
+            border-radius: 0.5em;
+            background: transparent;
+            border: solid 3px #a458ec;
+            outline: none;
+            font-size: 18px;
+
+            &:focus {
+                color: $main-color;
+                border-color: $main-color;
+            }
+
+            // placeholder
+            &::placeholder {
+                color: #a458ec;
+                opacity: 0.5;
+                font-weight: bold;
+            }
+        }
+
+        button {
+            cursor: pointer;
+            font-size: 18px;
+            background: transparent;
+            border-radius: 0.5em;
+            border: solid 3px #a458ec;
+            color: #a458ec;
+            font-weight: bold;
+            outline: none;
+
+            &:hover {
+                color: $main-color;
+                border-color: $main-color;
+            }
+            &:focus {
+                background: #a458ec;
+                color: #fff;
+                border-color: #a458ec;
+            }
+        }
+
+        svg {
+            margin-right: 10px;
+            color: #a458ec;
+            height: 35px;
+        }
+    }
 }
 </style>

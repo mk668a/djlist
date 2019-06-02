@@ -1,18 +1,18 @@
 <template>
 <div class="searchMain">
-  <div class="searchSpan">
+  <div class="searchSpan" :style="searchHiddenStyle">
     <Search :toform='toform' />
   </div>
-  <div class="resultSpan">
-    <div class="query">
-      <h2>{{query}}</h2>
-      <div class="paipu">
-        <div>
-        </div>
+  <div class="query" :style="searchHiddenStyle">
+    <h2>{{query}}</h2>
+    <div class="paipu">
+      <div>
       </div>
-      <h2　class="shadow">{{query}}</h2>
     </div>
-    <div class="eachResult">
+    <h2　class="shadow">{{query}}</h2>
+  </div>
+  <div class="resultSpan">
+    <div class="seachResult">
       <div class="none" v-show="showNone">
         <h3>Did not match any people</h3>
       </div>
@@ -30,7 +30,8 @@
       </div>
     </div>
   </div>
-  <div class="searchMainMargin">
+  <div class="arrowUp">
+    <el-button icon="el-icon-arrow-up" href="#" v-scroll-to="'#top'" circle></el-button>
   </div>
 </div>
 </template>
@@ -62,10 +63,38 @@ export default {
       showName: false,
       showGenre: false,
       showPlace: false,
-      showNone: false
+      showNone: false,
+      targetRect: 0,
+      searchHiddenStyle: {}
     }
   },
   methods: {
+    handleScroll() {
+      const result = document.querySelector('.resultSpan');
+      const search = document.querySelector('.searchSpan');
+      const query = document.querySelector('.query');
+
+      const rect = result.getBoundingClientRect().top;
+      // console.log(rect);
+
+      this.targetRect = rect;
+
+      if (this.targetRect < 200) {
+        this.$set(this.searchHiddenStyle, 'visibility', 'hidden');
+        search.classList.add('head-animation');
+        query.classList.add('head-animation');
+      } else {
+        this.$set(this.searchHiddenStyle, 'visibility', 'visible');
+        search.classList.remove('head-animation');
+        query.classList.remove('head-animation');
+      }
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
   },
   created() {
     this.query = this.$route.query.dev
@@ -122,61 +151,68 @@ export default {
 $paipu-size: 200;
 $main-color: #ec0d08;
 
+.head-animation {
+    transform: translateY(-200%);
+}
+
 .searchMain {
-    min-height: 100vh;
 
     .searchSpan {
+        transition: 0.3s cubic-bezier(.4, 0, .2, 1);
         position: fixed;
         margin-top: 42px;
         width: 100%;
         z-index: 100;
     }
 
-    .resultSpan {
-        z-index: 0;
-        position: relative;
-        top: 160px;
+    .query {
+        transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+        top: 220px;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        line-height: 0;
 
-        .query {
-            text-align: center;
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-            line-height: 0;
-
-            h2 {
-                font-size: 5vw;
-            }
-
-            .shadow {
-                position: relative;
-                bottom: 34px;
-                transform: rotateX(70deg);
-                color: rgba($main-color, .5);
-            }
-
-            .paipu {
-                bottom: 10px;
-                width: 100%;
-                height: auto;
-                display: flex;
-                position: relative;
-                // reflect
-                -webkit-box-reflect: below 4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
-                -webkit-text-stroke-width: 1px;
-                -webkit-text-stroke-color: #fff975;
-
-                div {
-                    margin: 0 auto;
-                    width: #{$paipu-size}px;
-                    height: #{$paipu-size/10}px;
-                    background: no-repeat url("../../assets/paipu.png");
-                    background-size: contain;
-                }
-            }
+        h2 {
+            font-size: 5vw;
         }
 
-        .eachResult {
+        .shadow {
+            position: relative;
+            bottom: 34px;
+            transform: rotateX(70deg);
+            color: rgba($main-color, .5);
+        }
+
+        .paipu {
+            bottom: 10px;
+            width: 100%;
+            height: auto;
+            display: flex;
+            position: relative;
+            // reflect
+            -webkit-box-reflect: below 4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: #fff975;
+
+            div {
+                margin: 0 auto;
+                width: #{$paipu-size}px;
+                height: #{$paipu-size/10}px;
+                background: no-repeat url("../../assets/paipu.png");
+                background-size: contain;
+            }
+        }
+    }
+
+    .resultSpan {
+        min-height: 100vh;
+        z-index: 0;
+        position: relative;
+        top: 170px;
+
+        .seachResult {
             z-index: 0;
             position: relative;
             top: 100px;
@@ -189,7 +225,8 @@ $main-color: #ec0d08;
             }
 
             .genre,
-            .name {
+            .name,
+            .place {
                 .contents {
                     button {
                         display: none;
@@ -199,8 +236,9 @@ $main-color: #ec0d08;
         }
     }
 
-    .searchMainMargin {
-        height: 260px;
+    .arrowUp{
+      z-index: 200;
+      position: relative;
     }
 }
 </style>

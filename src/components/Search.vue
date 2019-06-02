@@ -87,11 +87,9 @@ $main-color: #ec0d08;
 
                     // placeholder
                     &::placeholder {
-                        /* Chrome, Firefox, Opera, Safari 10.1+ */
                         color: $main-color;
                         opacity: 0.5;
                         font-family: "KSblockblock";
-                        /* Firefox */
                     }
                 }
 

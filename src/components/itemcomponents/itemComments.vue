@@ -3,14 +3,10 @@
   <h3 style="text-align:left;">
     Comments
   </h3>
-  <el-form ref="form" v-model="form">
-    <el-form-item　class="commentform">
-      <el-input v-model="commentform"></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button @click="addComment()" round>コメントする</el-button>
-    </el-form-item>
-  </el-form>
+  <form class="purple" id="flex">
+    <input v-model="commentform" />
+    <button @click="addComment()">コメントする</button>
+  </form>
   <div class="commentContainer">
     <div v-for="(i, index) in this.item.comments" :key="index" class="comment">
       <a>
@@ -105,44 +101,6 @@ $main-color: #EC0D08;
 .itemComments {
     padding: 0 50px;
 
-    .el-form {
-        width: 100%;
-        display: flex;
-        .el-form-item.commentform {
-            width: 70%;
-            input {
-                background: transparent;
-                border: solid 3px #a458ec;
-
-                &:focus {
-                    color: $main-color;
-                    border-color: $main-color;
-                }
-            }
-        }
-        .el-form-item {
-            margin-left: 10px;
-            .el-form-item__content {
-                button {
-                    background: transparent;
-                    border: solid 3px #a458ec;
-                    color: #a458ec;
-                    font-weight: bold;
-
-                    &:hover {
-                        color: $main-color;
-                        border-color: $main-color;
-                    }
-                    &:focus {
-                        background: #a458ec;
-                        color: #fff;
-                        border-color: #a458ec;
-                    }
-                }
-            }
-        }
-    }
-
     .commentContainer {
         max-height: 100vh;
         overflow-y: scroll;
@@ -169,6 +127,16 @@ $main-color: #EC0D08;
                 }
 
             }
+        }
+    }
+
+    .purple {
+        margin-bottom: 20px;
+        input {
+            width: 350px;
+        }
+        button {
+            margin-left: 10px;
         }
     }
 }

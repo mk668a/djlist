@@ -1,20 +1,30 @@
 <template>
-<div class="userSignup">
-  <h2>ユーザー登録</h2>
-  <form>
-    <div>
-      <v-icon name="mail" style="height:24px;"></v-icon>
-      <input type="text" placeholder="メールアドレス" v-model="email" required />
+<div class="userSignup" id="block">
+  <div id="flex">
+    <h2>SIGNUP</h2>
+  </div>
+  <form class="purple" id="block">
+    <div id="flex">
+      <v-icon name="mail"></v-icon>
+      <div>
+        <input v-model="email" placeholder="e-mail" required></input>
+      </div>
     </div>
-    <div>
-      <v-icon name="unlock" style="height:24px;"></v-icon>
-      <input type="password" placeholder="パスワード" v-model="password" required />
+    <div id="flex">
+      <v-icon name="lock"></v-icon>
+      <div>
+        <input v-model="password" placeholder="password" required></input>
+      </div>
     </div>
-    <p>
-      6文字以上
-    </p>
+    <div id="flex">
+      <p>
+        ※6文字以上
+      </p>
+    </div>
+    <div id="flex">
+      <button @click="singup">登録する</button>
+    </div>
   </form>
-  <button style="boder:solid 1px #c1c1c1; border-radius: .3em; width:100px; height:40px;" @click="singup"><a>登録</a></button>
 </div>
 </template>
 
@@ -54,88 +64,41 @@ export default {
 
 <style lang="scss">
 .userSignup {
-  background: no-repeat url("../../assets/backgroundimg.png");
-  background-size: contain;
-  background-position: top;
-}
+    min-height: 100vh;
+    width: 100%;
+    margin-top: 100px;
 
-.userSignup>form {
-  margin: 120px auto auto;
-  display: block;
-}
+    div {
+        h2 {
+            margin: auto auto 50px;
+            font-family: "nicomojiPlus";
+        }
+    }
+    .purple {
 
-.userSignup>h2 {
-  margin: 0;
-  padding: 30px;
-  background: #F1F4F7;
-}
+        input {
+            margin-bottom: 40px;
+        }
 
-.userSignup>form>* {
-  display: block;
-}
+        svg {
+            margin-left: auto;
+            margin-right: 10px;
+        }
 
-.userSignup>form>div {
-  border-bottom: 1px solid #c1c1c1;
-  width: 480px;
-  margin: 30px auto;
-  padding-bottom: 10px;
-  text-align: left;
-  display: flex;
-}
+        div {
+            div {
+                margin-right: auto;
+                margin-left: 0;
+            }
 
-.userSignup>form>div>.icon {
-  vertical-align: bottom;
-  color: #c1c1c1;
-}
+            button {
+                margin: auto;
+            }
 
-.userSignup>form>div>input {
-  width: 100%;
-  border: 0px;
-  font-size: 18px;
-  outline: none;
-  padding-left: 10px;
-  background-color: rgba(255, 0, 0, 0);
-}
-
-.userSignup button {
-  width: 240px;
-  height: 40px;
-  margin: 60px auto;
-  border: solid 1px #f2cf01;
-  border-radius: .3em;
-  background: #f2cf01;
-  font-size: 18px;
-  color: white;
-}
-
-.userSignup button {
-  width: 240px;
-  height: 40px;
-  margin: 50px auto;
-  margin-bottom: 200px;
-  boder: solid 1px #c1c1c1;
-  border-radius: .3em;
-  border: solid 1px #f2cf01;
-  font-size: 18px;
-  color: #757575;
-  background: white;
-}
-
-.userSignup button>a:visited {
-  color: inherit;
-}
-
-@media screen and (max-width:768px) {
-  .userSignup>form>div {
-    width: 240px !important;
-  }
-
-  .userSignup button {
-    width: 180px;
-  }
-
-  .userSignup button {
-    width: 180px;
-  }
+            p {
+                margin: -30px auto 50px;
+            }
+        }
+    }
 }
 </style>
