@@ -7,22 +7,27 @@
     <div id="flex">
       <v-icon name="mail"></v-icon>
       <div>
-        <input v-model="email" placeholder="e-mail" required></input>
+        <input v-model="email" placeholder="e-mail"></input>
       </div>
     </div>
     <div id="flex">
       <v-icon name="lock"></v-icon>
       <div>
-        <input v-model="password" placeholder="password" required></input>
+        <input v-model="password" placeholder="password"></input>
       </div>
     </div>
-    <div id="flex">
+    <div id="flex" class="sub">
       <p>
         ※6文字以上
       </p>
     </div>
-    <div id="flex">
-      <button @click="singup">登録する</button>
+    <div class="button" id="block">
+      <div id="flex">
+        <button @click="singup">登録</button>
+      </div>
+      <div id="flex">
+        <button @click="toUserLogin">ログイン</button>
+      </div>
     </div>
   </form>
 </div>
@@ -57,6 +62,9 @@ export default {
           message: '正しいメールアドレス, パスワードを入力してください'
         })
       })
+    },
+    toUserLogin() {
+      this.$router.push('userLogin')
     }
   }
 }
@@ -77,7 +85,6 @@ export default {
     .purple {
 
         input {
-            margin-bottom: 40px;
         }
 
         svg {
@@ -86,17 +93,45 @@ export default {
         }
 
         div {
+          margin-bottom: 20px;
+
             div {
                 margin-right: auto;
                 margin-left: 0;
             }
 
-            button {
-                margin: auto;
+            p{
+              margin: auto;
             }
+        }
 
-            p {
-                margin: -30px auto 50px;
+        .sub{
+          margin: -30px auto 40px;
+        }
+
+        .button {
+            div {
+                width: 100%;
+
+                button {
+                    margin: auto auto 20px;
+                    width: 200px;
+                }
+
+                &:nth-of-type(2) {
+                    button {
+                        color: #fff;
+                        background: #a458ec;
+                        transition: 0.6s;
+
+                        &:hover {
+                            color: #a458ec;
+                            background: #fff;
+                            border-color: #a458ec;
+                            transition: 0.3s;
+                        }
+                    }
+                }
             }
         }
     }

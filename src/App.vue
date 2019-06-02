@@ -227,10 +227,9 @@ body {
 
     #app {
         font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
-        letter-spacing: 1.2px;
+        // letter-spacing: 1.2px;
         // font-family: 'Avenir', Helvetica, Arial, sans-serif;
         // font-family: 'ヒラギノ明朝 ProN W6', 'HiraMinProN-W6', 'HiraMinProN-W6', 'Avenir', Helvetica, Arial, sans-serif;
-
         /* -webkit-font-smoothing: antialiased; */
         /* -moz-osx-font-smoothing: grayscale; */
     }
@@ -250,6 +249,10 @@ body {
     h3 {
         color: #EC0D08;
         font-size: 28px;
+    }
+
+    h4{
+      font-size: 14px;
     }
 
     li,

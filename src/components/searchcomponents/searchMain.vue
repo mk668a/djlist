@@ -3,13 +3,17 @@
   <div class="searchSpan" :style="searchHiddenStyle">
     <Search :toform='toform' />
   </div>
-  <div class="query" :style="searchHiddenStyle">
+  <div class="query" id="block" :style="searchHiddenStyle">
     <h2>{{query}}</h2>
     <div class="paipu">
       <div>
       </div>
     </div>
-    <h2　class="shadow">{{query}}</h2>
+    <div　class="shadow">{{query}}</div>
+    <div class="paipuShadow">
+      <div>
+      </div>
+    </div>
   </div>
   <div class="resultSpan">
     <div class="seachResult">
@@ -180,9 +184,30 @@ $main-color: #ec0d08;
 
         .shadow {
             position: relative;
-            bottom: 34px;
             transform: rotateX(70deg);
             color: rgba($main-color, .5);
+        }
+
+        .paipuShadow {
+            transform: rotateX(70deg);
+
+            width: 100%;
+            height: auto;
+            display: flex;
+            position: relative;
+            // reflect
+            // -webkit-box-reflect: below 4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
+            // -webkit-text-stroke-width: 1px;
+            // -webkit-text-stroke-color: #fff975;
+
+            div {
+                margin: 0 auto;
+                width: #{$paipu-size}px;
+                height: #{$paipu-size/10}px;
+                background: no-repeat url("../../assets/paipu.png");
+                background-size: contain;
+                opacity: 0.5;
+            }
         }
 
         .paipu {
@@ -192,9 +217,9 @@ $main-color: #ec0d08;
             display: flex;
             position: relative;
             // reflect
-            -webkit-box-reflect: below 4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
-            -webkit-text-stroke-width: 1px;
-            -webkit-text-stroke-color: #fff975;
+            // -webkit-box-reflect: below 4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
+            // -webkit-text-stroke-width: 1px;
+            // -webkit-text-stroke-color: #fff975;
 
             div {
                 margin: 0 auto;
@@ -236,9 +261,9 @@ $main-color: #ec0d08;
         }
     }
 
-    .arrowUp{
-      z-index: 200;
-      position: relative;
+    .arrowUp {
+        z-index: 200;
+        position: relative;
     }
 }
 </style>

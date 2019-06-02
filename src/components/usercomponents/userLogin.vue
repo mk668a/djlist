@@ -7,18 +7,22 @@
     <div id="flex">
       <v-icon name="mail"></v-icon>
       <div>
-        <input type="text" placeholder="メールアドレス" v-model="email" required />
+        <input type="text" placeholder="メールアドレス" v-model="email" />
       </div>
     </div>
     <div id="flex">
       <v-icon name="lock"></v-icon>
       <div>
-        <input type="password" placeholder="パスワード" v-model="password" required />
+        <input type="password" placeholder="パスワード" v-model="password" />
       </div>
     </div>
-    <div id="flex">
-      <button @click="login">ログイン</button>
-      <button @click="toUsrSignUp">ユーザー登録</button>
+    <div class="button" id="block">
+      <div id="flex">
+        <button @click="login">ログイン</button>
+      </div>
+      <div id="flex">
+        <button @click="toUsrSignUp">ユーザー登録</button>
+      </div>
     </div>
   </form>
 </div>
@@ -77,7 +81,6 @@ export default {
     .purple {
 
         input {
-            margin-bottom: 40px;
         }
 
         svg {
@@ -86,17 +89,36 @@ export default {
         }
 
         div {
+          margin-bottom: 20px;
+          
             div {
                 margin-right: auto;
                 margin-left: 0;
             }
+        }
 
-            button {
-                &:nth-of-type(1) {
-                    margin: auto 10px auto auto;
+        .button {
+            div {
+                width: 100%;
+
+                button {
+                    margin: auto auto 20px;
+                    width: 200px;
                 }
+
                 &:nth-of-type(2) {
-                    margin: auto auto auto 10px;
+                    button {
+                        color: #fff;
+                        background: #a458ec;
+                        transition: .6s;
+
+                        &:hover{
+                          color: #a458ec;
+                          background: #fff;
+                          border-color: #a458ec;
+                          transition: .3s;
+                        }
+                    }
                 }
             }
         }

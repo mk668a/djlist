@@ -126,10 +126,11 @@ $main-color: #ec0d08;
     }
 
     .tag {
-        display: flex;
         margin-top: 5px;
 
         .item {
+          float: left;
+
             margin: 3px 5px;
             padding: 2px 5px;
             cursor: pointer;

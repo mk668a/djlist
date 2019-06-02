@@ -1,36 +1,73 @@
 <template>
 <div class="postItem">
-  <form method="postItem">
+  <div class="postImg">
     <img :src='img' />
-    <div>
-      <a style="color:white; ">必須</a>画像のURL:
-      <el-switch style="display: block" v-model="selectP" active-color="#c1c1c1" inactive-color="#c1c1c1" active-text="URL" inactive-text="アップロード">
-      </el-switch>
-      <el-input v-if="selectP" class="uploadImgUrl" v-model="img" :rules="[{required: true, type: text}]"></el-input>
-      <label v-else class="uploadImgFile">
+  </div>
+  <form class="purple">
+
+    <el-switch style="display: block" v-model="selectP" active-color="#c1c1c1" inactive-color="#c1c1c1" active-text="URL" inactive-text="アップロード">
+    </el-switch>
+
+    <div id="flex">
+      <div class="itemName" id="flex">
+        <h4 class="required">必須</h4>
+        <h4>
+          画像のURL
+        </h4>
+      </div>
+      <input v-if="selectP" v-model="img" :rules="[{required: true, type: text}]"></input>
+      <label v-else class="uploadImgUrl">
         ファイルを選択
         <input type="file" @change="selectedFile" style="display:none"></input>
       </label>
     </div>
-    <div>
-      <a style="color:white; ">必須</a>名　前:
-      <el-input type="text " v-model="name " required></el-input>
+
+    <div id="flex">
+      <div class="itemName" id="flex">
+        <h4 class="required">必須</h4>
+        <h4>
+          名前
+        </h4>
+      </div>
+      <input type="text " v-model="name " required></input>
     </div>
-    <div>
-      <a style="color:white; "></a>活動場所:
-      <el-input v-for="(place, index) in places" :key="index" type="url" v-model="places[index]" required></el-input>
+
+    <div id="flex">
+      <div class="itemName" id="flex">
+        <p></p>
+        <h4>
+          活動場所
+        </h4>
+      </div>
+      <input v-for="(place, index) in places" :key="index" type="url" v-model="places[index]" required></input>
     </div>
-    <div>
-      <a style="color:white; "></a>リンク:
-      <el-input v-for="(url, index) in urls" :key="index" type="url" v-model="urls[index]" required></el-input>
+
+    <div id="flex">
+      <div class="itemName" id="flex">
+        <p></p>
+        <h4>
+          リンク
+        </h4>
+      </div>
+      <input v-for="(url, index) in urls" :key="index" type="url" v-model="urls[index]" required></input>
     </div>
-    <div>
-      <a style="color:white; "></a>ジャンル:
-      <el-input v-for="(genre, index) in genres" :key="index" type="url" v-model="genres[index]" required></el-input>
+
+    <div id="flex">
+      <div class="itemName" id="flex">
+        <p></p>
+        <h4>
+          ジャンル
+        </h4>
+      </div>
+      <input v-for="(genre, index) in genres" :key="index" type="url" v-model="genres[index]" required></input>
     </div>
-    <div>
-      <el-button type="primary " style="font-size:20px; " @click="postC">投稿</el-button>
+
+    <div class="button" id="block">
+      <div id="flex">
+        <button @click="postC">投稿</button>
+      </div>
     </div>
+
   </form>
 </div>
 </template>
@@ -67,7 +104,7 @@ export default {
           message: '全ての必須項目に入力してください'
         })
       } else {
-        
+
         if (this.places != "") {
           this.places = this.places.slice(0, -1)
         }
@@ -166,217 +203,102 @@ export default {
 </script>
 
 <style lang="scss">
-.postItem > form > .el-switch,
-.postItem > form > .el-switch.is-checked {
-    padding-top: 30px;
-}
+$main-color: #EC0D08;
 
 .postItem {
-    height: 100%;
-}
-
-.el-form.demo-dynamic,
-.postItem > form > div {
-    margin: 30px auto;
-}
-
-/*  */
-
-.el-form-item__content > .el-input:nth-of-type(1),
-.el-form-item__content > .el-input:nth-of-type(1) > .el-input__inner {
-    width: 100px;
-}
-
-.el-form-item__content > .el-input:nth-of-type(2),
-.el-form-item__content > .el-input:nth-of-type(2) > .el-input__inner {
-    width: 300px;
-}
-
-.el-form-item {
-    display: flex;
-}
-
-.el-form-item__content:nth-child(1) {
+    min-height: 100vh;
     width: 100%;
-}
+    margin-top: 100px;
 
-.el-form-item__label {
-    width: 40vw;
-    text-align: right;
-}
-
-.el-form-item__label {
-    font-size: 16px;
-}
-
-/*  */
-
-.postItem > form > .imgupload {
-    background: #d2d2d2;
-    padding: 40px;
-}
-
-.postItem > form > img {
-    margin: 30px auto;
-    border-radius: 1em;
-    height: 480px;
-    width: auto;
-}
-
-.postItem > form > div > a {
-    border: solid 1px #F56C6C;
-    border-radius: 0.5em;
-    background-color: #F56C6C;
-    font-size: 5px;
-    margin: auto 10px;
-}
-
-.postItem > form > .preview {
-    margin: auto 100px;
-}
-
-.postItem > form > div > button {
-    padding: 20px 50px;
-}
-
-.postItem > form > div > .el-input {
-    width: auto;
-}
-
-.postItem > form > div > .el-input > input {
-    width: 300px;
-}
-
-.postItem > form > div > .el-input:nth-child(1) > input {
-    margin-left: 45px;
-}
-
-.postItemContainer > form > div > input {
-    height: 30px;
-    border-radius: 1em;
-    border: solid 1px #e6e6e6;
-}
-
-.postItem > form > .preview > .original {
-    border-radius: 1em;
-    border: solid 1px #e6e6e6;
-    overflow: hidden;
-    padding: 50px;
-}
-
-.postItem > form > .preview > .original > div {
-    display: block;
-}
-
-.postItem > form > .preview > .original > img,
-.postItem > img {
-    width: auto;
-    height: 320px;
-}
-
-.postItem > form > .preview > .original > .data > h4 {
-    display: block;
-    margin: auto 50px;
-}
-
-.avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.el-upload.el-upload--text {
-    background-color: #e5e5e5;
-}
-
-.avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
-}
-
-.avatar-uploader-icon {
-    font-size: 28px;
-    color: #d2d2d2;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
-}
-
-.el-upload.el-upload--text::before {
-    content: '画像選択';
-    white-space: pre;
-    position: absolute;
-    top: 50px;
-    left: 30px;
-    color: #d2d2d2;
-    font-size: 30px;
-}
-
-.el-icon-circle-plus-outline.avatar-uploader-icon::before {
-    position: absolute;
-    top: 20px;
-    left: 75px;
-}
-
-.avatar {
-    width: 178px;
-    height: 178px;
-    display: block;
-}
-
-.el-select .el-input {
-    width: 110px;
-}
-
-.input-with-select .el-input-group__prepend {
-    background-color: #fff;
-}
-
-@media screen and (max-width:768px) {
-    .postItem > form > .preview {
-        margin: auto 20px !important;
+    div {
+        h2 {
+            margin: auto auto 50px;
+            font-family: "nicomojiPlus";
+        }
     }
+    .purple {
 
-    .postItem > form > .preview > .original > div {
-        display: block;
-    }
+        .itemName {
+            width: 30%;
+            margin-right: 0;
+            margin-left: auto;
 
-    .el-form-item > .el-form-item__content {
-        margin: 20px auto !important;
-    }
+            .required {
+                font-size: 10px;
+                border: solid 1px $main-color;
+                border-radius: 0.5em;
+                background: $main-color;
+                color: #fff;
+                margin: auto 3px;
+                height: 18px;
+                padding: 1px;
+            }
 
-    .el-form-item {
-        display: block;
-        margin: auto 37.5px;
-    }
+            h4 {
+                &:nth-of-type(2) {
+                    font-weight: bold;
+                }
+            }
+        }
 
-    .el-form-item__content {
-        margin: 0 !important;
-    }
+        .uploadImgUrl,
+        input {
+            width: 210px;
+            margin-left: 0;
+            margin-right: auto;
+        }
 
-    .el-form-item__label {
-        width: 300px !important;
-        text-align: center;
-    }
+        .uploadImgUrl {
+            text-align: center;
+            padding: 8px 5px;
+            cursor: pointer;
+            font-size: 18px;
+            height: 24px;
+            border-radius: 0.5em;
+            border: solid 3px #a458ec;
+            font-weight: bold;
+            outline: none;
+            color: #fff;
+            background: #a458ec;
+            transition: 0.6s;
 
-    .postItem > form > .preview > .original > img {
-        width: 100%;
-        height: auto;
-    }
+            &:hover {
+                color: #a458ec;
+                background: #fff;
+                border-color: #a458ec;
+                transition: 0.3s;
+            }
+            &:focus {
+                background: #a458ec;
+                color: #fff;
+                border-color: #a458ec;
+            }
+        }
 
-    .postItem > form > img {
-        height: 240px;
-        width: auto;
-    }
+        .button {
+            div {
+                width: 100%;
 
-    /* .postItem>form>.preview>.original>div>.data>h1::before{
-    height: 0;
-  } */
-    .postItem > form > .preview > .original > .data > h4 {
-        margin: 0 !important;
-        font-size: 10px;
+                button {
+                    margin: auto auto 20px;
+                    width: 200px;
+                }
+            }
+        }
+
+        svg {
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
+        div {
+            margin-bottom: 20px;
+
+            div {
+                margin-right: auto;
+                margin-left: 0;
+            }
+        }
     }
 }
 </style>
