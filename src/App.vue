@@ -1,5 +1,6 @@
 <template>
 <div id="app">
+  <discPanel />
   <main id="top">
     <Header :toform="toform" />
     <div class="container">
@@ -13,6 +14,7 @@
 <script>
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import discPanel from '@/components/discPanel'
 import firebase from 'firebase'
 
 export default {
@@ -20,6 +22,7 @@ export default {
   components: {
     Header,
     Footer,
+    discPanel
   },
   data() {
     return {
@@ -208,6 +211,11 @@ $main-color: #EC0D08;
 @font-face {
     font-family: "Canterbury";
     src: url("https://dl.dropboxusercontent.com/s/h5a6qi2p7qvcv7t/Canterbury.ttf");
+}
+
+#top{
+  z-index: 200;
+  position: relative;
 }
 
 body {

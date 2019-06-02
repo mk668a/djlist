@@ -22,7 +22,7 @@ export default {
   components: {
     Search,
     Contents,
-    toAbout
+    toAbout,
   },
   data() {
     return {
@@ -103,8 +103,7 @@ $main-color: #ec0d08;
 }
 
 .main {
-    display: block;
-    // margin-top: 100px;
+  
     .searchSpan {
         transition: 0.3s cubic-bezier(.4, 0, .2, 1);
         position: fixed;
