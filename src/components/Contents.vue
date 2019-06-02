@@ -170,10 +170,25 @@ $main-color: #ec0d08;
 
         .el-button {
             margin: auto;
-            color: $main-color;
-            background: transparent;
-            border-color: $main-color;
-            border-width: 3px;
+            color: #fff;
+            background: linear-gradient(0deg, #FDE816 1%, #a458ec 60%, #fff);
+            border-color: transparent;
+            border-width: 0;
+            box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.5);
+
+            &:hover {
+                width: 55px;
+                height: 55px;
+                box-shadow: 0 0 10px 1px rgba(0,0,0,0.3);
+            }
+
+            &:hover {
+                .el-icon-arrow-up {
+                    &::before {
+                        font-size: 28px;
+                    }
+                }
+            }
 
             .el-icon-arrow-up {
                 &::before {

@@ -49,7 +49,7 @@ $main-color: #ec0d08;
 }
 
 .footer {
-    padding: 20px 0 10px;
+    padding: 50px 0 10px;
     background: linear-gradient(0rad, rgba(#fff, 1), rgba(#fff, .5) 85%, rgba(#fff, 0));
     font-family: "nicomojiPlus";
 
