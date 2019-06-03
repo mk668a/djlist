@@ -367,6 +367,7 @@ body {
             font-weight: bold;
             transition: 0.3s;
             outline: none;
+            padding: 10px 0;
 
             &:hover {
                 color: $main-color;

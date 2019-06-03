@@ -1,18 +1,27 @@
 <template>
 <div class="postItem">
-  <div class="postImg">
-    <img :src='img' />
+  <div id="flex">
+    <h2>POST</h2>
   </div>
+
+  <div class="postImg">
+    <div>
+      <img :src='img' />
+    </div>
+  </div>
+
   <form class="purple">
 
-    <el-switch style="display: block" v-model="selectP" active-color="#c1c1c1" inactive-color="#c1c1c1" active-text="URL" inactive-text="アップロード">
-    </el-switch>
+    <div id="flex" class="imageSwitch">
+      <h4></h4>
+      <el-switch style="display: block" v-model="selectP" active-text="URL" inactive-text="アップロード">
+      </el-switch>
+    </div>
 
     <div id="flex">
       <div class="itemName" id="flex">
-        <h4 class="required">必須</h4>
         <h4>
-          画像のURL
+          <a style="color:#ec0d08">* </a>画像のURL
         </h4>
       </div>
       <input v-if="selectP" v-model="img" :rules="[{required: true, type: text}]"></input>
@@ -24,9 +33,8 @@
 
     <div id="flex">
       <div class="itemName" id="flex">
-        <h4 class="required">必須</h4>
         <h4>
-          名前
+          <a style="color:#ec0d08">* </a>名前
         </h4>
       </div>
       <input type="text " v-model="name " required></input>
@@ -206,16 +214,44 @@ export default {
 $main-color: #EC0D08;
 
 .postItem {
+
+    button,
+    h4,
+    span {
+        font-family: "nicomojiPlus";
+    }
+
     min-height: 100vh;
     width: 100%;
     margin-top: 100px;
 
     div {
         h2 {
-            margin: auto auto 50px;
+            margin: auto auto 20px;
             font-family: "nicomojiPlus";
         }
     }
+
+    .postImg {
+        display: flex;
+        height: auto;
+        width: 100%;
+
+        div {
+          width: 80%;
+          height: 80%;
+          margin: auto;
+
+            img {
+                width: 100%;
+                height: auto;
+                margin-bottom: 30px;
+                border-radius: 0.5em;
+            }
+        }
+
+    }
+
     .purple {
 
         .itemName {
@@ -260,18 +296,18 @@ $main-color: #EC0D08;
             outline: none;
             color: #fff;
             background: #a458ec;
-            transition: 0.6s;
+            transition: 0.3s;
 
             &:hover {
                 color: #a458ec;
                 background: #fff;
                 border-color: #a458ec;
-                transition: 0.3s;
             }
-            &:focus {
+            &:active {
                 background: #a458ec;
                 color: #fff;
                 border-color: #a458ec;
+                transition: 0.3s;
             }
         }
 
@@ -299,6 +335,49 @@ $main-color: #EC0D08;
                 margin-left: 0;
             }
         }
+
+        .imageSwitch {
+            h4 {
+                width: 30%;
+                margin-right: 0;
+                margin-left: auto;
+            }
+
+            .el-switch__core {
+                background: transparent;
+                border-color: #a458ec;
+                border-width: 2px;
+                height: 24.5px;
+                width: 50px!important;
+                border-radius: 30px;
+
+                &:after {
+                    background: transparent;
+                    border: 2px solid #a458ec;
+                    top: 1.5px;
+                    width: 14px;
+                    height: 14px;
+                }
+            }
+
+            .el-switch {
+
+                .el-switch__label.is-active {
+                    color: #a458ec;
+                }
+
+                .is-checked .el-switch__core {
+                    border-color: #a458ec;
+                    border-width: 2px;
+
+                    &::after {
+                        margin-left: -20px!important;
+                    }
+                }
+            }
+
+        }
     }
+
 }
 </style>
