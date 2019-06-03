@@ -45,7 +45,23 @@ export default {
 }
 
 .toAbout {
-  cursor: pointer;
+    cursor: pointer;
+    animation: updown 2s linear infinite;
+
+    @keyframes updown {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(10px);
+        }
+
+        100%{
+          transform: translateY(0px);
+        }
+    }
+
     .about {
         padding: 30px 10px;
         border: 1px solid rgba(#fff, .3);
