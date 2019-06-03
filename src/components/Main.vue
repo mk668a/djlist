@@ -1,7 +1,7 @@
 <template>
 <div class="main">
   <div class="searchSpan" :style="searchHiddenStyle">
-    <Search :toform='toform' />
+    <Search :items="items" :toform='toform' :tags="tags" :getTags="getTags" />
   </div>
   <div class="toAboutSpan" :style="aboutHiddenStyle">
     <toAbout :deleteAbout="deleteAbout" :about="about" />
@@ -38,7 +38,9 @@ export default {
     "confirmLiked": Function,
     "like": Function,
     'about': Boolean,
-    'deleteAbout': Function
+    'deleteAbout': Function,
+    'tags': Array,
+    'getTags': Function
   },
   methods: {
     handleScroll() {
@@ -108,7 +110,7 @@ $main-color: #ec0d08;
     .toAboutSpan {
         transition: 0.3s cubic-bezier(.4, 0, .2, 1);
         z-index: 100;
-        margin-top: 220px;
+        margin-top: 230px;
         position: fixed;
         width: 100%;
     }
@@ -118,8 +120,8 @@ $main-color: #ec0d08;
         position: relative;
 
         .contents {
-          transition: 0.3s;
-          padding-top: 200px;
+            transition: 0.3s;
+            padding-top: 210px;
         }
         .contents.active {
             padding-top: 320px;

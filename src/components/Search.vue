@@ -10,11 +10,13 @@
       </el-button>
     </div>
   </div>
-  <div class="tag">
-    <div v-for="(item, index) in tags" :key="index" class="item" @click="toform(item)">
+  <div class="tags">
+    <div v-for="(item, index) in tags" :key="index" class="tag" @click="toform(item)">
       {{item}}
     </div>
-    <i class="el-icon-refresh"></i>
+    <div class="flesh-button">
+      <i class="el-icon-refresh" @click="getTags(items)"></i>
+    </div>
   </div>
 </div>
 </template>
@@ -23,12 +25,15 @@
 export default {
   name: 'Search',
   props: {
-    'toform': Function
+    "items": Array,
+    'toform': Function,
+    'tags': Array,
+    'getTags': Function,
+
   },
   data() {
     return {
       input: "",
-      tags: ["dubstep", "house", "Zedd", "Japan"]
     }
   }
 }
@@ -125,12 +130,11 @@ $main-color: #ec0d08;
         }
     }
 
-    .tag {
+    .tags {
         margin-top: 5px;
 
-        .item {
-          float: left;
-
+        .tag {
+            float: left;
             margin: 3px 5px;
             padding: 2px 5px;
             cursor: pointer;
@@ -142,19 +146,40 @@ $main-color: #ec0d08;
             box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.4);
         }
 
-        .el-icon-refresh {
-            display: flex;
-            cursor: pointer;
+        .flesh-button {
+            float: left;
+            margin: 3px 5px;
 
-            &:before {
-                font-weight: bold;
-                color: #fff;
-                border-radius: 50px;
-                padding: 2px;
-                margin: auto auto 3px;
-                background: linear-gradient(0deg, #FDE816 1%, #a458ec 60%, #fff);
-                box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.4);
+            &:active {
+                animation: spin .1s infinite;
             }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .el-icon-refresh {
+                display: flex;
+                cursor: pointer;
+                height: 19px;
+                width: 19px;
+
+                &:before {
+                    font-size: 16.5px;
+                    font-weight: bold;
+                    color: #fff;
+                    border-radius: 50px;
+                    padding: 2px;
+                    background: linear-gradient(0deg, #FDE816 1%, #a458ec 60%, #fff);
+                    box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.4);
+                }
+            }
+
         }
     }
 }

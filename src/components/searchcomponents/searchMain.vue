@@ -179,7 +179,7 @@ $main-color: #ec0d08;
         line-height: 0;
 
         h2 {
-            font-size: 5vw;
+            font-size: 8vw;
         }
 
         .shadow {
