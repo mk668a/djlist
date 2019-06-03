@@ -23,10 +23,10 @@
     </div>
     <div class="button" id="block">
       <div id="flex">
-        <button @click="singup">SIGN UP</button>
+        <button type="button" @click="singup">SIGN UP</button>
       </div>
       <div id="flex">
-        <button @click="toUserLogin">LOGIN</button>
+        <button type="button" @click="toUserLogin">LOGIN</button>
       </div>
     </div>
   </form>

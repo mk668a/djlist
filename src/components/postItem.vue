@@ -64,7 +64,7 @@
 
     <div class="button" id="block">
       <div id="flex">
-        <button @click="postC">投稿</button>
+        <button type="button" @click="postC">投稿</button>
       </div>
     </div>
 

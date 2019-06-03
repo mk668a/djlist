@@ -5,7 +5,7 @@
   </h3>
   <form class="purple" id="flex">
     <input v-model="commentform" />
-    <button @click="addComment()">コメントする</button>
+    <button type="button" @click="addComment()">コメントする</button>
   </form>
   <div class="commentContainer">
     <div v-for="(i, index) in this.item.comments" :key="index" class="comment">

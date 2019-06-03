@@ -18,7 +18,7 @@
     </div>
     <div class="button" id="block">
       <div id="flex">
-        <button @click="login">LOGIN</button>
+        <button @click="login"　type="button">LOGIN</button>
       </div>
       <div id="flex">
         <button @click="toUsrSignUp">SIGN UP</button>

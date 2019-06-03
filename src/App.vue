@@ -251,8 +251,8 @@ body {
         font-size: 28px;
     }
 
-    h4{
-      font-size: 14px;
+    h4 {
+        font-size: 14px;
     }
 
     li,
@@ -321,16 +321,18 @@ body {
             border: solid 3px #a458ec;
             color: #a458ec;
             font-weight: bold;
+            transition: 0.3s;
             outline: none;
 
             &:hover {
                 color: $main-color;
                 border-color: $main-color;
             }
-            &:focus {
+            &:active {
                 background: #a458ec;
                 color: #fff;
                 border-color: #a458ec;
+                transition: 0.3s;
             }
         }
 

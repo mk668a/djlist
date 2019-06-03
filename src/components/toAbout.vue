@@ -45,6 +45,7 @@ export default {
 }
 
 .toAbout {
+  cursor: pointer;
     .about {
         padding: 30px 10px;
         border: 1px solid rgba(#fff, .3);

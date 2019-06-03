@@ -6,12 +6,12 @@
   </div>
   <div v-if="!getUsername">
     <input type="text" placeholder="ユーザー名" v-model="username" />
-    <button @click="CreateUsrename">登録</button>
+    <button type="button" @click="CreateUsrename">登録</button>
   </div>
   <div v-else>
     ユーザー名: {{username}}
   </div>
-  <button @click="logout">ログアウト</button>
+  <button type="button" @click="logout">ログアウト</button>
   <h2>お気に入り</h2>
   <Contents :toItem="toItem" :items="likedItems" :confirmLiked="confirmLiked" :like="like" />
   <h2>投稿したitem</h2>
