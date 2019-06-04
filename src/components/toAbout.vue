@@ -1,7 +1,7 @@
 <template>
 <div class="toAbout">
   <transition name="fade">
-    <div v-if="about" class="about">
+    <div v-if="about" class="aboutMessage">
       <div @click="toAbout()"><span>click</span>☞About DJ List</div>
       <i class="el-icon-close" @click="deleteAbout"></i>
     </div>
@@ -62,7 +62,7 @@ export default {
         }
     }
 
-    .about {
+    .aboutMessage {
         padding: 30px 10px;
         border: 1px solid rgba(#fff, .3);
         display: flex;
