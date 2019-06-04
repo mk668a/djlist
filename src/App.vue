@@ -51,26 +51,29 @@ export default {
       })
     },
     toform(item) {
-      console.log(this.$route.name);
-      // console.log(item);
-      if (item != '') {
-        this.input = item
-        this.onFocus = true
-        if (this.$route.name == 'searchMain') {
-          this.$router.push({
-            path: '/searchMain',
-            query: {
-              dev: this.input
-            }
-          })
-          location.reload();
-        } else {
-          this.$router.push({
-            path: '/searchMain',
-            query: {
-              dev: this.input
-            }
-          })
+      var elem = document.activeElement.tagName
+      if ((event.keyCode !== 13) && (elem == 'INPUT')) {
+        return
+      } else {
+        if (item != '') {
+          this.input = item
+          this.onFocus = true
+          if (this.$route.name == 'searchMain') {
+            this.$router.push({
+              path: '/searchMain',
+              query: {
+                dev: this.input
+              }
+            })
+            location.reload();
+          } else {
+            this.$router.push({
+              path: '/searchMain',
+              query: {
+                dev: this.input
+              }
+            })
+          }
         }
       }
     },
@@ -264,6 +267,11 @@ $main-color: #EC0D08;
 @font-face {
     font-family: "Canterbury";
     src: url("https://dl.dropboxusercontent.com/s/h5a6qi2p7qvcv7t/Canterbury.ttf");
+}
+
+@font-face {
+    font-family: "PixelMplus12";
+    src: url("https://dl.dropboxusercontent.com/s/jvmdxbl60g4mv7w/PixelMplus12-Regular.ttf?dl=0");
 }
 
 #top {

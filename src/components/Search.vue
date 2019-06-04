@@ -2,9 +2,8 @@
 <div class="search">
   <div class="searchform">
     <div class="form">
-      <!-- :keyup.enter="toform(input)" -->
       <div class="searchInput">
-        <input type="text" placeholder="search" v-model="input" @keyup.enter="toform(input)"/>
+        <input type="text" placeholder="search" v-model="input" @keydown.enter="toform(input)" />
       </div>
       <el-button type="primary" class="searchButton" icon="el-icon-search" @click="toform(input)">
       </el-button>
@@ -72,12 +71,12 @@ $main-color: #ec0d08;
                 background: #000;
 
                 input {
-                    padding-top: 10px;
-                    height: 40%;
+                    margin-top: 8px;
+                    height: 30px;
                     width: 100%;
                     background: #000;
                     border: 0;
-                    font-family: "KSblockblock";
+                    font-family: "PixelMplus12", "KSblockblock";
                     font-size: 32px;
                     color: rgba($main-color, 1);
                     caret-color: $main-color;
@@ -86,7 +85,7 @@ $main-color: #ec0d08;
                     outline: none;
 
                     // reflect
-                    -webkit-box-reflect: below 4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
+                    -webkit-box-reflect: below 2px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
                     -webkit-text-stroke-width: 1px;
                     -webkit-text-stroke-color: #fff975;
 
@@ -94,7 +93,7 @@ $main-color: #ec0d08;
                     &::placeholder {
                         color: $main-color;
                         opacity: 0.5;
-                        font-family: "KSblockblock";
+                        font-family: "PixelMplus12", "KSblockblock";
                     }
                 }
 
