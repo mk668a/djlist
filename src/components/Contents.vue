@@ -102,7 +102,7 @@ $main-color: #ec0d08;
 }
 
 .contents {
-    min-height: 100vh;
+    // min-height: 100vh;
 
     .masonry {
         max-height: 200vh;

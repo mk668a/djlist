@@ -97,6 +97,15 @@ export default {
         }
       })
     },
+    IsArrayExists(array, value) {
+      var flag = true
+      for (var i = 0, len = array.length; i < len; i++) {
+        if (value == array[i]) {
+          flag = false
+        }
+      }
+      return flag;
+    },
     getTags(items) {
       var tags = document.querySelector('.tags');
       this.tags = []
@@ -123,7 +132,7 @@ export default {
           // console.log(item);
         }
 
-        if (item != undefined && item != "") {
+        if (item != undefined && item != "" && this.IsArrayExists(this.tags, item)) {
           this.tags.push(item)
           // console.log(item);
 
@@ -311,7 +320,6 @@ body {
         cursor: pointer;
         /* color: #EC0D08; */
     }
-
 
     td {
         color: rgb(57, 57, 57);

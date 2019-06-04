@@ -1,6 +1,8 @@
 <template>
 <div class="termsofservise">
-  <h2 style="text-align:center;">利用規約</h2>
+  <div id="flex">
+    <h2>termsofservise</h2>
+  </div>
   <div id="termsofservise">
     <p>この利用規約（以下，「本規約」といいます。）は，XXX（以下，「当社」といいます。）がこのウェブサイト上で提供するDJ List（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。</p>
 
@@ -102,31 +104,35 @@
 
 <style lang="scss">
 .termsofservise {
-  text-align: left;
+    margin: 100px 5% 50px;
+
+    h2 {
+        margin: auto auto 40px;
+        font-family: "nicomojiPlus";
+        font-size: 8vw;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+        padding: 0 5%;
+    }
+
+    #termsofservise {
+        max-height: 50vh;
+        overflow-y: scroll;
+    }
 }
 
-.termsofservise h2 {
-  background: #F1F4F7;
-  margin-bottom: 50px;
-  margin-top: 0;
-  padding: 30px;
-}
-
-#termsofservise {
-  margin: 50px 200px;
-}
-
-@media screen and (max-width:768px) {
-  #termsofservise {
-    margin: auto 30px;
-  }
-
-}
+@media screen and (max-width:768px) {}
 </style>
 
 
 <script>
 export default {
-  name: 'termsofservise'
+  name: 'termsofservise',
 }
 </script>

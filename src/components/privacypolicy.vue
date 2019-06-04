@@ -1,6 +1,8 @@
 <template>
 <div class="privacypolicy">
-  <h2 style="text-align:center;">プライバシーポリシー</h2>
+  <div id="flex">
+    <h2>privacypolicy</h2>
+  </div>
   <div id="privacypolicy">
     <p>XXX（以下，「当社」といいます。）は，本ウェブサイト上で提供するDJ List（以下,「本サービス」といいます。）におけるプライバシー情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。</p>
 
@@ -85,7 +87,7 @@
 
     <h3>第９条（お問い合わせ窓口）</h3>
     <p>本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。</p>
-      <br> Eメールアドレス：msftoaa@gmail.com
+    <br> Eメールアドレス：msftoaa@gmail.com
     </p>
 
     <p class="tR">以上</p>
@@ -96,32 +98,34 @@
 
 <style lang="scss">
 .privacypolicy {
-  text-align: left;
+    margin: 100px 5% 50px;
+
+    h2 {
+        margin: auto auto 40px;
+        font-family: "nicomojiPlus";
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+        padding: 0 5%;
+    }
+
+    #privacypolicy {
+      max-height: 50vh;
+      overflow-y: scroll;
+    }
 }
 
-.privacypolicy h2 {
-  background: #F1F4F7;
-  margin: 0;
-  padding: 30px;
-}
-
-#privacypolicy {
-  display: block;
-  margin: 50px 200px;
-  padding: auto 20px!important;
-}
-
-@media screen and (max-width:768px) {
-  #privacypolicy {
-    margin: auto 30px;
-  }
-
-}
+@media screen and (max-width:768px) {}
 </style>
 
 
 <script>
 export default {
-  name: 'privacypolicy'
+  name: 'privacypolicy',
 }
 </script>

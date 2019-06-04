@@ -1,7 +1,7 @@
 <template>
 <div class="searchMain">
   <div class="searchSpan" :style="searchHiddenStyle">
-    <Search :toform='toform' />
+    <Search :items="items" :toform='toform2' :tags="tags" :getTags="getTags" />
   </div>
   <div class="query" id="block" :style="searchHiddenStyle">
     <h2>{{query}}</h2>
@@ -15,7 +15,7 @@
       </div>
     </div>
   </div>
-  <div class="resultSpan">
+  <div class="resultSpan" v-show="render">
     <div class="seachResult">
       <div class="none" v-show="showNone">
         <h3>Did not match any people</h3>
@@ -49,10 +49,11 @@ export default {
   name: 'searchMain',
   props: {
     "toItem": Function,
-    'toform': Function,
     "items": Array,
     'confirmLiked': Function,
     'like': Function,
+    'tags': Array,
+    'getTags': Function,
   },
   components: {
     Contents,
@@ -69,10 +70,19 @@ export default {
       showPlace: false,
       showNone: false,
       targetRect: 0,
-      searchHiddenStyle: {}
+      searchHiddenStyle: {},
+      render: true
+      // var seachResult =
     }
   },
   methods: {
+    toform2(item) {
+      this.render = false
+
+      this.$route.query.dev = item
+      this.getSearchResult()
+      this.render = true
+    },
     handleScroll() {
       const result = document.querySelector('.resultSpan');
       const search = document.querySelector('.searchSpan');
@@ -92,6 +102,56 @@ export default {
         search.classList.remove('head-animation');
         query.classList.remove('head-animation');
       }
+    },
+    getSearchResult() {
+      this.searchName = []
+      this.searchGenre = []
+      this.searchPlace = []
+
+      this.query = this.$route.query.dev
+
+      // searchName
+      // console.log("searchName");
+      for (var i = 0; i < this.items.length; i++) {
+        if (this.items[i].name == this.query) {
+          this.searchName.push(this.items[i])
+          this.showName = true
+        }
+      }
+      // console.log(this.searchName);
+
+      // searchGenre
+      // console.log("searchGenre");
+      for (var i = 0; i < this.items.length; i++) {
+        for (var j = 0; j < Object.keys(this.items[i].genre).length; j++) {
+          if (this.items[i].genre[j] != null || this.items[i].genre[j] != '') {
+            if (this.items[i].genre[j] == this.query) {
+              // console.log(this.items[i]);
+              this.searchGenre.push(this.items[i])
+              this.showGenre = true
+            }
+          }
+        }
+      }
+      // console.log(this.searchGenre);
+
+      // searchPlace
+      // console.log("searchPlace");
+      for (var i = 0; i < this.items.length; i++) {
+        for (var j = 0; j < Object.keys(this.items[i].places).length; j++) {
+          if (this.items[i].places[j] != null || this.items[i].places[j] != '') {
+            if (this.items[i].places[j] == this.query) {
+              this.searchPlace.push(this.items[i])
+              this.showPlace = true
+            }
+          }
+        }
+      }
+      // console.log(this.searchPlace);
+
+      if (this.showName == false && this.showGenre == false && this.showPlace == false) {
+        this.showNone = true
+      }
     }
   },
   mounted() {
@@ -101,52 +161,7 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   created() {
-    this.query = this.$route.query.dev
-    let self = this
-    let items_ref = firebase.database().ref('/items')
-
-    // searchName
-    // console.log("searchName");
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name == this.query) {
-        this.searchName.push(this.items[i])
-        this.showName = true
-      }
-    }
-    // console.log(this.searchName);
-
-    // searchGenre
-    // console.log("searchGenre");
-    for (var i = 0; i < this.items.length; i++) {
-      for (var j = 0; j < Object.keys(this.items[i].genre).length; j++) {
-        if (this.items[i].genre[j] != null || this.items[i].genre[j] != '') {
-          if (this.items[i].genre[j] == this.query) {
-            // console.log(this.items[i]);
-            this.searchGenre.push(this.items[i])
-            this.showGenre = true
-          }
-        }
-      }
-    }
-    // console.log(this.searchGenre);
-
-    // searchPlace
-    // console.log("searchPlace");
-    for (var i = 0; i < this.items.length; i++) {
-      for (var j = 0; j < Object.keys(this.items[i].places).length; j++) {
-        if (this.items[i].places[j] != null || this.items[i].places[j] != '') {
-          if (this.items[i].places[j] == this.query) {
-            this.searchPlace.push(this.items[i])
-            this.showPlace = true
-          }
-        }
-      }
-    }
-    // console.log(this.searchPlace);
-
-    if (this.showName == false && this.showGenre == false && this.showPlace == false) {
-      this.showNone = true
-    }
+    this.getSearchResult()
   }
 }
 </script>
@@ -171,7 +186,7 @@ $main-color: #ec0d08;
 
     .query {
         transition: 0.3s cubic-bezier(.4, 0, .2, 1);
-        top: 220px;
+        top: 240px;
         text-align: center;
         position: fixed;
         width: 100%;
@@ -179,7 +194,7 @@ $main-color: #ec0d08;
         line-height: 0;
 
         h2 {
-            font-size: 8vw;
+            // font-size: 8vw;
         }
 
         .shadow {
@@ -235,7 +250,7 @@ $main-color: #ec0d08;
         min-height: 100vh;
         z-index: 0;
         position: relative;
-        top: 170px;
+        top: 190px;
 
         .seachResult {
             z-index: 0;
