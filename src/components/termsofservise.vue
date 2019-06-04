@@ -109,7 +109,7 @@
     h2 {
         margin: auto auto 40px;
         font-family: "nicomojiPlus";
-        font-size: 8vw;
+        font-size: 32px;
     }
 
     h3 {

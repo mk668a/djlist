@@ -24,7 +24,7 @@
           <a style="color:#ec0d08">* </a>画像のURL
         </h4>
       </div>
-      <input v-if="selectP" v-model="img" :rules="[{required: true, type: text}]"></input>
+      <input v-if="selectP" v-model="img" :rules="[{required: true}]"></input>
       <label v-else class="uploadImgUrl">
         ファイルを選択
         <input type="file" @change="selectedFile" style="display:none"></input>
@@ -47,7 +47,9 @@
           活動場所
         </h4>
       </div>
-      <input v-for="(place, index) in places" :key="index" type="url" v-model="places[index]" required></input>
+      <div id="block" class="dynamicInput">
+        <input v-for="(place, index) in places" :key="index" type="url" v-model="places[index]" required></input>
+      </div>
     </div>
 
     <div id="flex">
@@ -57,7 +59,9 @@
           リンク
         </h4>
       </div>
-      <input v-for="(url, index) in urls" :key="index" type="url" v-model="urls[index]" required></input>
+      <div id="block" class="dynamicInput">
+        <input v-for="(url, index) in urls" :key="index" type="url" v-model="urls[index]" required></input>
+      </div>
     </div>
 
     <div id="flex">
@@ -67,7 +71,9 @@
           ジャンル
         </h4>
       </div>
-      <input v-for="(genre, index) in genres" :key="index" type="url" v-model="genres[index]" required></input>
+      <div id="block" class="dynamicInput">
+        <input v-for="(genre, index) in genres" :key="index" type="url" v-model="genres[index]" required></input>
+      </div>
     </div>
 
     <div class="button" id="block">
@@ -238,9 +244,9 @@ $main-color: #EC0D08;
         width: 100%;
 
         div {
-          width: 80%;
-          height: 80%;
-          margin: auto;
+            width: 80%;
+            height: 80%;
+            margin: auto;
 
             img {
                 width: 100%;
@@ -273,6 +279,16 @@ $main-color: #EC0D08;
             h4 {
                 &:nth-of-type(2) {
                     font-weight: bold;
+                }
+            }
+        }
+
+        #flex {
+            .dynamicInput {
+                width: 236px;
+
+                input {
+                    margin-bottom: 10px;
                 }
             }
         }

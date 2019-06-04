@@ -49,6 +49,7 @@ export default {
           name: obj.name
         }
       })
+      window.scrollTo(0, 0)
     },
     toform(item) {
       var elem = document.activeElement.tagName
@@ -350,7 +351,7 @@ body {
     .purple {
         input {
             width: auto;
-            padding: 5px;
+            padding: 10px;
             height: 30px;
             border-radius: 0.5em;
             background: transparent;

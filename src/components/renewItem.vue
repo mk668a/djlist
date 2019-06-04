@@ -1,26 +1,76 @@
 <template>
 <div class="renew">
-  <form method="renew">
-    <img :src='item.img' />
+  <div id="flex">
+    <h2>CHANGE INFO</h2>
+  </div>
+
+  <div class="postImg">
     <div>
-      <a style="color:white; ">必須</a>名　前:{{item.name}}
+      <img :src='item.img' />
     </div>
-    <div>
-      <a style="color:white; "></a>活動場所:
-      <el-input v-for="(place, index) in places" :key="index" type="url" v-model="places[index]" required></el-input>
+  </div>
+
+  <form class="purple">
+
+    <div id="flex">
+      <div class="itemName" id="flex">
+        <h4>
+          名前
+        </h4>
+      </div>
+      <div style="width: 226px; padding-left:10px;">
+        <h4>{{item.name}}</h4>
+      </div>
     </div>
-    <div>
-      <a style="color:white; "></a>リンク:
-      <el-input v-for="(url, index) in urls" :key="index" type="url" v-model="urls[index]" required></el-input>
+
+    <div id="flex">
+      <div class="itemName" id="flex">
+        <p></p>
+        <h4>
+          活動場所
+        </h4>
+      </div>
+      <div id="block" class="dynamicInput">
+        <input v-for="(place, index) in places" :key="index" type="url" v-model="places[index]" required></input>
+      </div>
     </div>
-    <div>
-      <a style="color:white; "></a>ジャンル:
-      <el-input v-for="(genre, index) in genres" :key="index" type="url" v-model="genres[index]" required></el-input>
+
+    <div id="flex">
+      <div class="itemName" id="flex">
+        <p></p>
+        <h4>
+          リンク
+        </h4>
+      </div>
+      <div id="block" class="dynamicInput">
+        <input v-for="(url, index) in urls" :key="index" type="url" v-model="urls[index]" required></input>
+      </div>
     </div>
-    <div>
-      <el-button type="primary " style="font-size:20px; " @click="postC">更新</el-button>
-      <a @click="toItem(item)" v-scroll-to="'#top'">キャンセル</a>
+
+    <div id="flex">
+      <div class="itemName" id="flex">
+        <p></p>
+        <h4>
+          ジャンル
+        </h4>
+      </div>
+      <div id="block" class="dynamicInput">
+        <input v-for="(genre, index) in genres" :key="index" type="url" v-model="genres[index]" required></input>
+      </div>
     </div>
+
+    <div class="button" id="block">
+      <div id="flex">
+        <button type="button" @click="postC">更新</button>
+      </div>
+    </div>
+
+    <div class="button" id="block">
+      <div id="flex">
+        <button type="button" @click="toItem(item)" href="#" v-scroll-to="'#top'">キャンセル</button>
+      </div>
+    </div>
+
   </form>
 </div>
 </template>
@@ -145,289 +195,183 @@ export default {
 </script>
 
 <style lang="scss">
-#suggestform {
-  height: 40px;
-  width: 300px;
-  border-radius: .3em;
-  border: 1px solid #DCDFE5;
-  outline: none;
-  font-size: 14px;
-}
-
-#suggestform:hover {
-  transition-duration: 0.3s;
-  border: 1px solid #c1c1c1;
-}
-
-/* #suggestform:active{
-  transition-duration: 0.3s;
-  border: 1px solid #569EF8!important;
-} */
-
-.renew>form>.suggest {
-  cursor: text;
-}
-
-.renew>form>.suggest>a {
-  top: 0;
-  line-height: 10px;
-  height: 10px;
-  margin: 16px 10px;
-  cursor: text;
-}
-
-.renew>form>.suggest>span {
-  margin: 10.5px 0;
-  cursor: text;
-}
-
-.renew>form>.suggest {
-  display: inline-flex;
-  z-index: 3;
-  text-align: center;
-}
-
-.renew>form>.el-switch.is-checked,
-.renew>form>.el-switch {
-  padding-top: 30px;
-}
-
-.renew>form>.suggest>.box {
-  display: block;
-  /* width: 100%; */
-}
-
-.renew>form>.suggest>.box>input {
-  color: #606266;
-}
-
-.renew>form>.suggest>.box>.suggestItem {
-  position: relative;
-  text-align: left;
-  cursor: pointer;
-  background: white;
-}
-
-.renew>form>.suggest>.box>.suggestItem:hover {
-  background: #e6e6e6;
-}
+$main-color: #EC0D08;
 
 .renew {
-  height: 100%;
-}
 
-.renew>form>div,
-.el-form.demo-dynamic {
-  margin: 30px auto;
-}
+    button,
+    h4,
+    span {
+        font-family: "nicomojiPlus";
+    }
 
-/*  */
-
-.el-form-item__content>.el-input:nth-of-type(1),
-.el-form-item__content>.el-input:nth-of-type(1)>.el-input__inner {
-  width: 100px;
-}
-
-.el-form-item__content>.el-input:nth-of-type(2),
-.el-form-item__content>.el-input:nth-of-type(2)>.el-input__inner {
-  width: 300px;
-}
-
-.el-form-item {
-  display: flex;
-}
-
-.el-form-item__content:nth-child(1) {
-  width: 100%;
-}
-
-.el-form-item__label {
-  width: 40vw;
-  text-align: right;
-}
-
-.el-form-item__label {
-  font-size: 16px;
-}
-
-/*  */
-
-.renew>form>.imgupload {
-  background: #d2d2d2;
-  padding: 40px;
-}
-
-.renew>form>img {
-  margin: 30px auto;
-  border-radius: 1em;
-  height: 480px;
-  width: auto;
-}
-
-.renew>form>div>a {
-  border: solid 1px #F56C6C;
-  border-radius: 0.5em;
-  background-color: #F56C6C;
-  font-size: 5px;
-  margin: auto 10px;
-}
-
-.renew>form>.preview {
-  margin: auto 100px;
-}
-
-.renew>form>div>button {
-  padding: 20px 50px;
-}
-
-.renew>form>div>.el-input {
-  width: auto;
-}
-
-.renew>form>div>.el-input>input {
-  width: 300px;
-}
-
-.renew>form>div>.el-input:nth-child(1)>input {
-  margin-left: 45px;
-}
-
-.renewContainer>form>div>input {
-  height: 30px;
-  border-radius: 1em;
-  border: solid 1px #e6e6e6;
-}
-
-.renew>form>.preview>.original {
-  border-radius: 1em;
-  border: solid 1px #e6e6e6;
-  overflow: hidden;
-  padding: 50px;
-}
-
-.renew>form>.preview>.original>div {
-  display: block;
-}
-
-.renew>form>.preview>.original>img,
-.renew>img {
-  width: auto;
-  height: 320px;
-}
-
-.renew>form>.preview>.original>.data>h4 {
-  display: block;
-  margin: auto 50px;
-}
-
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.el-upload.el-upload--text {
-  background-color: #e5e5e5;
-}
-
-.avatar-uploader .el-upload:hover {
-  border-color: #409EFF;
-}
-
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #d2d2d2;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
-  text-align: center;
-}
-
-.el-upload.el-upload--text::before {
-  content: '画像選択';
-  white-space: pre;
-  position: absolute;
-  top: 50px;
-  left: 30px;
-  color: #d2d2d2;
-  font-size: 30px;
-}
-
-.el-icon-circle-plus-outline.avatar-uploader-icon::before {
-  position: absolute;
-  top: 20px;
-  left: 75px;
-}
-
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
-}
-
-.el-select .el-input {
-  width: 110px;
-}
-
-.input-with-select .el-input-group__prepend {
-  background-color: #fff;
-}
-
-@media screen and (max-width:768px) {
-  .renew>form>.preview {
-    margin: auto 20px !important;
-  }
-
-  .renew>form>.preview>.original>div {
-    display: block;
-  }
-
-  .renew>form>.suggest {
-    display: block;
-    margin: auto 37.5px;
-    text-align: center;
-  }
-
-  .renew>form>.suggest>.suggestItem:nth-last-of-type(1) {
-    border-radius: 0 0 .3em .3em;
-  }
-
-  .el-form-item>.el-form-item__content {
-    margin: 20px auto !important;
-  }
-
-  .el-form-item {
-    display: block;
-    margin: auto 37.5px;
-  }
-
-  .el-form-item__content {
-    margin: 0 !important;
-  }
-
-  .el-form-item__label {
-    width: 300px !important;
-    text-align: center;
-  }
-
-  .renew>form>.preview>.original>img {
+    min-height: 100vh;
     width: 100%;
-    height: auto;
-  }
+    margin-top: 100px;
 
-  .renew>form>img {
-    height: 240px;
-    width: auto;
-  }
+    div {
+        h2 {
+            margin: auto auto 20px;
+            font-family: "nicomojiPlus";
+        }
+    }
 
-  /* .renew>form>.preview>.original>div>.data>h1::before{
-    height: 0;
-  } */
-  .renew>form>.preview>.original>.data>h4 {
-    margin: 0 !important;
-    font-size: 10px;
-  }
+    .postImg {
+        display: flex;
+        height: auto;
+        width: 100%;
+
+        div {
+            width: 80%;
+            height: 80%;
+            margin: auto;
+
+            img {
+                width: 100%;
+                height: auto;
+                margin-bottom: 30px;
+                border-radius: 0.5em;
+            }
+        }
+
+    }
+
+    .purple {
+
+        .itemName {
+            width: 30%;
+            margin-right: 0;
+            margin-left: auto;
+
+            .required {
+                font-size: 10px;
+                border: solid 1px $main-color;
+                border-radius: 0.5em;
+                background: $main-color;
+                color: #fff;
+                margin: auto 3px;
+                height: 18px;
+                padding: 1px;
+            }
+
+            h4 {
+                &:nth-of-type(2) {
+                    font-weight: bold;
+                }
+            }
+        }
+
+        #flex {
+            .dynamicInput {
+                width: 236px;
+
+                input {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        .uploadImgUrl,
+        input {
+            width: 210px;
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .uploadImgUrl {
+            text-align: center;
+            padding: 8px 5px;
+            cursor: pointer;
+            font-size: 18px;
+            height: 24px;
+            border-radius: 0.5em;
+            border: solid 3px #a458ec;
+            font-weight: bold;
+            outline: none;
+            color: #fff;
+            background: #a458ec;
+            transition: 0.3s;
+
+            &:hover {
+                color: #a458ec;
+                background: #fff;
+                border-color: #a458ec;
+            }
+            &:active {
+                background: #a458ec;
+                color: #fff;
+                border-color: #a458ec;
+                transition: 0.3s;
+            }
+        }
+
+        .button {
+            div {
+                width: 100%;
+
+                button {
+                    margin: auto auto 20px;
+                    width: 200px;
+                }
+            }
+        }
+
+        svg {
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
+        div {
+            margin-bottom: 20px;
+
+            div {
+                margin-right: auto;
+                margin-left: 0;
+            }
+        }
+
+        .imageSwitch {
+            h4 {
+                width: 30%;
+                margin-right: 0;
+                margin-left: auto;
+            }
+
+            .el-switch__core {
+                background: transparent;
+                border-color: #a458ec;
+                border-width: 2px;
+                height: 24.5px;
+                width: 50px!important;
+                border-radius: 30px;
+
+                &:after {
+                    background: transparent;
+                    border: 2px solid #a458ec;
+                    top: 1.5px;
+                    width: 14px;
+                    height: 14px;
+                }
+            }
+
+            .el-switch {
+
+                .el-switch__label.is-active {
+                    color: #a458ec;
+                }
+
+                .is-checked .el-switch__core {
+                    border-color: #a458ec;
+                    border-width: 2px;
+
+                    &::after {
+                        margin-left: -20px!important;
+                    }
+                }
+            }
+
+        }
+    }
+
 }
 </style>
