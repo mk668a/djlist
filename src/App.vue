@@ -210,8 +210,8 @@ export default {
       // console.log(itemId);
 
       // like済みの場合
-      if (this.confirmLiked(userId, item.popular)) {
-        console.log("削除");
+      if (this.confirmLiked(item.popular)) {
+        // console.log("削除");
 
         var likedId
         firebase.database().ref('/items/' + itemId + '/popular/').orderByChild("uid").equalTo(userId).
