@@ -77,9 +77,15 @@ export default {
   },
   methods: {
     toform2(item) {
-      this.render = false
-
       this.$route.query.dev = item
+      history.replaceState('', '', 'searchMain?dev=' + item);
+
+      this.render = false
+      this.showName = false
+      this.showGenre = false
+      this.showPlace = false
+      this.showNone = false
+
       this.getSearchResult()
       this.render = true
     },

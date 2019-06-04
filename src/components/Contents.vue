@@ -10,7 +10,7 @@
           </div>
           <div class="dataImg" v-scroll-to="'#top'" @click="toItem(item)">
             <div class="filter"></div>
-            <img v-lazy="item.img" style="max-width: 100%" />
+            <img :src="item.img" style="max-width: 100%" />
           </div>
           <div v-if="!confirmLiked(item.popular)" class="popular" @click="like(item)">
             <a class="off">☆{{getPopular(item)}}</a>

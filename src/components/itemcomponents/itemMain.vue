@@ -4,7 +4,7 @@
   <itemLink :item="itemobj"></itemLink>
   <itemComments :item="itemobj" :unixTime2ymd="unixTime2ymd"></itemComments>
   <itemChange :item="itemobj" :toRenew="toRenew" />
-  <div class="arrowUp" v-show="!loading">
+  <div class="arrowUp">
     <el-button icon="el-icon-arrow-up" href="#" v-scroll-to="'#top'" circle></el-button>
   </div>
 </div>
@@ -25,7 +25,7 @@ export default {
     'confirmLiked': Function,
     'like': Function,
     'toRenew': Function,
-    'item': Object
+    'item': Object,
   },
   components: {
     itemContent,

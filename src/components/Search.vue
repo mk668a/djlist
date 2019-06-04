@@ -4,7 +4,7 @@
     <div class="form">
       <!-- :keyup.enter="toform(input)" -->
       <div class="searchInput">
-        <input type="text" placeholder="search" v-model="input" />
+        <input type="text" placeholder="search" v-model="input" @keyup.enter="toform(input)"/>
       </div>
       <el-button type="primary" class="searchButton" icon="el-icon-search" @click="toform(input)">
       </el-button>
@@ -151,7 +151,7 @@ $main-color: #ec0d08;
             margin: 3px 5px;
 
             &:active {
-                animation: spin .1s infinite;
+                animation: spin 0.1s infinite;
             }
 
             @keyframes spin {
