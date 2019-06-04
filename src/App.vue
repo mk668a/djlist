@@ -300,6 +300,7 @@ body {
     }
 
     li,
+    p,
     td,
     tr {
         font-weight: bold;
@@ -311,9 +312,6 @@ body {
         /* color: #EC0D08; */
     }
 
-    p {
-        color: #EC0D08;
-    }
 
     td {
         color: rgb(57, 57, 57);

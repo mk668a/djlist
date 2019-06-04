@@ -1,21 +1,43 @@
 <template>
 <div class="userInfo">
-  <h2>ユーザー情報</h2>
-  <div>
-    メール: {{email}}
+
+  <h3>ユーザー情報</h3>
+
+  <div class="userData">
+    <div>
+      <table>
+        <tr>
+          <td>メール</td>
+          <td>{{email}}</td>
+        </tr>
+        <tr v-if="getUsername">
+          <td>ユーザー名</td>
+          <td>{{username}}</td>
+        </tr>
+        <div v-else class="purple" id="flex">
+          <input type="text" placeholder="ユーザー名" v-model="username" />
+          <button type="button" @click="CreateUsrename">登録</button>
+        </div>
+      </table>
+    </div>
+    <form class="purple">
+      <button type="button" @click="logout">ログアウト</button>
+    </form>
   </div>
-  <div v-if="!getUsername">
-    <input type="text" placeholder="ユーザー名" v-model="username" />
-    <button type="button" @click="CreateUsrename">登録</button>
+
+  <div class="resultSpan">
+    <div class="seachResult">
+      <div class="liked">
+        <h3>お気に入り</h3>
+        <Contents :toItem="toItem" :items="likedItems" :confirmLiked="confirmLiked" :like="like" />
+      </div>
+      <div class="posted">
+        <h3>投稿したitem</h3>
+        <Contents :toItem="toItem" :items="postItems" :confirmLiked="confirmLiked" :like="like" />
+      </div>
+    </div>
   </div>
-  <div v-else>
-    ユーザー名: {{username}}
-  </div>
-  <button type="button" @click="logout">ログアウト</button>
-  <h2>お気に入り</h2>
-  <Contents :toItem="toItem" :items="likedItems" :confirmLiked="confirmLiked" :like="like" />
-  <h2>投稿したitem</h2>
-  <Contents :toItem="toItem" :items="postItems" :confirmLiked="confirmLiked" :like="like" />
+
 </div>
 </template>
 
@@ -144,28 +166,108 @@ export default {
 </script>
 
 <style lang="scss">
-.userInfo > form {
-    margin: 100px auto auto;
-}
+$main-color: #ec0d08;
 
-.userInfo > h2 {
-    color: #f2cf01;
-    padding-top: 30px;
-}
+.userInfo {
+    width: 100%;
+    margin-top: 100px;
 
-.userInfo button {
-    margin-bottom: 100px;
-}
+    h3 {
+        margin-bottom: 0;
+        padding-left: 20px;
+    }
 
-.userInfo > form > * {
-    margin: 30px;
-}
+    .userData {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
 
-.userInfo > form > div > .el-input {
-    width: 200px;
-}
+        div {
+            width: 80%;
+            margin: 20px auto 10px;
+            background: rgba(#fff, .5);
+            padding: 20px 10px;
+            border-radius: 0.5em;
 
-.userInfo button > a:visited {
-    color: inherit;
+            table {
+                width: 100%;
+
+                tr {
+                    display: flex;
+                    td {
+                        font-size: 16px;
+                        &:nth-of-type(1) {
+                            width: 30%;
+                            padding-right: 20px;
+                        }
+                    }
+                }
+
+                .purple {
+                    background: transparent;
+                    margin: 0;
+                    padding: 20px 0;
+                    width: 100%;
+
+                    input {
+                        width: 60%;
+                        height: auto;
+                    }
+
+                    button {
+                        width: 40%;
+                    }
+                }
+            }
+        }
+
+        .purple {
+            width: 80%;
+            margin: auto;
+
+            button {
+                width: 200px;
+            }
+        }
+
+    }
+
+    .resultSpan {
+        min-height: 100vh;
+        z-index: 0;
+        position: relative;
+        top: 0;
+
+        .seachResult {
+            z-index: 0;
+            position: relative;
+            top: 0;
+
+            .contents {
+                min-height: 0;
+            }
+
+            div {
+                h3 {
+                    padding-left: 20px;
+                    margin-bottom: 0;
+                }
+            }
+
+            .genre,
+            .name,
+            .place {
+                .contents {
+                    button {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .arrowUp {
+            display: none;
+        }
+    }
 }
 </style>
