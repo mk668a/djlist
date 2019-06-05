@@ -1,7 +1,7 @@
 <template>
 <div class="main">
   <div class="searchSpan" :style="searchHiddenStyle">
-    <Search :items="items" :toform='toform' :tags="tags" :getTags="getTags" />
+    <Search :items="items" :toform='toform' />
   </div>
   <div class="toAboutSpan" :style="aboutHiddenStyle">
     <toAbout :deleteAbout="deleteAbout" :about="about" />
@@ -39,8 +39,6 @@ export default {
     "like": Function,
     'about': Boolean,
     'deleteAbout': Function,
-    'tags': Array,
-    'getTags': Function
   },
   methods: {
     handleScroll() {

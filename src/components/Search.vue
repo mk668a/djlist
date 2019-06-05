@@ -3,7 +3,7 @@
   <div class="searchform">
     <div class="form">
       <div class="searchInput">
-        <input type="text" placeholder="search" v-model="input" @keydown.enter="toform(input)" />
+        <input type="text" placeholder="Search" v-model="input" @keydown.enter="toform(input)" />
       </div>
       <el-button type="primary" class="searchButton" icon="el-icon-search" @click="toform(input)">
       </el-button>
@@ -26,15 +26,96 @@ export default {
   props: {
     "items": Array,
     'toform': Function,
-    'tags': Array,
-    'getTags': Function,
-
   },
   data() {
     return {
       input: "",
+      tags: [],
+      beforeTags: []
     }
-  }
+  },
+  methods: {
+    IsArrayExists(array, value) {
+      var flag = true
+      for (var i = 0, len = array.length; i < len; i++) {
+        if (value == array[i]) {
+          flag = false
+        }
+      }
+      return flag;
+    },
+    getTags(items) {
+      var tags = document.querySelector('.tags');
+      this.tags = []
+
+      var tagsWidth = tags.offsetWidth;
+
+      var width = 0;
+
+      while (width < tagsWidth / 9) {
+        var random = Math.floor(Math.random() * items.length);
+        var index = Math.floor(Math.random() * 3);
+        var item = ""
+
+        if (index == 0) {
+          item = items[random].name
+        }
+        if (index == 1) {
+          var j = Math.floor(Math.random() * items.length);
+          item = items[random].places[j]
+        }
+        if (index == 2) {
+          var k = Math.floor(Math.random() * items.length);
+          item = items[random].genre[k]
+          // console.log(item);
+        }
+
+        if (item != undefined && item != "" && this.IsArrayExists(this.tags, item)) {
+          this.tags.push(item)
+          // console.log(item);
+
+          tags = document.querySelector('.tags');
+          tagsWidth = tags.offsetWidth;
+          // console.log(tagsWidth);
+
+          width += item.length
+          // console.log(width);
+        }
+
+      }
+    },
+    tagResize: function() {
+      var afterTags = []
+      var tagsWidth = window.innerWidth;
+      var width = 0;
+
+      for (var i = 0; i < this.beforeTags.length; i++) {
+        if (width > tagsWidth / 9) {
+          break
+        }
+        var item = this.beforeTags[i]
+        if (item != undefined && item != "") {
+          afterTags.push(item)
+          width += item.length
+        }
+      }
+
+      this.tags = afterTags
+    }
+  },
+  mounted: function() {
+    window.addEventListener('resize', this.tagResize)
+  },
+  beforeDestroy: function() {
+    window.removeEventListener('resize', this.tagResize)
+  },
+  created() {
+    setTimeout(() => {
+      console.log(this.items);
+      this.getTags(this.items)
+    }, 5000);
+    this.beforeTags = this.tags
+  },
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
 <div class="searchMain">
   <div class="searchSpan" :style="searchHiddenStyle">
-    <Search :items="items" :toform='toform2' :tags="tags" :getTags="getTags" />
+    <Search :items="items" :toform='toform2'/>
   </div>
   <div class="query" id="block" :style="searchHiddenStyle">
     <h2>{{query}}</h2>

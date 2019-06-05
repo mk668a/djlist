@@ -4,8 +4,7 @@
   <main id="top">
     <Header :toform="toform" />
     <div class="container">
-      <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" :about="about" :deleteAbout="deleteAbout" :tags="tags"
-        :getTags="getTags" />
+      <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" :about="about" :deleteAbout="deleteAbout" />
     </div>
     <Footer />
   </main>
@@ -33,8 +32,6 @@ export default {
       item: {},
       database: {},
       about: true,
-      tags: [],
-      tagstyle: "position: absolute; right: -100vw"
     }
   },
   methods: {
@@ -96,59 +93,9 @@ export default {
             items.push(responsedata[val])
           })
           this.items = items
-          this.getTags(items)
           console.log(this.items);
         }
       })
-    },
-    IsArrayExists(array, value) {
-      var flag = true
-      for (var i = 0, len = array.length; i < len; i++) {
-        if (value == array[i]) {
-          flag = false
-        }
-      }
-      return flag;
-    },
-    getTags(items) {
-      var tags = document.querySelector('.tags');
-      this.tags = []
-
-      var tagsWidth = tags.offsetWidth;
-
-      var width = 0;
-
-      while (width < tagsWidth / 10) {
-        var random = Math.floor(Math.random() * items.length);
-        var index = Math.floor(Math.random() * 3);
-        var item = ""
-
-        if (index == 0) {
-          item = items[random].name
-        }
-        if (index == 1) {
-          var j = Math.floor(Math.random() * items.length);
-          item = items[random].places[j]
-        }
-        if (index == 2) {
-          var k = Math.floor(Math.random() * items.length);
-          item = items[random].genre[k]
-          // console.log(item);
-        }
-
-        if (item != undefined && item != "" && this.IsArrayExists(this.tags, item)) {
-          this.tags.push(item)
-          // console.log(item);
-
-          tags = document.querySelector('.tags');
-          tagsWidth = tags.offsetWidth;
-          // console.log(tagsWidth);
-
-          width += item.length
-          // console.log(width);
-        }
-
-      }
     },
     unixTime2ymd(intTime) {
       var d = new Date(intTime);

@@ -302,10 +302,10 @@ $main-color: #EC0D08;
 
         .uploadImgUrl {
             text-align: center;
-            padding: 8px 5px;
+            padding: 10px;
             cursor: pointer;
             font-size: 18px;
-            height: 24px;
+            height: 30px;
             border-radius: 0.5em;
             border: solid 3px #a458ec;
             font-weight: bold;
