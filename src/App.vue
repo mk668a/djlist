@@ -1,10 +1,11 @@
 <template>
 <div id="app">
   <discPanel />
-  <main id="top">
+  <main id="top" v-if="done">
     <Header :toform="toform" />
     <div class="container">
-      <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" :about="about" :deleteAbout="deleteAbout" />
+      <router-view v-if="done" :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" :about="about" :deleteAbout="deleteAbout"
+        :done="done" />
     </div>
     <Footer />
   </main>
@@ -32,6 +33,7 @@ export default {
       item: {},
       database: {},
       about: true,
+      done: false
     }
   },
   methods: {
@@ -94,6 +96,7 @@ export default {
           })
           this.items = items
           console.log(this.items);
+          this.done = true
         }
       })
     },

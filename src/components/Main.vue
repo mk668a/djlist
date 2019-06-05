@@ -1,7 +1,7 @@
 <template>
 <div class="main">
   <div class="searchSpan" :style="searchHiddenStyle">
-    <Search :items="items" :toform='toform' />
+    <Search v-if="done" :items="items" :toform='toform' :done="done" />
   </div>
   <div class="toAboutSpan" :style="aboutHiddenStyle">
     <toAbout :deleteAbout="deleteAbout" :about="about" />
@@ -39,6 +39,7 @@ export default {
     "like": Function,
     'about': Boolean,
     'deleteAbout': Function,
+    'done': Boolean
   },
   methods: {
     handleScroll() {

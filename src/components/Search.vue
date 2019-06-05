@@ -45,10 +45,10 @@ export default {
       return flag;
     },
     getTags(items) {
-      var tags = document.querySelector('.tags');
+      // var tags = document.querySelector('.tags');
       this.tags = []
 
-      var tagsWidth = tags.offsetWidth;
+      var tagsWidth = window.innerWidth;
 
       var width = 0;
 
@@ -74,8 +74,8 @@ export default {
           this.tags.push(item)
           // console.log(item);
 
-          tags = document.querySelector('.tags');
-          tagsWidth = tags.offsetWidth;
+          // tags = document.querySelector('.tags');
+          tagsWidth = window.innerWidth
           // console.log(tagsWidth);
 
           width += item.length
@@ -110,10 +110,7 @@ export default {
     window.removeEventListener('resize', this.tagResize)
   },
   created() {
-    setTimeout(() => {
-      console.log(this.items);
-      this.getTags(this.items)
-    }, 5000);
+    this.getTags(this.items)
     this.beforeTags = this.tags
   },
 }
