@@ -1,7 +1,7 @@
 <template>
 <div class="searchMain">
   <div class="searchSpan" :style="searchHiddenStyle">
-    <Search :items="items" :toform='toform2'/>
+    <Search :items="items" :toform='toform2' />
   </div>
   <div class="query" id="block" :style="searchHiddenStyle">
     <h2>{{query}}</h2>
@@ -287,6 +287,18 @@ $main-color: #ec0d08;
     .arrowUp {
         z-index: 200;
         position: relative;
+    }
+}
+
+@media screen and (max-width:380px) {
+    .searchMain {
+        .query {
+            top: 260px;
+        }
+
+        .resultSpan {
+            top: 210px;
+        }
     }
 }
 </style>

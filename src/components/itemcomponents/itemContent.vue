@@ -183,4 +183,12 @@ $main-color: #EC0D08;
     }
 
 }
+
+@media screen and (min-width:768px) {
+
+    .itemContent {
+        padding: 0 20%;
+    }
+
+}
 </style>

@@ -33,7 +33,7 @@ export default {
     width: 50px;
     height: 50px;
     background: linear-gradient(90deg, transparent, rgba(#fff, 1) 50%, transparent);
-    position: absolute;
+    position: relative;
     transform: rotate(135deg) skew(calc((90deg - 5deg) / 2), calc((90deg - 5deg) / 2));
 }
 
@@ -57,13 +57,13 @@ export default {
             transform: translateY(10px);
         }
 
-        100%{
-          transform: translateY(0px);
+        100% {
+            transform: translateY(0px);
         }
     }
 
     .aboutMessage {
-        padding: 30px 10px;
+        padding: 20px 10px;
         border: 1px solid rgba(#fff, .3);
         display: flex;
         // font
@@ -82,18 +82,18 @@ export default {
 
         &::before {
             @include highlight();
-            top: -15px;
-            left: 140px;
+            top: -4.5vh;
+            left: 15vw;
         }
 
         &::after {
             @include highlight();
-            bottom: 25px;
-            left: 140px;
+            bottom: -4.5vh;
+            left: -58vw;
         }
 
         div {
-            margin: auto;
+            margin: 10px auto;
             display: flex;
 
             span {
@@ -105,9 +105,52 @@ export default {
         }
 
         i {
+            display: flex;
             cursor: pointer;
+
             &::before {
+                margin: auto;
                 font-weight: bold;
+            }
+        }
+    }
+}
+
+@media screen and (min-width:768px) {
+    .toAbout {
+        width: 100%;
+        display: flex;
+
+        .aboutMessage {
+            width: 76%;
+            margin: auto;
+        }
+    }
+}
+
+@media screen and (max-width:450px) {
+    .toAbout {
+
+        .aboutMessage {
+            font-size: 18px;
+
+            div{
+              margin-top: 15px;
+              width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:370px) {
+    .toAbout {
+
+        .aboutMessage {
+            font-size: 14px;
+            padding: 15px 10px;
+
+            div{
+              margin-top: 17px;
             }
         }
     }

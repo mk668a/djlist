@@ -72,6 +72,7 @@ export default {
 <style lang="scss">
 .itemMain {
     margin-top: 130px;
+    padding: 0;
 
     .el-icon-edit {
         margin: auto 0;

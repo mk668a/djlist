@@ -127,4 +127,12 @@ $main-color: #ec0d08;
         }
     }
 }
+
+@media screen and (max-width:370px) {
+    .main {
+        .toAboutSpan {
+            margin-top: 240px;
+        }
+    }
+}
 </style>

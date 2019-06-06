@@ -51,8 +51,13 @@ export default {
       var tagsWidth = window.innerWidth;
 
       var width = 0;
+      var divide_size = 9
 
-      while (width < tagsWidth / 9) {
+      if (tagsWidth >= 768) {
+        divide_size = 15
+      }
+
+      while (width < tagsWidth / divide_size) {
         var random = Math.floor(Math.random() * items.length);
         var index = Math.floor(Math.random() * 3);
         var item = ""
@@ -89,8 +94,14 @@ export default {
       var tagsWidth = window.innerWidth;
       var width = 0;
 
+      var divide_size = 9
+
+      if (tagsWidth >= 768) {
+        divide_size = 15
+      }
+
       for (var i = 0; i < this.beforeTags.length; i++) {
-        if (width > tagsWidth / 9) {
+        if (width > tagsWidth / divide_size) {
           break
         }
         var item = this.beforeTags[i]
@@ -257,6 +268,23 @@ $main-color: #ec0d08;
                 }
             }
 
+        }
+    }
+}
+
+@media screen and (min-width:768px) {
+    .search {
+        .searchform {
+            // width: 45%;
+
+            .form {
+                width: 60%!important;
+            }
+        }
+
+        .tags {
+            width: 60%;
+            margin: 10px auto;
         }
     }
 }

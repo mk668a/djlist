@@ -2,7 +2,7 @@
 <div class="contents" :class="{active: about}">
   <transition name="bounce">
     <div class="masonry" v-show="!loading">
-      <masonry :cols="{default: 4, 1000: 3, 700: 2, 400: 2}" :gutter="{default: '30px', 700: '20px'}">
+      <masonry :cols="{default: 4, 1000: 4, 768: 3, 500: 2}" :gutter="{default: '30px', 700: '20px'}">
         <div v-for="(item, index) in items" :key="index" class="item">
           <div class="dataName">
             <a v-text="item.name">
@@ -103,7 +103,6 @@ $main-color: #ec0d08;
 }
 
 .contents {
-    // min-height: 100vh;
 
     .masonry {
         max-height: 200vh;
@@ -170,128 +169,33 @@ $main-color: #ec0d08;
     }
 }
 
-// arrowUp
-.arrowUp {
-    display: flex;
-    margin: 50px 0;
-    height: 52px;
+@media screen and (min-width:768px) {
+    .contents {
+        .masonry {
+            padding: 0 10%;
 
-    .el-button {
-        margin: auto;
-        color: #fff;
-        background: linear-gradient(0deg, #FDE816 1%, #a458ec 60%, #fff);
-        border-color: transparent;
-        border-width: 0;
-        box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.5);
-        transition: 0.3s;
+            .item {
+                padding: 7.5px 15px;
 
-        &:hover {
-            transition: 0.3s;
-            transform: scale(.95);
-            box-shadow: 0 0 10px 1px rgba(0,0,0,0.3);
-        }
+                .dataName {
 
-        &:hover {
-            .el-icon-arrow-up {
-                &::before {
-                    // font-size: 28px;
+                    a {
+                        font-size: #{$margin-size*1.75}px;
+                    }
+                }
+
+                .popular {
+                    text-align: left;
+                    display: flex;
+                    // margin-top: -#{$margin-size*2}px;
+                    height: 0;
+
+                    a {
+                        font-size: #{$margin-size*1.875}px;
+                    }
                 }
             }
         }
-
-        .el-icon-arrow-up {
-            &::before {
-                font-size: 30px;
-                font-weight: bold;
-            }
-        }
-    }
-}
-
-// loading
-.lds-roller {
-    margin: auto;
-    display: inline-block;
-    position: relative;
-    width: 64px;
-    height: 64px;
-}
-.lds-roller div {
-    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    transform-origin: 32px 32px;
-}
-.lds-roller div:after {
-    content: " ";
-    display: block;
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: $main-color;
-    margin: -3px 0 0 -3px;
-}
-.lds-roller div:nth-child(1) {
-    animation-delay: -0.036s;
-}
-.lds-roller div:nth-child(1):after {
-    top: 50px;
-    left: 50px;
-}
-.lds-roller div:nth-child(2) {
-    animation-delay: -0.072s;
-}
-.lds-roller div:nth-child(2):after {
-    top: 54px;
-    left: 45px;
-}
-.lds-roller div:nth-child(3) {
-    animation-delay: -0.108s;
-}
-.lds-roller div:nth-child(3):after {
-    top: 57px;
-    left: 39px;
-}
-.lds-roller div:nth-child(4) {
-    animation-delay: -0.144s;
-}
-.lds-roller div:nth-child(4):after {
-    top: 58px;
-    left: 32px;
-}
-.lds-roller div:nth-child(5) {
-    animation-delay: -0.18s;
-}
-.lds-roller div:nth-child(5):after {
-    top: 57px;
-    left: 25px;
-}
-.lds-roller div:nth-child(6) {
-    animation-delay: -0.216s;
-}
-.lds-roller div:nth-child(6):after {
-    top: 54px;
-    left: 19px;
-}
-.lds-roller div:nth-child(7) {
-    animation-delay: -0.252s;
-}
-.lds-roller div:nth-child(7):after {
-    top: 50px;
-    left: 14px;
-}
-.lds-roller div:nth-child(8) {
-    animation-delay: -0.288s;
-}
-.lds-roller div:nth-child(8):after {
-    top: 45px;
-    left: 10px;
-}
-@keyframes lds-roller {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
     }
 }
 </style>

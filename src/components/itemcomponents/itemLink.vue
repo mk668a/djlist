@@ -63,4 +63,12 @@ export default {
         }
     }
 }
+
+@media screen and (min-width:768px) {
+
+    .itemLink {
+        padding: 0 20%;
+    }
+
+}
 </style>

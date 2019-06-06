@@ -1,22 +1,28 @@
 <template>
 <div class="footer">
   <ul class="footerLilst">
-    <li>
-      <!-- <a @click="toLink()" >運営</a> -->
-      <a v-scroll-to="'#top'">運営</a>
-    </li>
-    <li>
-      <a　@click="routerPush('about')" v-scroll-to="'#top'">DJ Listとは</a>
-    </li>
-    <li>
-      <div class="title">Dj List</div>
-    </li>
-    <li>
-      <a @click="routerPush('termsofservise')" v-scroll-to="'#top'">利用規約</a>
-    </li>
-    <li>
-      <a @click="routerPush('privacypolicy')" v-scroll-to="'#top'">プライバシーポリシー</a>
-    </li>
+    <span>
+      <li>
+        <!-- <a @click="toLink()" >運営</a> -->
+        <a v-scroll-to="'#top'">運営</a>
+      </li>
+      <li>
+        <a　@click="routerPush('about')" v-scroll-to="'#top'">DJ Listとは</a>
+      </li>
+    </span>
+    <span>
+      <li>
+        <div class="title">Dj List</div>
+      </li>
+    </span>
+    <span>
+      <li>
+        <a @click="routerPush('termsofservise')" v-scroll-to="'#top'">利用規約</a>
+      </li>
+      <li>
+        <a @click="routerPush('privacypolicy')" v-scroll-to="'#top'">プライバシーポリシー</a>
+      </li>
+    </span>
   </ul>
 </div>
 </template>
@@ -68,6 +74,37 @@ $main-color: #ec0d08;
             // @include exborder(#EC0D08);
             font-family: 'Monoton';
             color: $main-color;
+        }
+    }
+}
+
+@media screen and (min-width:768px) {
+    .footer {
+        .footerLilst {
+            display: flex;
+            padding: 0 5%;
+
+            span {
+                margin: auto;
+                display: flex;
+
+                &:nth-of-type(1) {
+                  width: 40%;
+                }
+
+                &:nth-of-type(2) {
+                  width: 20%;
+                }
+
+                &:nth-of-type(3) {
+                  width: 40%;
+                }
+
+                li{
+                  margin: auto;
+                }
+
+            }
         }
     }
 }
