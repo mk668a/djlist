@@ -4,8 +4,7 @@
   <main id="top" v-if="done">
     <Header :toform="toform" />
     <div class="container">
-      <router-view v-if="done" :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" :about="about" :deleteAbout="deleteAbout"
-        :done="done" />
+      <router-view :toItem="toItem" :toform="toform" :items="items" :item="item" :getItems="getItems" :unixTime2ymd="unixTime2ymd" :confirmLiked="confirmLiked" :like="like" :toRenew="toRenew" :about="about" :deleteAbout="deleteAbout" :done="done" />
     </div>
     <Footer />
   </main>
@@ -94,11 +93,25 @@ export default {
           Object.keys(responsedata).forEach((val, key) => {
             items.push(responsedata[val])
           })
+
           this.items = items
-          console.log(this.items);
           this.done = true
+          console.log(this.items)
+
+          for (var i = 0; i < this.items.length; i++) {
+            this.imgCheck(i)
+          }
+
         }
       })
+    },
+    imgCheck(i) {
+      var newImage = new Image()
+      newImage.src = this.items[i].img
+      var self = this
+      newImage.onerror = function() {
+        self.items[i].img = "https://firebasestorage.googleapis.com/v0/b/djlist-5d87e.appspot.com/o/noimg.png?alt=media&token=b45524bd-00b2-46f7-bacd-fa04710c6c62"
+      }
     },
     unixTime2ymd(intTime) {
       var d = new Date(intTime);

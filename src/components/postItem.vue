@@ -97,6 +97,7 @@ export default {
   data() {
     return {
       img: '',
+      localimg: {},
       name: '',
       places: [""],
       urls: [""],
@@ -105,8 +106,17 @@ export default {
     }
   },
   methods: {
+    postimg() {
+      var storageRef = firebase.storage().ref();
+      var ImagesRef = storageRef.child('images/' + Date.now() + "_" + this.localimg[0].name);
+      ImagesRef.put(this.localimg[0]).then(function(snapshot) {
+        console.log(snapshot);
+      });
+      return ImagesRef
+    },
     postC() {
       var userId = "anonymous"
+      var date = Date.now()
       if (firebase.auth().currentUser != null) {
         userId = firebase.auth().currentUser.uid;
       }
@@ -129,19 +139,38 @@ export default {
           this.genres = this.genres.slice(0, -1)
         }
 
+        var tentetive_postData = {
+          img: this.img,
+          name: this.name,
+          places: this.places,
+          url: this.urls,
+          genre: this.genres,
+          created_at: date,
+          uid: userId,
+        };
+
+        if (this.selectP == false) {
+          var img = this.postimg()
+          var name = img.name
+          var bucket = img.bucket
+          var ref = "https://firebasestorage.googleapis.com/v0/b/" + bucket + "/o/images%2F" + name
+          var url = ref + "?alt=media&token=" + ref.downloadTokens
+          this.img = url
+        }
+
         var postData = {
           img: this.img,
           name: this.name,
           places: this.places,
           url: this.urls,
           genre: this.genres,
-          created_at: Date.now(),
+          created_at: date,
           uid: userId,
         };
-        var newPostKey = firebase.database().ref('items/').push().key;
+        // var newPostKey = firebase.database().ref('items/').push().key;
 
         var updates = {};
-        updates['/items/' + newPostKey] = postData;
+        updates['/items/' + this.name + "_" + date] = postData;
 
         var res = null;
         res = firebase.database().ref().update(updates);
@@ -151,16 +180,16 @@ export default {
             message: this.name + 'が投稿されました',
             type: 'success'
           })
-          this.toItem(postData)
+          this.toItem(tentetive_postData)
         }
         res = null;
       }
     },
     selectedFile(e) {
       e.preventDefault();
-      var img = e.target.files;
-      this.img = window.URL.createObjectURL(img[0]);
-      console.log(this.img);
+      this.localimg = e.target.files;
+      this.img = window.URL.createObjectURL(e.target.files[0]);
+      console.log(this.localimg);
     },
   },
   watch: {
