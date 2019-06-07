@@ -18,7 +18,7 @@
     </div>
     <div class="button" id="block">
       <div id="flex">
-        <button @click="login"　type="button">LOGIN</button>
+        <button @click="login" 　type="button">LOGIN</button>
       </div>
       <div id="flex">
         <button @click="toUsrSignUp">SIGN UP</button>
@@ -80,20 +80,18 @@ export default {
     }
     .purple {
 
-        input {
-        }
-
         svg {
-            margin-left: auto;
-            margin-right: 10px;
+            height: 35px;
+            margin: 10px 10px 10px auto;
         }
 
         div {
-          margin-bottom: 20px;
+            margin-bottom: 20px;
 
             div {
                 margin-right: auto;
                 margin-left: 0;
+                height: 55px;
             }
         }
 
@@ -110,13 +108,13 @@ export default {
                     button {
                         color: #fff;
                         background: #a458ec;
-                        transition: .6s;
+                        transition: 0.6s;
 
-                        &:hover{
-                          color: #a458ec;
-                          background: #fff;
-                          border-color: #a458ec;
-                          transition: .3s;
+                        &:hover {
+                            color: #a458ec;
+                            background: #fff;
+                            border-color: #a458ec;
+                            transition: 0.3s;
                         }
                     }
                 }

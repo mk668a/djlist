@@ -54,7 +54,7 @@ export default {
       var divide_size = 9
 
       if (tagsWidth >= 768) {
-        divide_size = 15
+        divide_size = 16
       }
 
       while (width < tagsWidth / divide_size) {

@@ -293,6 +293,7 @@ $main-color: #EC0D08;
             width: 30%;
             margin-right: 0;
             margin-left: auto;
+            padding-left: 10px;
 
             .required {
                 font-size: 10px;
@@ -424,5 +425,14 @@ $main-color: #EC0D08;
         }
     }
 
+}
+
+@media screen and (min-width:768px) {
+    .postImg {
+        div {
+            width: 40%!important;
+            height: 40%!important;
+        }
+    }
 }
 </style>

@@ -25,7 +25,7 @@ export default {
 $main-color: #EC0D08;
 
 .itemChange {
-    padding: 0 50px;
+    padding: 0 8vw;
     margin: 30px 0;
     text-align: center;
 
@@ -37,12 +37,12 @@ $main-color: #EC0D08;
         margin-bottom: 10px;
         font-weight: bold;
         color: $main-color;
-        transition: .6s;
+        transition: 0.6s;
 
         &:hover {
             color: #fff;
             background: $main-color;
-            transition: .3s;
+            transition: 0.3s;
         }
     }
 }

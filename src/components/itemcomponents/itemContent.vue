@@ -17,28 +17,28 @@
     </div>
   </div>
   <div class="Cinfo">
-    <table>
-      <tr>
-        <td>Popular</td>
-        <td>{{getPopular(item)}}</td>
-      </tr>
-      <tr>
-        <td>Creted Date</td>
-        <td>{{unixTime2ymd(item.created_at)}}</td>
-      </tr>
-      <tr class="area">
-        <td>Area</td>
+    <div class="table">
+      <div class="tr">
+        <div class="td">Popular</div>
+        <div class="td">{{getPopular(item)}}</div>
+      </div>
+      <div class="tr">
+        <div class="td">Creted Date</div>
+        <div class="td">{{unixTime2ymd(item.created_at)}}</div>
+      </div>
+      <div class="tr area">
+        <div class="td">Area</div>
         <div class="tag">
           <div class="item" v-for="(i, index) in item.places" @click="toform(i)">{{i}} </div>
         </div>
-      </tr>
-      <tr class="genre">
-        <td>Genre</td>
+      </div>
+      <div class="tr genre">
+        <div class="td">Genre</div>
         <div class="tag">
           <div class="item" v-for="(i, index) in item.genre" @click="toform(i)">{{i}} </div>
         </div>
-      </tr>
-    </table>
+      </div>
+    </div>
   </div>
 </div>
 </template>
@@ -72,7 +72,7 @@ export default {
 $main-color: #EC0D08;
 
 .itemContent {
-    padding: 0 50px;
+    padding: 0 8vw;
     display: block;
 
     .itemImage {
@@ -94,8 +94,8 @@ $main-color: #EC0D08;
 
     .itemName {
         font-size: 38px;
-
         display: flex;
+
         * {
             height: 38px;
         }
@@ -111,6 +111,8 @@ $main-color: #EC0D08;
                 color: rgba($main-color, 0.7);
                 font-weight: bold;
                 font-size: 38px;
+                margin: auto;
+                display: block;
             }
 
             .on {
@@ -124,12 +126,12 @@ $main-color: #EC0D08;
         padding: 20px 10px;
         border-radius: 0.5em;
 
-        table {
+        .table {
             width: 100%;
 
-            tr {
+            .tr {
                 display: flex;
-                td {
+                .td {
                     &:nth-of-type(1) {
                         width: 30%;
                         font-size: 20px;
@@ -151,9 +153,10 @@ $main-color: #EC0D08;
             width: 70%;
             height: auto;
             margin-top: 5px;
+            display: flex;
+            flex-wrap: wrap;
 
             .item {
-                float: left;
                 margin: 3px 5px;
                 padding: 2px 5px;
                 cursor: pointer;
@@ -188,6 +191,60 @@ $main-color: #EC0D08;
 
     .itemContent {
         padding: 0 20%;
+    }
+
+}
+
+@media screen and (max-width:530px) {
+
+    .itemContent {
+
+        .itemName {
+
+            * {
+                height: 5vw;
+            }
+
+            h2 {
+                font-size: 5vw;
+            }
+
+            .popular {
+
+                a {
+                    font-size: 5vw;
+                }
+            }
+        }
+
+        .Cinfo {
+
+            .table {
+
+                .tr {
+                    display: block;
+                    margin-bottom: 10px;
+
+                    .tag {
+                        width: 100%!important;
+                    }
+
+                    .td {
+                        display: block;
+                        width: 100%!important;
+                    }
+                }
+            }
+        }
+
+        .area,
+        .genre {
+
+            .tag {
+
+                .item {}
+            }
+        }
     }
 
 }

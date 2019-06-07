@@ -99,7 +99,7 @@ export default {
 $main-color: #EC0D08;
 
 .itemComments {
-    padding: 0 50px;
+    padding: 0 8vw;
 
     .commentContainer {
         max-height: 100vh;
@@ -145,7 +145,34 @@ $main-color: #EC0D08;
 
     .itemComments {
         padding: 0 20%;
+
+        .purple {
+            input {
+                width: 60%;
+            }
+        }
+
     }
 
+}
+
+@media screen and (max-width:600px) {
+
+    .itemComments {
+
+        .purple {
+            display: block!important;
+
+            input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            button {
+                margin-left: 0;
+            }
+        }
+
+    }
 }
 </style>

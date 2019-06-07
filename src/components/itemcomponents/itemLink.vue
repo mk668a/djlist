@@ -45,7 +45,7 @@ export default {
 
 <style lang="scss">
 .itemLink {
-    padding: 0 50px;
+    padding: 0 8vw;
 
     .links {
         background: rgba(#fff, .5);

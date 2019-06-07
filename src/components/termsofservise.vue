@@ -127,7 +127,11 @@
     }
 }
 
-@media screen and (max-width:768px) {}
+@media screen and (min-width:768px) {
+    .termsofservise {
+        padding: 0 20%;
+    }
+}
 </style>
 
 

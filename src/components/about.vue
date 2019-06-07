@@ -14,19 +14,20 @@
 <style lang="scss">
 .about {
     margin-top: 100px;
+    padding: 0 8vw;
     min-height: 100vh;
 
     h2 {
         margin: auto auto 50px;
         font-family: "nicomojiPlus";
     }
-
-    p{
-      padding: 0 50px;
-    }
 }
 
-@media screen and (max-width:768px) {}
+@media screen and (min-width:768px) {
+    .about {
+        padding: 0 20%;
+    }
+}
 </style>
 
 

@@ -4,21 +4,21 @@
   <h3>ユーザー情報</h3>
 
   <div class="userData">
-    <div>
-      <table>
-        <tr>
-          <td>メール</td>
-          <td>{{email}}</td>
-        </tr>
-        <tr v-if="getUsername">
-          <td>ユーザー名</td>
-          <td>{{username}}</td>
-        </tr>
+    <div class="data">
+      <div class="table">
+        <div class="tr">
+          <div class="td">メール</div>
+          <div class="td">{{email}}</div>
+        </div>
+        <div class="tr" v-if="getUsername">
+          <div class="td">ユーザー名</div>
+          <div class="td">{{username}}</div>
+        </div>
         <div v-else class="purple" id="flex">
           <input type="text" placeholder="ユーザー名" v-model="username" />
           <button type="button" @click="CreateUsrename">登録</button>
         </div>
-      </table>
+      </div>
     </div>
     <form class="purple">
       <button type="button" @click="logout">ログアウト</button>
@@ -169,7 +169,6 @@ export default {
 $main-color: #ec0d08;
 
 .userInfo {
-    width: 100%;
     margin-top: 100px;
 
     h3 {
@@ -185,17 +184,23 @@ $main-color: #ec0d08;
         div {
             width: 80%;
             margin: 20px auto 10px;
-            background: rgba(#fff, .5);
             padding: 20px 10px;
             border-radius: 0.5em;
 
-            table {
+            .table {
                 width: 100%;
+                background: rgba(#fff, .5);
 
-                tr {
+                .tr {
                     display: flex;
-                    td {
+                    padding: 10px;
+                    margin: 0;
+
+                    .td {
+                        margin: 0;
+                        padding: 0;
                         font-size: 16px;
+
                         &:nth-of-type(1) {
                             width: 30%;
                             padding-right: 20px;
@@ -267,6 +272,68 @@ $main-color: #ec0d08;
 
         .arrowUp {
             display: none;
+        }
+    }
+}
+
+@media screen and (min-width:768px) {
+    .userInfo {
+        h3 {
+            padding-left: 20%;
+        }
+
+        .userData {
+            .data {
+              padding: 0 20%;
+              width: auto;
+
+                table {
+                  width: auto;
+                }
+            }
+
+            .purple{
+              padding: 0 20%;
+              width: auto;
+            }
+        }
+
+        .resultSpan {
+
+            .seachResult {
+
+                div {
+                    h3 {
+                        padding-left: 20%;
+                    }
+                }
+            }
+
+        }
+
+        .masonry{
+          padding-left: 20%!important;
+        }
+    }
+}
+
+@media screen and (max-width:530px) {
+    .userInfo {
+        .userData {
+
+            div {
+
+                .table {
+
+                    .tr {
+                        display: block!important;
+                        .td {
+                            width: 100%!important;
+                        }
+
+                    }
+                }
+            }
         }
     }
 }

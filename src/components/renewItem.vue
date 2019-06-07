@@ -237,6 +237,7 @@ $main-color: #EC0D08;
     }
 
     .purple {
+        padding: 0 10px;
 
         .itemName {
             width: 30%;

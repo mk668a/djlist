@@ -84,29 +84,27 @@ export default {
     }
     .purple {
 
-        input {
-        }
-
         svg {
-            margin-left: auto;
-            margin-right: 10px;
+            height: 35px;
+            margin: 10px 10px 10px auto;
         }
 
         div {
-          margin-bottom: 20px;
+            margin-bottom: 20px;
 
             div {
                 margin-right: auto;
                 margin-left: 0;
+                height: 55px;
             }
 
-            p{
-              margin: auto;
+            p {
+                margin: auto;
             }
         }
 
-        .sub{
-          margin: -30px auto 40px;
+        .sub {
+            margin: -30px auto 40px;
         }
 
         .button {
