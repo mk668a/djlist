@@ -3,8 +3,7 @@
   <ul class="footerLilst">
     <span>
       <li>
-        <!-- <a @click="toLink()" >運営</a> -->
-        <a v-scroll-to="'#top'">運営</a>
+        <a @click="toLink('https://mhome-60e53.web.app/')">運営</a>
       </li>
       <li>
         <a　@click="routerPush('about')" v-scroll-to="'#top'">DJ Listとは</a>
@@ -89,19 +88,19 @@ $main-color: #ec0d08;
                 display: flex;
 
                 &:nth-of-type(1) {
-                  width: 40%;
+                    width: 40%;
                 }
 
                 &:nth-of-type(2) {
-                  width: 20%;
+                    width: 20%;
                 }
 
                 &:nth-of-type(3) {
-                  width: 40%;
+                    width: 40%;
                 }
 
-                li{
-                  margin: auto;
+                li {
+                    margin: auto;
                 }
 
             }

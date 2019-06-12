@@ -32,7 +32,8 @@ export default {
     content: '';
     width: 50px;
     height: 50px;
-    background: linear-gradient(90deg, transparent, rgba(#fff, 1) 50%, transparent);
+    // 非表示
+    // background: linear-gradient(90deg, transparent, rgba(#fff, 1) 50%, transparent);
     position: relative;
     transform: rotate(135deg) skew(calc((90deg - 5deg) / 2), calc((90deg - 5deg) / 2));
 }
@@ -134,9 +135,9 @@ export default {
         .aboutMessage {
             font-size: 18px;
 
-            div{
-              margin-top: 15px;
-              width: 100%;
+            div {
+                margin-top: 15px;
+                width: 100%;
             }
         }
     }
@@ -149,8 +150,8 @@ export default {
             font-size: 14px;
             padding: 15px 10px;
 
-            div{
-              margin-top: 17px;
+            div {
+                margin-top: 17px;
             }
         }
     }

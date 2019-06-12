@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="tags">
-    <div v-for="(item, index) in tags" :key="index" class="tag" @click="toform(item)">
+    <div v-for="(item, index) in tags" :key="index" class="tag" @click="toform(item)" style="font-family:'nicomojiPlus';">
       {{item}}
     </div>
     <div class="flesh-button">
@@ -227,7 +227,6 @@ $main-color: #ec0d08;
             padding: 2px 5px;
             cursor: pointer;
             color: #fff;
-            font-family: "nicomojiPlus";
             background: linear-gradient(0deg, #FDE816 1%, #a458ec 60%, #fff);
             border-radius: 0.3em;
             font-size: 14px;

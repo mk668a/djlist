@@ -95,6 +95,7 @@ $main-color: #ec0d08;
 }
 
 .main {
+  min-height: 100vh;
 
     .searchSpan {
         transition: 0.3s cubic-bezier(.4, 0, .2, 1);
