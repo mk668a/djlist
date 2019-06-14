@@ -10,6 +10,7 @@ import userInfo from '@/components/usercomponents/userInfo'
 
 import privacypolicy from '@/components/privacypolicy'
 import termsofservise from '@/components/termsofservise'
+import management from '@/components/management'
 import about from '@/components/about'
 import itemMain from '@/components/itemcomponents/itemMain'
 import searchMain from '@/components/searchcomponents/searchMain'
@@ -58,6 +59,10 @@ export default new Router({
     path: '/termsofservise',
     name: 'termsofservise',
     component: termsofservise
+  }, {
+    path: '/management',
+    name: 'management',
+    component: management
   }, {
     path: '/about',
     name: 'about',

@@ -289,8 +289,15 @@ body {
     }
 
     a {
+        text-decoration: none;
         cursor: pointer;
+        color: #393939;
         /* color: #EC0D08; */
+    }
+
+    a:visited {
+        color: inherit;
+        text-decoration: none;
     }
 
     td {

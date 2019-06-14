@@ -3,7 +3,7 @@
   <ul class="footerLilst">
     <span>
       <li>
-        <a @click="toLink('https://mhome-60e53.web.app/')">運営</a>
+        <a @click="routerPush('management')" v-scroll-to="'#top'">運営</a>
       </li>
       <li>
         <a　@click="routerPush('about')" v-scroll-to="'#top'">DJ Listとは</a>
