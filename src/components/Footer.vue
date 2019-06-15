@@ -34,7 +34,7 @@ export default {
       this.$router.push(route)
     },
     toLink(link) {
-      console.log(link);
+      // console.log(link);
       if (link != 'null') {
         window.open(link);
       }
@@ -65,12 +65,10 @@ $main-color: #ec0d08;
             margin-bottom: 20px;
             text-align: center;
             display: block;
-            // color: #a458ec;
             @include exborder(#fff);
         }
 
         .title {
-            // @include exborder(#EC0D08);
             font-family: 'Monoton';
             color: $main-color;
         }

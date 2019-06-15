@@ -1,9 +1,9 @@
 <template>
-<div class="management">
+<div class="management" id="footerContens">
   <div id="flex">
     <h2>management</h2>
   </div>
-  <div id="management">
+  <div id="content">
     <p>
       運営者のメールアドレス
     </p>
@@ -18,30 +18,10 @@
 
 <style lang="scss">
 .management {
-    margin: 100px 5% 50px;
-    min-height: 70vh;
-
-    h2 {
-        margin: auto auto 40px;
-        font-family: "nicomojiPlus";
-    }
-
-    h3 {
-        font-size: 18px;
-    }
-
-    a,
-    p {
-        font-size: 20px;
-        padding: 0;
-    }
-
-    #management {
-        display: flex;
-
-        a{
-          color: blue;
-          border-bottom: 1px solid blue;
+    #content {
+        a {
+            color: blue;
+            border-bottom: 1px solid blue;
         }
 
         p {
@@ -57,9 +37,16 @@
     }
 }
 
-@media screen and (min-width:768px) {
+@media screen and (max-width:530px) {
     .management {
-        padding: 0 20%;
+        #content {
+            display: block;
+
+            p {
+                margin: 0!important;
+                text-align: center;
+            }
+        }
     }
 }
 </style>

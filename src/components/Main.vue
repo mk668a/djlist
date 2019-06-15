@@ -52,13 +52,13 @@ export default {
 
       this.targetRect = rect;
 
-      if (this.targetRect < 20) {
+      if (this.targetRect < 15) {
         this.$set(this.searchHiddenStyle, 'visibility', 'hidden');
         search.classList.add('head-animation');
 
         this.$set(this.aboutHiddenStyle, 'visibility', 'hidden');
         about.classList.add('head-animation');
-        // console.log(this.aboutHiddenStyle);
+
       } else {
         this.$set(this.searchHiddenStyle, 'visibility', 'visible');
         search.classList.remove('head-animation');
@@ -73,29 +73,29 @@ export default {
   },
   destroyed() {
     window.removeEventListener('scroll', this.handleScroll);
-  },
+  }
 }
 </script>
 
 <style lang="scss">
 $main-color: #ec0d08;
 
-.fade-leave {
-    opacity: 1;
-}
-.fade-leave-to {
-    opacity: 0;
-}
-.fade-leave-active {
-    transition: opacity 300ms ease-out;
-}
+// .fade-leave {
+//     opacity: 1;
+// }
+// .fade-leave-to {
+//     opacity: 0;
+// }
+// .fade-leave-active {
+//     transition: opacity 300ms ease-out;
+// }
 
 .head-animation {
     transform: translateY(-200%);
 }
 
 .main {
-  min-height: 100vh;
+    min-height: 100vh;
 
     .searchSpan {
         transition: 0.3s cubic-bezier(.4, 0, .2, 1);
@@ -103,7 +103,6 @@ $main-color: #ec0d08;
         margin-top: 70px;
         width: 100%;
         z-index: 100;
-        // background: linear-gradient(0rad, rgba(#fff, 0) , rgba(#FDE816, .5) 50%, rgba(#fff, 1));
         background: transparent;
     }
 

@@ -35,27 +35,18 @@ export default {
   },
   data() {
     return {
-      // load: false,
       query: null,
       itemobj: {}
     }
   },
   methods: {
-    // imgcheck(img) {
-    //   console.log(img);
-    //   if (img == "none") {
-    //     return false
-    //   } else {
-    //     return true
-    //   }
-    // },
     getItem() {
       this.query = this.$route.query.name
       let self = this
       firebase.database().ref('/items').orderByChild("name").equalTo(self.query).
       on("child_added", function(snapshot) {
         self.itemobj = snapshot.val()
-        console.log(self.itemobj);
+        // console.log(self.itemobj);
       })
     }
   },

@@ -45,7 +45,7 @@ export default {
       return flag;
     },
     getTags(items) {
-      // var tags = document.querySelector('.tags');
+
       this.tags = []
 
       var tagsWidth = window.innerWidth;
@@ -79,7 +79,6 @@ export default {
           this.tags.push(item)
           // console.log(item);
 
-          // tags = document.querySelector('.tags');
           tagsWidth = window.innerWidth
           // console.log(tagsWidth);
 
@@ -123,7 +122,7 @@ export default {
   created() {
     this.getTags(this.items)
     this.beforeTags = this.tags
-  },
+  }
 }
 </script>
 
@@ -156,7 +155,6 @@ $main-color: #ec0d08;
                 width: 100%;
                 padding: 0 10px;
                 border-radius: 0.1em 0 0 0.1em;
-                // border: solid 1px $main-color;
                 background: #000;
 
                 input {
@@ -197,6 +195,7 @@ $main-color: #ec0d08;
                 }
 
             }
+            // end searchInput
 
             .searchButton {
                 display: block;
@@ -215,8 +214,12 @@ $main-color: #ec0d08;
                     }
                 }
             }
+            // end searchButton
+
         }
+        // end form
     }
+    // end searchform
 
     .tags {
         margin-top: 5px;
@@ -269,13 +272,12 @@ $main-color: #ec0d08;
 
         }
     }
+    // end tags
 }
 
 @media screen and (min-width:768px) {
     .search {
         .searchform {
-            // width: 45%;
-
             .form {
                 width: 60%!important;
             }

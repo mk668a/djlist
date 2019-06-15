@@ -99,7 +99,7 @@ export default {
       var itemId
       firebase.database().ref('/items').orderByChild("name").equalTo(this.item.name).
       on("child_added", function(snapshot) {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
         itemId = snapshot.key
       })
 
@@ -124,8 +124,7 @@ export default {
     },
     getItem() {
       this.query = this.$route.query.name
-      console.log(this.query);
-      // if (Object.keys(this.item).length == 0) {
+      // console.log(this.query);
       let self = this
       firebase.database().ref('/items').orderByChild("name").equalTo(self.query).
       on("child_added", function(snapshot) {
@@ -133,9 +132,8 @@ export default {
         if (self.item.places != undefined) self.places = self.item.places
         if (self.item.url != undefined) self.urls = self.item.url
         if (self.item.genre != undefined) self.genres = self.item.genre
-        console.log(self.item);
+        // console.log(self.item);
       })
-      // }
     }
   },
   mounted() {

@@ -1,9 +1,9 @@
 <template>
-<div class="termsofservise">
+<div class="termsofservise" id="footerContens">
   <div id="flex">
     <h2>termsofservise</h2>
   </div>
-  <div id="termsofservise">
+  <div id="content">
     <p>この利用規約（以下，「本規約」といいます。）は，運営がこのウェブサイト上で提供するDJ List（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。</p>
 
     <h3>第1条（適用）</h3>
@@ -104,33 +104,9 @@
 
 <style lang="scss">
 .termsofservise {
-    margin: 100px 5% 50px;
-    min-height: 70vh;
-
-    h2 {
-        margin: auto auto 40px;
-        font-family: "nicomojiPlus";
-        font-size: 32px;
-    }
-
-    h3 {
-        font-size: 18px;
-    }
-
-    p {
-        font-size: 14px;
-        padding: 0 5%;
-    }
-
-    #termsofservise {
-        max-height: 50vh;
+    #content {
+        max-height: 60vh;
         overflow-y: scroll;
-    }
-}
-
-@media screen and (min-width:768px) {
-    .termsofservise {
-        padding: 0 20%;
     }
 }
 </style>

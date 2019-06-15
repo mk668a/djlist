@@ -1,9 +1,9 @@
 <template>
-<div class="privacypolicy">
+<div class="privacypolicy" id="footerContens">
   <div id="flex">
     <h2>privacypolicy</h2>
   </div>
-  <div id="privacypolicy">
+  <div id="content">
     <p>運営は，本ウェブサイト上で提供するDJ List（以下,「本サービス」といいます。）におけるプライバシー情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。</p>
 
     <h3>第1条（プライバシー情報）</h3>
@@ -98,32 +98,9 @@
 
 <style lang="scss">
 .privacypolicy {
-    margin: 100px 5% 50px;
-    min-height: 70vh;
-
-    h2 {
-        margin: auto auto 40px;
-        font-family: "nicomojiPlus";
-    }
-
-    h3 {
-        font-size: 18px;
-    }
-
-    p {
-        font-size: 14px;
-        padding: 0 5%;
-    }
-
-    #privacypolicy {
-      max-height: 50vh;
-      overflow-y: scroll;
-    }
-}
-
-@media screen and (min-width:768px) {
-    .privacypolicy {
-        padding: 0 20%;
+    #content {
+        max-height: 60vh;
+        overflow-y: scroll;
     }
 }
 </style>

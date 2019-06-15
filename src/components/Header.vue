@@ -48,12 +48,7 @@ export default {
         this.$router.push('/')
       }
     }
-  },
-  created() {
-    // console.log(this.$route.name);
-    // this.route = this.$route.name
-    // console.log(this.route);
-  },
+  }
 }
 </script>
 

@@ -177,6 +177,16 @@ export default {
 <style lang="scss">
 $paipu-size: 200;
 $main-color: #ec0d08;
+@mixin reflect() {
+    margin: 0 auto;
+    width: #{$paipu-size}px;
+    height: #{$paipu-size/10}px;
+    background: no-repeat url("../../assets/paipu.png");
+    background-size: contain;
+    // -webkit-box-reflect: below 4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
+    // -webkit-text-stroke-width: 1px;
+    // -webkit-text-stroke-color: #fff975;
+}
 
 .head-animation {
     transform: translateY(-200%);
@@ -201,10 +211,6 @@ $main-color: #ec0d08;
         z-index: 100;
         line-height: 0;
 
-        h2 {
-            // font-size: 8vw;
-        }
-
         .shadow {
             position: relative;
             transform: rotateX(70deg);
@@ -218,47 +224,31 @@ $main-color: #ec0d08;
             height: auto;
             display: flex;
             position: relative;
-            // reflect
-            // -webkit-box-reflect: below 4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
-            // -webkit-text-stroke-width: 1px;
-            // -webkit-text-stroke-color: #fff975;
 
             div {
-                margin: 0 auto;
-                width: #{$paipu-size}px;
-                height: #{$paipu-size/10}px;
-                background: no-repeat url("../../assets/paipu.png");
-                background-size: contain;
+                @include reflect();
                 opacity: 0.5;
             }
         }
 
         .paipu {
-            bottom: 10px;
             width: 100%;
             height: auto;
             display: flex;
             position: relative;
-            // reflect
-            // -webkit-box-reflect: below 4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(0.5, transparent), to(rgba(0,0,0,0.8)));
-            // -webkit-text-stroke-width: 1px;
-            // -webkit-text-stroke-color: #fff975;
 
             div {
-                margin: 0 auto;
-                width: #{$paipu-size}px;
-                height: #{$paipu-size/10}px;
-                background: no-repeat url("../../assets/paipu.png");
-                background-size: contain;
+                @include reflect();
             }
         }
     }
+    // end query
 
     .resultSpan {
         min-height: 100vh;
         z-index: 0;
         position: relative;
-        top: 190px;
+        top: 200px;
 
         .seachResult {
             z-index: 0;
@@ -267,7 +257,7 @@ $main-color: #ec0d08;
 
             div {
                 h3 {
-                    padding-left: 20px;
+                    padding: 0 10%;
                     margin-bottom: 0;
                 }
             }
@@ -294,10 +284,6 @@ $main-color: #ec0d08;
     .searchMain {
         .query {
             top: 260px;
-        }
-
-        .resultSpan {
-            top: 210px;
         }
     }
 }

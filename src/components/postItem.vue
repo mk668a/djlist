@@ -110,7 +110,7 @@ export default {
       var storageRef = firebase.storage().ref();
       var ImagesRef = storageRef.child('images/' + Date.now() + "_" + this.localimg[0].name);
       ImagesRef.put(this.localimg[0]).then(function(snapshot) {
-        console.log(snapshot);
+        // console.log(snapshot);
       });
       return ImagesRef
     },
@@ -120,7 +120,7 @@ export default {
       if (firebase.auth().currentUser != null) {
         userId = firebase.auth().currentUser.uid;
       }
-      console.log(userId);
+      // console.log(userId);
 
       if (this.name == "" || this.img == "") {
         this.$notify.error({
@@ -189,7 +189,7 @@ export default {
       e.preventDefault();
       this.localimg = e.target.files;
       this.img = window.URL.createObjectURL(e.target.files[0]);
-      console.log(this.localimg);
+      // console.log(this.localimg);
     },
   },
   watch: {

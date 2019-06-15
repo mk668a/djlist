@@ -214,28 +214,8 @@ export default {
 $main-color: #EC0D08;
 
 @font-face {
-    font-family: "Kingthings_Foundation";
-    src: url("https://dl.dropboxusercontent.com/s/junww0gr4uxkc9h/Kingthings_Foundation.otf");
-}
-
-@font-face {
-    font-family: "KSblockblock";
-    src: url("https://dl.dropboxusercontent.com/s/r5sdu2jjwpx4zbn/KSblockblock.otf");
-}
-
-@font-face {
     font-family: "nicomojiPlus";
     src: url("https://dl.dropboxusercontent.com/s/2x3b8i1xtub89x7/nicomoji-plus_1.11.ttf");
-}
-
-@font-face {
-    font-family: "Canterbury";
-    src: url("https://dl.dropboxusercontent.com/s/h5a6qi2p7qvcv7t/Canterbury.ttf");
-}
-
-@font-face {
-    font-family: "PixelMplus12";
-    src: url("https://dl.dropboxusercontent.com/s/jvmdxbl60g4mv7w/PixelMplus12-Regular.ttf?dl=0");
 }
 
 #top {
@@ -246,17 +226,10 @@ $main-color: #EC0D08;
 body {
     background-color: #FDE816;
     color: #393939;
-    // background: url("./assets/lightshow.jpg") no-repeat center;
-    // background-size: cover;
     margin: 0;
 
     #app {
         font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
-        // letter-spacing: 1.2px;
-        // font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        // font-family: 'ヒラギノ明朝 ProN W6', 'HiraMinProN-W6', 'HiraMinProN-W6', 'Avenir', Helvetica, Arial, sans-serif;
-        /* -webkit-font-smoothing: antialiased; */
-        /* -moz-osx-font-smoothing: grayscale; */
     }
 
     h1 {
@@ -292,24 +265,23 @@ body {
         text-decoration: none;
         cursor: pointer;
         color: #393939;
-        /* color: #EC0D08; */
-    }
-
-    a:visited {
-        color: inherit;
-        text-decoration: none;
+        &:visited {
+            color: inherit;
+            text-decoration: none;
+        }
     }
 
     td {
         color: rgb(57, 57, 57);
     }
+
     .container {
         z-index: 0;
         padding: 20px 0;
         position: relative;
     }
 
-    #blok {
+    #block {
         display: block;
     }
 
@@ -395,18 +367,15 @@ body {
             box-shadow: 0 0 10px 1px rgba(0,0,0,0.3);
         }
 
-        &:hover {
-            .el-icon-arrow-up {
-                &::before {
-                    // font-size: 28px;
-                }
-            }
-        }
-
         .el-icon-arrow-up {
             &::before {
                 font-size: 30px;
                 font-weight: bold;
+                color: #fff;
+
+                &:active {
+                    color: inherit;
+                }
             }
         }
     }

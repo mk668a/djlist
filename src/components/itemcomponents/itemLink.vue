@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     toLink(link) {
-      console.log(link);
+      // console.log(link);
       if (link != 'null') {
         window.open(link);
       }

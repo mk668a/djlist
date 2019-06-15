@@ -12,12 +12,7 @@ export default {
   props: {
     'item': Object,
     'toRenew': Function
-  },
-  data() {
-    return {}
-  },
-  methods: {},
-  created() {}
+  }
 }
 </script>
 

@@ -74,7 +74,6 @@ export default {
         font-family: "nicomojiPlus";
         @include exborder(#fff);
         line-height: 1;
-        //
         // background: #602f8e;
         background: linear-gradient(0deg, rgba(#fff, .8), transparent 50%, rgba(#fff, .8));
         margin: 0 20px 40px;

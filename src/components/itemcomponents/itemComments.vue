@@ -47,7 +47,7 @@ export default {
       firebase.database().ref('/items').orderByChild("name").equalTo(this.item.name).
       on("child_added", function(snapshot) {
         self.itemId = snapshot.key
-        console.log(self.itemId);
+        // console.log(self.itemId);
       })
 
       if (this.commentform != '') {
@@ -70,8 +70,7 @@ export default {
 
         var updates = {};
         updates['/items/' + this.itemId + '/comments/' + newPostKey] = postData;
-
-        console.log(updates);
+        // console.log(updates);
 
         var res = null;
         res = firebase.database().ref().update(updates);

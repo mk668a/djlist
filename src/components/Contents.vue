@@ -64,7 +64,7 @@ export default {
       } else {
         return Object.keys(item.popular).length
       }
-    },
+    }
   },
   mounted() {
     setTimeout(() => {
@@ -112,8 +112,8 @@ $main-color: #ec0d08;
         .item {
             padding: 10px 20px;
             margin: 20px 0;
-            // background: #FFE306;
-            background: no-repeat url("../assets/panel.png");
+            background: url("../assets/panel.png");
+            background-size: contain;
             box-shadow: 10px 10px 10px 1px rgba(0,0,0,0.4);
 
             .dataName {
@@ -159,9 +159,10 @@ $main-color: #ec0d08;
                     color: rgba($main-color, 1);
                 }
             }
-
         }
+        // end item
     }
+    // end masonry
 
     .loading {
         margin-top: 50px;
@@ -178,7 +179,6 @@ $main-color: #ec0d08;
                 padding: 7.5px 15px;
 
                 .dataName {
-
                     a {
                         font-size: #{$margin-size*1.75}px;
                     }
