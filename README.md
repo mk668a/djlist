@@ -1,8 +1,7 @@
 # DJ List
 
-[URL](https://djlist-5d87e.web.app/)
-&lt;
-DJのリストが見れるユーザー投稿型サイト
+-   [URL](https://djlist-5d87e.web.app/)
+    DJのリストが見れるユーザー投稿型サイト
 
 ## 技術
 
