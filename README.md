@@ -1,12 +1,13 @@
 # DJ List
 
 [URL](https://djlist-5d87e.web.app/)
+&lt;
 DJのリストが見れるユーザー投稿型サイト
 
 ## 技術
 
 -   フレームワーク: vue-cli2
--   css: SCSS
+-   CSS: SCSS
 -   言語: JavaScript
 -   サーバー: Firebase Hosting
 -   データベース: Firebase Realtime Database
@@ -43,19 +44,15 @@ DJのリストが見れるユーザー投稿型サイト
 
 ### 人物ページ
 
--   要素: お気に入り数、投稿した日時、活動場所、ジャンル、関連リンク
+-   情報: お気に入り数、投稿した日時、活動場所、ジャンル、関連リンク
 -   コメント機能
 -   コメント: ログインしていないorユーザー名を登録していない場合、匿名で投稿される
 -   コメント: ログインしているandユーザー名を登録している場合、ユーザー名で投稿される
--   編集機能（要素を編集できる）
+-   編集機能（情報を編集できる）
 
-### 人物ページ
+### フッター
 
--   要素: お気に入り数、投稿した日時、活動場所、ジャンル、関連リンク
--   コメント機能
--   コメント: ログインしていないorユーザー名を登録していない場合、匿名で投稿される
--   コメント: ログインしているandユーザー名を登録している場合、ユーザー名で投稿される
--   編集機能（要素を編集できる）
+-   メニュー(左から運営、About、利用規約、プライバシーポリシー)
 
 ### その他
 
@@ -69,6 +66,4 @@ npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 ```
