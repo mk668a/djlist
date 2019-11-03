@@ -100,7 +100,7 @@ $main-color: #ec0d08;
     .searchSpan {
         transition: 0.3s cubic-bezier(.4, 0, .2, 1);
         position: fixed;
-        margin-top: 70px;
+        margin-top: 30px;
         width: 100%;
         z-index: 100;
         background: transparent;
@@ -109,7 +109,7 @@ $main-color: #ec0d08;
     .toAboutSpan {
         transition: 0.3s cubic-bezier(.4, 0, .2, 1);
         z-index: 100;
-        margin-top: 230px;
+        margin-top: 190px;
         position: fixed;
         width: 100%;
     }
@@ -120,10 +120,10 @@ $main-color: #ec0d08;
 
         .contents {
             transition: 0.3s;
-            padding-top: 210px;
+            padding-top: 170px;
         }
         .contents.active {
-            padding-top: 320px;
+            padding-top: 280px;
         }
     }
 }

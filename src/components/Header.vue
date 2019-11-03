@@ -3,9 +3,9 @@
   <div @click="toUser" class="user">
     <i class="far fa-smile"></i>
   </div>
-  <h1 @click="reload" class="title">
+  <h2 @click="reload" class="title">
     Dj List
-  </h1>
+  </h2>
   <div @click="routerPush('postItem')" class="post">
     <i class="far fa-arrow-alt-circle-up"></i>
   </div>
@@ -54,6 +54,7 @@ export default {
 
 <style lang="scss">
 $main-color: #ec0d08;
+
 @mixin exborder($color:#fff) {
     // 上
     text-shadow: 1.5px 1.5px 0 $color, -1.5px 1.5px 0 $color, 1.5px -1.5px 0 $color, -1.5px -1.5px 0 $color;
@@ -65,7 +66,7 @@ $main-color: #ec0d08;
 .header {
     z-index: 100;
     display: block;
-    height: 100px;
+    height: 60px;
     width: 90%;
     padding: 0 5%;
     position: fixed;

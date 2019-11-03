@@ -128,6 +128,7 @@ export default {
 
 <style lang="scss">
 $main-color: #ec0d08;
+
 @mixin exborder($color:#fff) {
     // 上
     text-shadow: 1px 1px 0 $color, -1px 1px 0 $color, 1px -1px 0 $color, -1px -1px 0 $color;
