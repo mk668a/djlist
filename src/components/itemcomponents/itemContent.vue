@@ -230,13 +230,13 @@ $main-color: #ec0d08;
       }
     }
 
-    .area,
-    .genre {
-      .tag {
-        .item {
-        }
-      }
-    }
+    // .area,
+    // .genre {
+    //   .tag {
+    //     .item {
+    //     }
+    //   }
+    // }
   }
 }
 </style>
