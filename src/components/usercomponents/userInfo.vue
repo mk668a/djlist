@@ -1,125 +1,131 @@
 <template>
-<div class="userInfo">
+  <div class="userInfo">
+    <h3>ユーザー情報</h3>
 
-  <h3>ユーザー情報</h3>
+    <div class="userData">
+      <div class="data">
+        <div class="table">
+          <div class="tr">
+            <div class="td">メール</div>
+            <div class="td">{{email}}</div>
+          </div>
+          <div class="tr" v-if="getUsername">
+            <div class="td">ユーザー名</div>
+            <div class="td">{{username}}</div>
+          </div>
+          <div v-else class="purple" id="flex">
+            <input type="text" placeholder="ユーザー名" v-model="username" />
+            <button type="button" @click="CreateUsrename">登録</button>
+          </div>
+        </div>
+      </div>
+      <form class="purple">
+        <button type="button" @click="logout">ログアウト</button>
+      </form>
+    </div>
 
-  <div class="userData">
-    <div class="data">
-      <div class="table">
-        <div class="tr">
-          <div class="td">メール</div>
-          <div class="td">{{email}}</div>
+    <div class="resultSpan">
+      <div class="seachResult">
+        <div class="liked">
+          <h3>お気に入り</h3>
+          <Contents :toItem="toItem" :items="likedItems" :confirmLiked="confirmLiked" :like="like" />
         </div>
-        <div class="tr" v-if="getUsername">
-          <div class="td">ユーザー名</div>
-          <div class="td">{{username}}</div>
-        </div>
-        <div v-else class="purple" id="flex">
-          <input type="text" placeholder="ユーザー名" v-model="username" />
-          <button type="button" @click="CreateUsrename">登録</button>
+        <div class="posted">
+          <h3>投稿したitem</h3>
+          <Contents :toItem="toItem" :items="postItems" :confirmLiked="confirmLiked" :like="like" />
         </div>
       </div>
     </div>
-    <form class="purple">
-      <button type="button" @click="logout">ログアウト</button>
-    </form>
   </div>
-
-  <div class="resultSpan">
-    <div class="seachResult">
-      <div class="liked">
-        <h3>お気に入り</h3>
-        <Contents :toItem="toItem" :items="likedItems" :confirmLiked="confirmLiked" :like="like" />
-      </div>
-      <div class="posted">
-        <h3>投稿したitem</h3>
-        <Contents :toItem="toItem" :items="postItems" :confirmLiked="confirmLiked" :like="like" />
-      </div>
-    </div>
-  </div>
-
-</div>
 </template>
 
 <script>
-import firebase from 'firebase'
-import Contents from '@/components/Contents'
+import firebase from "firebase";
+import Contents from "@/components/Contents";
 
 export default {
-  name: 'userInfo',
+  name: "userInfo",
   components: {
     Contents
   },
   props: {
-    "items": Array,
-    "toItem": Function,
-    'confirmLiked': Function,
-    'like': Function
+    items: Array,
+    toItem: Function,
+    confirmLiked: Function,
+    like: Function
   },
   data() {
     return {
       obj: [],
-      username: '',
-      email: '',
-      uid: '',
+      username: "",
+      email: "",
+      uid: "",
       postItems: [],
       likedItems: [],
       getUsername: false
-    }
+    };
   },
   methods: {
     logout() {
-      firebase.auth().signOut().then(function() {
-        console.log("logout");
-        // Sign-out successful.
-      }).catch(function(error) {
-        // An error happened.
-      });
-      this.$router.push('userLogin')
+      firebase
+        .auth()
+        .signOut()
+        .then(function() {
+          console.log("logout");
+          // Sign-out successful.
+        })
+        .catch(function(error) {
+          // An error happened.
+        });
+      this.$router.push("userLogin");
     },
     CreateUsrename() {
-      if (this.username != '' && this.username != 'anonymous') {
-        let self = this
-        firebase.auth().currentUser.updateProfile({
-          displayName: self.username
-        }).then(function() {
-          // console.log("Update successful");
-          this.$notify({
-            title: 'ユーザーネームを登録しました',
-            message: 'ユーザーネーム"' + this.username + '"を登録しました',
-            type: 'success'
+      if (this.username != "" && this.username != "anonymous") {
+        let self = this;
+        firebase
+          .auth()
+          .currentUser.updateProfile({
+            displayName: self.username
           })
-          self.getUsername = true
-          self.$router.push('userInfo')
-        }).catch(function(error) {
-          console.log(error);
-        });
+          .then(function() {
+            // console.log("Update successful");
+            this.$notify({
+              title: "ユーザーネームを登録しました",
+              message: 'ユーザーネーム"' + this.username + '"を登録しました',
+              type: "success"
+            });
+            self.getUsername = true;
+            self.$router.push("userInfo");
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
       }
     },
     getUser() {
-      let self = this
+      let self = this;
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           console.log("currentUser");
           console.log(firebase.auth().currentUser);
 
-          var currentUser = firebase.auth().currentUser
+          var currentUser = firebase.auth().currentUser;
 
-          self.email = currentUser.email
-          self.username = currentUser.displayName
-          self.uid = currentUser.uid
+          self.email = currentUser.email;
+          self.username = currentUser.displayName;
+          self.uid = currentUser.uid;
 
           if (currentUser != null) {
-            self.getUsername = true
+            self.getUsername = true;
             console.log("getUsername: " + self.username);
           }
         }
-      })
+      });
     },
     getPostItems(uid, items) {
       for (var i in items) {
         if (items[i].uid == firebase.auth().currentUser.uid) {
-          this.postItems.push(items[i])
+          this.postItems.push(items[i]);
         }
       }
     },
@@ -127,214 +133,209 @@ export default {
       for (var i in items) {
         for (var j in items[i].popular) {
           if (items[i].popular[j].uid == uid) {
-            this.likedItems.push(items[i])
+            this.likedItems.push(items[i]);
           }
         }
       }
     },
     getItems() {
       console.log(this.items.length);
-      let self = this
-      firebase.database().ref('/items').on('value', snapshot => {
-        if (snapshot) {
-          const responsedata = snapshot.val()
-          let items = []
-          // データオブジェクトを配列に変更する
-          Object.keys(responsedata).forEach((val, key) => {
-            items.push(responsedata[val])
-          })
-          self.obj = items
-          self.getPostItems(self.uid, items)
-          self.getLikedItems(self.uid, items)
-        }
-      })
+      let self = this;
+      firebase
+        .database()
+        .ref("/items")
+        .on("value", snapshot => {
+          if (snapshot) {
+            const responsedata = snapshot.val();
+            let items = [];
+            // データオブジェクトを配列に変更する
+            Object.keys(responsedata).forEach((val, key) => {
+              items.push(responsedata[val]);
+            });
+            self.obj = items;
+            self.getPostItems(self.uid, items);
+            self.getLikedItems(self.uid, items);
+          }
+        });
     }
   },
   created() {
-    this.obj = this.items
-    this.getUser()
+    this.obj = this.items;
+    this.getUser();
     if (this.items.length == 0) {
-      this.getItems()
+      this.getItems();
     } else {
-      this.getPostItems(firebase.auth().currentUser.uid, this.items)
-      this.getLikedItems(firebase.auth().currentUser.uid, this.items)
+      this.getPostItems(firebase.auth().currentUser.uid, this.items);
+      this.getLikedItems(firebase.auth().currentUser.uid, this.items);
     }
     console.log(this.obj);
     console.log(this.postItems);
   }
-}
+};
 </script>
 
 <style lang="scss">
 $main-color: #ec0d08;
 
 .userInfo {
-    margin-top: 100px;
+  margin-top: 100px;
 
-    h3 {
-        margin-bottom: 0;
-        padding-left: 20px;
-    }
+  h3 {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
 
-    .userData {
-        display: block;
+  .userData {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+
+    div {
+      width: 80%;
+      margin: 20px auto 10px;
+      padding: 20px 10px;
+      border-radius: 0.5em;
+
+      .table {
         width: 100%;
-        margin-bottom: 40px;
+        background: rgba(#fff, 0.5);
 
-        div {
-            width: 80%;
-            margin: 20px auto 10px;
-            padding: 20px 10px;
-            border-radius: 0.5em;
+        .tr {
+          display: flex;
+          padding: 10px;
+          margin: 0;
 
-            .table {
-                width: 100%;
-                background: rgba(#fff, .5);
+          .td {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
 
-                .tr {
-                    display: flex;
-                    padding: 10px;
-                    margin: 0;
-
-                    .td {
-                        margin: 0;
-                        padding: 0;
-                        font-size: 16px;
-
-                        &:nth-of-type(1) {
-                            width: 30%;
-                            padding-right: 20px;
-                        }
-                    }
-                }
-
-                .purple {
-                    background: transparent;
-                    margin: 0;
-                    padding: 20px 0;
-                    width: 100%;
-
-                    input {
-                        width: 60%;
-                        height: auto;
-                    }
-
-                    button {
-                        width: 40%;
-                    }
-                }
+            &:nth-of-type(1) {
+              width: 30%;
+              padding-right: 20px;
             }
+          }
         }
 
         .purple {
-            width: 80%;
-            margin: auto;
+          background: transparent;
+          margin: 0;
+          padding: 20px 0;
+          width: 100%;
 
-            button {
-                width: 200px;
-            }
+          input {
+            width: 60%;
+            height: auto;
+          }
+
+          button {
+            width: 40%;
+          }
         }
+      }
+    }
 
+    .purple {
+      width: 80%;
+      margin: auto;
+
+      button {
+        width: 200px;
+      }
+    }
+  }
+
+  .resultSpan {
+    min-height: 100vh;
+    z-index: 0;
+    position: relative;
+    top: 0;
+
+    .seachResult {
+      z-index: 0;
+      position: relative;
+      top: 0;
+
+      .contents {
+        min-height: 0;
+      }
+
+      div {
+        h3 {
+          padding-left: 20px;
+          margin-bottom: 0;
+        }
+      }
+
+      .genre,
+      .name,
+      .place {
+        .contents {
+          button {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .arrowUp {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .userInfo {
+    h3 {
+      padding-left: 20%;
+    }
+
+    .userData {
+      .data {
+        padding: 0 20%;
+        width: auto;
+
+        table {
+          width: auto;
+        }
+      }
+
+      .purple {
+        padding: 0 20%;
+        width: auto;
+      }
     }
 
     .resultSpan {
-        min-height: 100vh;
-        z-index: 0;
-        position: relative;
-        top: 0;
-
-        .seachResult {
-            z-index: 0;
-            position: relative;
-            top: 0;
-
-            .contents {
-                min-height: 0;
-            }
-
-            div {
-                h3 {
-                    padding-left: 20px;
-                    margin-bottom: 0;
-                }
-            }
-
-            .genre,
-            .name,
-            .place {
-                .contents {
-                    button {
-                        display: none;
-                    }
-                }
-            }
-        }
-
-        .arrowUp {
-            display: none;
-        }
-    }
-}
-
-@media screen and (min-width:768px) {
-    .userInfo {
-        h3 {
+      .seachResult {
+        div {
+          h3 {
             padding-left: 20%;
+          }
         }
-
-        .userData {
-            .data {
-              padding: 0 20%;
-              width: auto;
-
-                table {
-                  width: auto;
-                }
-            }
-
-            .purple{
-              padding: 0 20%;
-              width: auto;
-            }
-        }
-
-        .resultSpan {
-
-            .seachResult {
-
-                div {
-                    h3 {
-                        padding-left: 20%;
-                    }
-                }
-            }
-
-        }
-
-        .masonry{
-          padding-left: 20%!important;
-        }
+      }
     }
+
+    .masonry {
+      padding-left: 20% !important;
+    }
+  }
 }
 
-@media screen and (max-width:530px) {
-    .userInfo {
-        .userData {
-
-            div {
-
-                .table {
-
-                    .tr {
-                        display: block!important;
-                        .td {
-                            width: 100%!important;
-                        }
-
-                    }
-                }
+@media screen and (max-width: 530px) {
+  .userInfo {
+    .userData {
+      div {
+        .table {
+          .tr {
+            display: block !important;
+            .td {
+              width: 100% !important;
             }
+          }
         }
+      }
     }
+  }
 }
 </style>

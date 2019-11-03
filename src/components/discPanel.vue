@@ -1,34 +1,27 @@
 <template>
-<div class="discPanel">
-  <div class="gradient-background">
-
-    <div class="turntable">
-      <div class="disc spin">
-        <div class="disc-reflection-left">
-        </div>
-        <div class="disc-reflection-right">
-        </div>
-        <div class="disc-groove">
-        </div>
-        <div class="label ">
-          <div class="disc-font disc-title">
-          </div>
-          <div class="disc-font disc-group">
+  <div class="discPanel">
+    <div class="gradient-background">
+      <div class="turntable">
+        <div class="disc spin">
+          <div class="disc-reflection-left"></div>
+          <div class="disc-reflection-right"></div>
+          <div class="disc-groove"></div>
+          <div class="label">
+            <div class="disc-font disc-title"></div>
+            <div class="disc-font disc-group"></div>
           </div>
         </div>
-      </div>
 
-      <div class="tone-arm oscillating">
+        <div class="tone-arm oscillating"></div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
 export default {
-  name: 'discPanel'
-}
+  name: "discPanel"
+};
 </script>
 
 <style>
@@ -43,7 +36,8 @@ export default {
   position: absolute;
 }
 
-.turntable {}
+/* .turntable {
+} */
 
 .disc {
   position: absolute;
@@ -70,7 +64,7 @@ export default {
   width: 8px;
   height: 8px;
   background: rgba(#fce715, 0);
-  border: solid 1px #FDE816;
+  border: solid 1px #fde816;
 }
 
 .disc-reflection-left,
@@ -100,7 +94,7 @@ export default {
   border-radius: 50%;
   width: 200px;
   height: 200px;
-  border: solid 2px #FDE816;
+  border: solid 2px #fde816;
 }
 
 .disc-groove:before,
@@ -112,7 +106,7 @@ export default {
   bottom: 0;
   right: 0;
   border-radius: 50%;
-  border: solid 2px #FDE816;
+  border: solid 2px #fde816;
 }
 
 .disc-groove:before {
@@ -156,14 +150,14 @@ export default {
   width: 70px;
   height: 70px;
   background: #fff69a;
-  border: solid 1px #FDE816;
+  border: solid 1px #fde816;
 }
 
 .label::after {
   width: 65px;
   height: 32.5px;
   bottom: 32.5px;
-  background: #FDE816;
+  background: #fde816;
   border-radius: 32.5px 32.5px 0 0;
 }
 
@@ -195,7 +189,7 @@ export default {
   right: 0;
   width: 20px;
   height: 40px;
-  background: #FDE816;
+  background: #fde816;
   border-radius: 10%;
   transform: rotate(20deg);
 }
@@ -205,7 +199,7 @@ export default {
   content: "";
   position: absolute;
   margin: auto;
-  background: #FDE816;
+  background: #fde816;
 }
 
 .tone-arm:before {
