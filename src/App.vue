@@ -363,6 +363,7 @@ body {
 
         &:hover {
             transition: 0.3s;
+            color: #fff;
             transform: scale(.95);
             box-shadow: 0 0 10px 1px rgba(0,0,0,0.3);
         }
@@ -374,7 +375,7 @@ body {
                 color: #fff;
 
                 &:active {
-                    color: inherit;
+                    color: #fff;
                 }
             }
         }
