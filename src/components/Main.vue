@@ -48,11 +48,10 @@ export default {
       const about = document.querySelector('.toAboutSpan');
 
       const rect = content.getBoundingClientRect().top;
-      // console.log(rect);
 
       this.targetRect = rect;
 
-      if (this.targetRect < 15) {
+      if (this.targetRect < 20) {
         this.$set(this.searchHiddenStyle, 'visibility', 'hidden');
         search.classList.add('head-animation');
 
